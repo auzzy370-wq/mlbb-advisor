@@ -63,6 +63,12 @@
 		BB000005 /* MockHeroDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010005; };
 		BB000006 /* MockHeroFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010006; };
 		BB000007 /* LiveCoachEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010007; };
+		SPMLINK_FIREBASEAUTH /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = SPMPROD_FIREBASEAUTH; };
+		SPMLINK_FIRESTORE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = SPMPROD_FIRESTORE; };
+		SPMLINK_FBANALYTICS /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = SPMPROD_FBANALYTICS; };
+		SPMLINK_SUPABASE /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = SPMPROD_SUPABASE; };
+		SPMLINK_SQLITE /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = SPMPROD_SQLITE; };
+		SPMLINK_OPENAI /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = SPMPROD_OPENAI; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -401,6 +407,14 @@
 			dependencies = (
 			);
 			name = HayaAI;
+			packageProductDependencies = (
+				SPMPROD_FIREBASEAUTH /* FirebaseAuth */,
+				SPMPROD_FIRESTORE /* FirebaseFirestore */,
+				SPMPROD_FBANALYTICS /* FirebaseAnalytics */,
+				SPMPROD_SUPABASE /* Supabase */,
+				SPMPROD_SQLITE /* SQLite */,
+				SPMPROD_OPENAI /* OpenAI */,
+			);
 			productName = HayaAI;
 			productReference = PROD0001 /* HayaAI.app */;
 			productType = "com.apple.product-type.application";
@@ -449,6 +463,12 @@
 				Base,
 			);
 			mainGroup = ROOT;
+			packageReferences = (
+				SPMREF_FIREBASE /* firebase-ios-sdk */,
+				SPMREF_SUPABASE /* supabase-swift */,
+				SPMREF_SQLITE /* SQLite.swift */,
+				SPMREF_OPENAI /* OpenAI */,
+			);
 			productRefGroup = GRPPROD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -547,10 +567,84 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				SPMLINK_FIREBASEAUTH /* FirebaseAuth in Frameworks */,
+				SPMLINK_FIRESTORE /* FirebaseFirestore in Frameworks */,
+				SPMLINK_FBANALYTICS /* FirebaseAnalytics in Frameworks */,
+				SPMLINK_SUPABASE /* Supabase in Frameworks */,
+				SPMLINK_SQLITE /* SQLite in Frameworks */,
+				SPMLINK_OPENAI /* OpenAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		SPMREF_FIREBASE /* firebase-ios-sdk */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "10.0.0";
+			};
+		};
+		SPMREF_SUPABASE /* supabase-swift */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase-community/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "2.0.0";
+			};
+		};
+		SPMREF_SQLITE /* SQLite.swift */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "0.15.0";
+			};
+		};
+		SPMREF_OPENAI /* OpenAI */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "0.3.0";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		SPMPROD_FIREBASEAUTH /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = SPMREF_FIREBASE;
+			productName = FirebaseAuth;
+		};
+		SPMPROD_FIRESTORE /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = SPMREF_FIREBASE;
+			productName = FirebaseFirestore;
+		};
+		SPMPROD_FBANALYTICS /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = SPMREF_FIREBASE;
+			productName = FirebaseAnalytics;
+		};
+		SPMPROD_SUPABASE /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = SPMREF_SUPABASE;
+			productName = Supabase;
+		};
+		SPMPROD_SQLITE /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = SPMREF_SQLITE;
+			productName = SQLite;
+		};
+		SPMPROD_OPENAI /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = SPMREF_OPENAI;
+			productName = OpenAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin PBXTargetDependency section */
 		TESTDEP0001 = {
