@@ -161,7 +161,7 @@
 				CC010002 /* Info.plist */,
 			);
 			name = HayaAIBroadcast;
-			path = "../HayaAIBroadcast";
+			path = HayaAIBroadcast;
 			sourceTree = "<group>";
 		};
 		GRPPROD /* Products */ = {
@@ -937,7 +937,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = "../HayaAIBroadcast/Info.plist";
+				INFOPLIST_FILE = "HayaAIBroadcast/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app.broadcast;
@@ -953,7 +953,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = "../HayaAIBroadcast/Info.plist";
+				INFOPLIST_FILE = "HayaAIBroadcast/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app.broadcast;
