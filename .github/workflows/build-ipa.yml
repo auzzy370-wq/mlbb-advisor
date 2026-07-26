@@ -36,15 +36,10 @@ jobs:
       - name: Show Xcode version
         run: xcodebuild -version
 
-      - name: Resolve SPM packages
-        run: |
-          xcodebuild \
-            -resolvePackageDependencies \
-            -project HayaAI.xcodeproj \
-            -scheme HayaAI \
-            -clonedSourcePackagesDirPath ../.spm-cache
-
-      - name: Build (code-signing disabled)
+      - name: Build + archive (ad-hoc signed)
+        # Uses '-' (local ad-hoc) signing: compiles all SPM packages including
+        # Firebase, produces a valid .app bundle. The IPA can then be re-signed
+        # by Sideloadly/AltStore with the user's own Apple ID on their machine.
         run: |
           set -o pipefail
           xcodebuild archive \
@@ -53,15 +48,18 @@ jobs:
             -configuration Release \
             -destination "generic/platform=iOS" \
             -archivePath "$RUNNER_TEMP/HayaAI.xcarchive" \
-            -clonedSourcePackagesDirPath ../.spm-cache \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGN_IDENTITY="" \
-            PROVISIONING_PROFILE_SPECIFIER="" \
+            -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=YES \
             AD_HOC_CODE_SIGNING_ALLOWED=YES \
-            2>&1 | tee "$RUNNER_TEMP/build.log" | grep -E "error:|warning:|BUILD|ARCHIVE" || true
-          # Fail the step if xcodebuild actually failed
+            PROVISIONING_PROFILE_SPECIFIER="" \
+            DEVELOPMENT_TEAM="" \
+            2>&1 | tee "$RUNNER_TEMP/build.log" | \
+              grep -E "^(error:|warning:|.*error:.*|ARCHIVE|BUILD)" || true
           if grep -q "ARCHIVE FAILED\|BUILD FAILED" "$RUNNER_TEMP/build.log"; then
-            grep "error:" "$RUNNER_TEMP/build.log" | head -20
+            echo "=== Build errors ==="
+            grep "error:" "$RUNNER_TEMP/build.log" | grep -v "^warning" | head -30
             exit 1
           fi
 
