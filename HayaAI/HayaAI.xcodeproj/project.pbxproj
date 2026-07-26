@@ -23,6 +23,11 @@
 		AA000021 /* OCREngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010021; };
 		AA000022 /* RecommendationEngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010022; };
 		AA000030 /* ReplayKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010030; };
+		AA000031 /* BroadcastFrameReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010031; };
+		AA000032 /* BroadcastPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010032; };
+		CC000001 /* SampleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC010001; settings = {COMPILER_FLAGS = ""; }; };
+		CC000002 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC010002; };
+		CC000010 /* HayaAIBroadcast.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CC020000; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA000040 /* OCREngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010040; };
 		AA000050 /* VisionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010050; };
 		AA000051 /* HeroPortraitDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010051; };
@@ -88,6 +93,11 @@
 		AA010021 /* OCREngineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCREngineProtocol.swift; sourceTree = "<group>"; };
 		AA010022 /* RecommendationEngineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationEngineProtocol.swift; sourceTree = "<group>"; };
 		AA010030 /* ReplayKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplayKitManager.swift; sourceTree = "<group>"; };
+		AA010031 /* BroadcastFrameReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastFrameReader.swift; sourceTree = "<group>"; };
+		AA010032 /* BroadcastPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastPickerView.swift; sourceTree = "<group>"; };
+		CC010001 /* SampleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleHandler.swift; sourceTree = "<group>"; };
+		CC010002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC020000 /* HayaAIBroadcast.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HayaAIBroadcast.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA010040 /* OCREngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCREngine.swift; sourceTree = "<group>"; };
 		AA010050 /* VisionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/VisionEngine.swift"; sourceTree = "<group>"; };
 		AA010051 /* HeroPortraitDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detectors/HeroPortraitDetector.swift"; sourceTree = "<group>"; };
@@ -139,8 +149,19 @@
 			children = (
 				GRPAPP /* HayaAI */,
 				GRPTEST /* HayaAITests */,
+				GRPBROADCAST /* HayaAIBroadcast */,
 				GRPPROD /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		GRPBROADCAST /* HayaAIBroadcast */ = {
+			isa = PBXGroup;
+			children = (
+				CC010001 /* SampleHandler.swift */,
+				CC010002 /* Info.plist */,
+			);
+			name = HayaAIBroadcast;
+			path = "../HayaAIBroadcast";
 			sourceTree = "<group>";
 		};
 		GRPPROD /* Products */ = {
@@ -148,6 +169,7 @@
 			children = (
 				PROD0001 /* HayaAI.app */,
 				TEST0001 /* HayaAITests.xctest */,
+				CC020000 /* HayaAIBroadcast.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,6 +242,8 @@
 			isa = PBXGroup;
 			children = (
 				AA010030 /* ReplayKitManager.swift */,
+				AA010031 /* BroadcastFrameReader.swift */,
+				AA010032 /* BroadcastPickerView.swift */,
 			);
 			path = ReplayKit;
 			sourceTree = "<group>";
@@ -401,10 +425,12 @@
 				BPHASESRC /* Sources */,
 				BPHASERESOURCE /* Resources */,
 				BPHASEFRAME /* Frameworks */,
+				BPHASEEMBED /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BROADCASTDEP /* PBXTargetDependency */,
 			);
 			name = HayaAI;
 			packageProductDependencies = (
@@ -434,6 +460,22 @@
 			productName = HayaAITests;
 			productReference = TEST0001 /* HayaAITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		TGTBROADCAST /* HayaAIBroadcast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFGLISTBROADCAST;
+			buildPhases = (
+				BPHASESRCBROADCAST /* Sources */,
+				BPHASERESBROADCAST /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HayaAIBroadcast;
+			productName = HayaAIBroadcast;
+			productReference = CC020000 /* HayaAIBroadcast.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -475,6 +517,7 @@
 			targets = (
 				TGTAPP0001 /* HayaAI */,
 				TGTTEST0001 /* HayaAITests */,
+				TGTBROADCAST /* HayaAIBroadcast */,
 			);
 		};
 /* End PBXProject section */
@@ -511,6 +554,8 @@
 				AA000021,
 				AA000022,
 				AA000030,
+				AA000031,
+				AA000032,
 				AA000040,
 				AA000050,
 				AA000051,
@@ -560,6 +605,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BPHASESRCBROADCAST /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC000001,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -577,6 +630,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BPHASEEMBED /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CC000010 /* HayaAIBroadcast.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BPHASERESBROADCAST /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin XCRemoteSwiftPackageReference section */
 		SPMREF_FIREBASE /* firebase-ios-sdk */ = {
@@ -652,6 +726,11 @@
 			target = TGTAPP0001 /* HayaAI */;
 			targetProxy = CONTRPXY0001;
 		};
+		BROADCASTDEP = {
+			isa = PBXTargetDependency;
+			target = TGTBROADCAST /* HayaAIBroadcast */;
+			targetProxy = CONTRPXY0002;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXContainerItemProxy section */
@@ -661,6 +740,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = TGTAPP0001;
 			remoteInfo = HayaAI;
+		};
+		CONTRPXY0002 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = PROJ0001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = TGTBROADCAST;
+			remoteInfo = HayaAIBroadcast;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -846,6 +932,38 @@
 			};
 			name = Release;
 		};
+		CFGDEBUGBROADCAST /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = "../HayaAIBroadcast/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app.broadcast;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CFGRELEASEBROADCAST /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = "../HayaAIBroadcast/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app.broadcast;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -872,6 +990,15 @@
 			buildConfigurations = (
 				CFGDEBUGTEST /* Debug */,
 				CFGRELEASETEST /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFGLISTBROADCAST /* Build configuration list for PBXNativeTarget "HayaAIBroadcast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFGDEBUGBROADCAST /* Debug */,
+				CFGRELEASEBROADCAST /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

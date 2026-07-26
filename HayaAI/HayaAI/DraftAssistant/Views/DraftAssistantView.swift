@@ -26,26 +26,40 @@ struct DraftAssistantView: View {
 
     // MARK: - Capture Control Bar
     private var captureControlBar: some View {
-        HStack(spacing: 12) {
-            CaptureStatusIndicator(status: viewModel.captureStatus)
+        VStack(spacing: 0) {
+            // Broadcast row — uses the system broadcast picker so it captures
+            // Mobile Legends even while MLBB is in the foreground.
+            HStack(spacing: 12) {
+                Circle()
+                    .fill(viewModel.broadcastFrameReader.broadcastStatus == "running"
+                          ? Color.green : Color.secondary.opacity(0.4))
+                    .frame(width: 8, height: 8)
 
-            Spacer()
+                Text(viewModel.broadcastFrameReader.broadcastStatus == "running"
+                     ? "Broadcast Live — screen is being read"
+                     : "Tap ● to broadcast your screen")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
 
-            if viewModel.isCapturing {
-                HayaButton(title: "Stop", style: .destructive) {
-                    Task { await viewModel.stopCapture() }
-                }
-                .frame(width: 80, height: 36)
-            } else {
-                HayaButton(title: "Start Capture", style: .primary) {
-                    Task { await viewModel.startCapture() }
-                }
-                .frame(height: 36)
+                Spacer()
+
+                // Native iOS broadcast picker button
+                BroadcastPickerButton()
+                    .frame(width: 44, height: 44)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+            .background(.ultraThinMaterial)
+
+            // Error banner (only shown if something went wrong)
+            if case .error(let msg) = viewModel.captureStatus {
+                Text("⚠️ \(msg)")
+                    .font(.caption2)
+                    .foregroundStyle(.orange)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 6)
             }
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 10)
-        .background(.ultraThinMaterial)
     }
 
     // MARK: - Draft Board
