@@ -1,4 +1,5 @@
 import UIKit
+import UserNotifications
 import FirebaseCore
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
@@ -11,6 +12,13 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         if Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") != nil {
             FirebaseApp.configure()
         }
+
+        // Request notification permission so banners can appear over Mobile Legends
+        // during gameplay. We ask here so the system prompt appears on first launch.
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: [.alert, .sound, .badge]
+        ) { _, _ in }
+
         return true
     }
 

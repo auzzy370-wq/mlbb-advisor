@@ -34,6 +34,20 @@
                ReferencedContainer = "container:HayaAI.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "TGTWIDGET"
+               BuildableName = "HayaAIWidget.appex"
+               BlueprintName = "HayaAIWidget"
+               ReferencedContainer = "container:HayaAI.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

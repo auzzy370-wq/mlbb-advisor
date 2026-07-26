@@ -46,6 +46,8 @@ final class LiveCoachViewModel: ObservableObject {
     // MARK: - Dependencies
     let gameSessionManager: GameSessionManager
     private let inGameRecommendationService: InGameRecommendationService
+    let liveActivityManager = LiveActivityManager()
+    private let notificationService = NotificationService()
 
     // MARK: - Subscriptions
     private var cancellables: Set<AnyCancellable> = []
@@ -67,6 +69,14 @@ final class LiveCoachViewModel: ObservableObject {
     // MARK: - Session Control
 
     func startSession() async {
+        // Request notification permission on first session start (no-op if already granted)
+        await notificationService.requestPermission()
+
+        // Start the Live Activity using the player's hero name if available
+        let heroName = gameSessionManager.draftStateManager.currentDraftState
+            .friendlyPicks.first { $0.status == .locked }?.heroName ?? ""
+        await liveActivityManager.start(heroName: heroName)
+
         do {
             try await gameSessionManager.startSession()
         } catch {
@@ -87,6 +97,8 @@ final class LiveCoachViewModel: ObservableObject {
 
     func endSession() async {
         await gameSessionManager.endSession()
+        await liveActivityManager.end()
+        await notificationService.cancelAll()
     }
 
     func dismissAlert(_ alert: CoachAlert) {
@@ -121,8 +133,16 @@ final class LiveCoachViewModel: ObservableObject {
                 self.topAlert = self.activeAlerts.first
                 self.turtleTimer = state.objectives.turtle
                 self.lordTimer = state.objectives.lord
-                // Regenerate in-game recommendations when game state changes
-                Task { await self.refreshInGameRecommendations(gameState: state) }
+
+                let topAlert = self.topAlert
+                // Push overlay updates off main thread to avoid blocking UI
+                Task {
+                    await self.refreshInGameRecommendations(gameState: state)
+                    // Update Live Activity with latest state (rate-limited by ActivityKit)
+                    await self.liveActivityManager.update(gameState: state, topAlert: topAlert)
+                    // Fire local notification banners for new high-priority alerts
+                    await self.notificationService.deliver(state.activeAlerts)
+                }
             }
             .store(in: &cancellables)
 
