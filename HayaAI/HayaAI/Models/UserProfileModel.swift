@@ -18,6 +18,12 @@ struct UserProfile: Codable, Identifiable, Sendable {
     var updatedAt: Date = Date()
     var isPremium: Bool = false
     var settings: UserSettings = UserSettings()
+
+    /// A local guest profile used when Firebase is not configured (sideloaded / offline).
+    static var guest: UserProfile {
+        UserProfile(id: "guest", displayName: "Player", email: "")
+    }
+    var isGuest: Bool { id == "guest" }
 }
 
 // MARK: - Match Record

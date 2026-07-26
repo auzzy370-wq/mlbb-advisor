@@ -11,10 +11,25 @@ final class AuthenticationService: ObservableObject, AuthenticationServiceProtoc
     @Published private(set) var isLoading: Bool = true
     @Published private(set) var authError: AuthError? = nil
 
+    // True when GoogleService-Info.plist is present and FirebaseApp was configured.
+    static let isFirebaseAvailable: Bool = {
+        Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") != nil
+    }()
+
     private var authStateListener: AuthStateDidChangeListenerHandle?
 
     init() {
-        setupAuthListener()
+        if Self.isFirebaseAvailable {
+            setupAuthListener()
+        } else {
+            // No Firebase — auto-login as a local guest so the app works immediately.
+            Task { @MainActor in
+                try? await Task.sleep(nanoseconds: 800_000_000) // brief splash delay
+                self.currentProfile = UserProfile.guest
+                self.isAuthenticated = true
+                self.isLoading = false
+            }
+        }
     }
 
     deinit {
@@ -23,7 +38,7 @@ final class AuthenticationService: ObservableObject, AuthenticationServiceProtoc
         }
     }
 
-    // MARK: - Auth Listener
+    // MARK: - Auth Listener (Firebase path)
 
     private func setupAuthListener() {
         authStateListener = Auth.auth().addStateDidChangeListener { [weak self] _, user in
@@ -44,10 +59,14 @@ final class AuthenticationService: ObservableObject, AuthenticationServiceProtoc
     // MARK: - Protocol
 
     nonisolated var currentUserID: String? {
-        Auth.auth().currentUser?.uid
+        Self.isFirebaseAvailable ? Auth.auth().currentUser?.uid : "guest"
     }
 
     func signIn(email: String, password: String) async throws -> UserProfile {
+        guard Self.isFirebaseAvailable else {
+            // In guest mode treat "sign in" as a no-op; user is already in.
+            return currentProfile ?? .guest
+        }
         isLoading = true
         authError = nil
         do {
@@ -66,6 +85,14 @@ final class AuthenticationService: ObservableObject, AuthenticationServiceProtoc
     }
 
     func signUp(email: String, password: String, displayName: String) async throws -> UserProfile {
+        guard Self.isFirebaseAvailable else {
+            var profile = UserProfile.guest
+            profile.displayName = displayName.isEmpty ? "Player" : displayName
+            currentProfile = profile
+            isAuthenticated = true
+            isLoading = false
+            return profile
+        }
         isLoading = true
         authError = nil
         do {
@@ -88,19 +115,28 @@ final class AuthenticationService: ObservableObject, AuthenticationServiceProtoc
     }
 
     func signOut() async throws {
-        do {
-            try Auth.auth().signOut()
-            isAuthenticated = false
-            currentProfile = nil
-        } catch {
-            throw mapFirebaseError(error)
+        if Self.isFirebaseAvailable {
+            do {
+                try Auth.auth().signOut()
+            } catch {
+                throw mapFirebaseError(error)
+            }
         }
+        isAuthenticated = false
+        currentProfile = nil
     }
 
     func currentUser() async throws -> UserProfile? { currentProfile }
 
     func updateProfile(_ profile: UserProfile) async throws {
         currentProfile = profile
+    }
+
+    // MARK: - Guest sign-in (no account needed)
+    func continueAsGuest() {
+        currentProfile = .guest
+        isAuthenticated = true
+        isLoading = false
     }
 
     // MARK: - Apple Sign In (future)

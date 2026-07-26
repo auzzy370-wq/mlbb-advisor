@@ -65,6 +65,41 @@ struct LoginView: View {
                 }
                 .font(.subheadline)
 
+                // Divider with label
+                HStack(spacing: 10) {
+                    Rectangle().fill(Color.white.opacity(0.15)).frame(height: 1)
+                    Text("or").font(.caption).foregroundStyle(.secondary)
+                    Rectangle().fill(Color.white.opacity(0.15)).frame(height: 1)
+                }
+                .padding(.horizontal, 24)
+
+                Button {
+                    authService.continueAsGuest()
+                } label: {
+                    HStack(spacing: 8) {
+                        Image(systemName: "person.fill")
+                        Text("Continue as Guest")
+                            .fontWeight(.semibold)
+                    }
+                    .font(.subheadline)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+                    .background(Color.white.opacity(0.08))
+                    .foregroundStyle(.primary)
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 14)
+                            .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                    )
+                }
+                .padding(.horizontal, 24)
+
+                Text("No account needed · All core features available offline")
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
+
                 Spacer(minLength: 40)
             }
         }
