@@ -7,62 +7,62 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA000001 /* HayaAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010001 /* HayaAIApp.swift */; };
-		AA000002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010002 /* AppDelegate.swift */; };
-		AA000003 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010003 /* AppRouter.swift */; };
-		AA000004 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010004 /* RootView.swift */; };
-		AA000010 /* HeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010010 /* HeroModel.swift */; };
-		AA000011 /* DraftStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010011 /* DraftStateModel.swift */; };
-		AA000012 /* RecommendationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010012 /* RecommendationModel.swift */; };
-		AA000013 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010013 /* UserProfileModel.swift */; };
-		AA000014 /* StrategyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010014 /* StrategyModel.swift */; };
-		AA000015 /* VisionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010015 /* VisionModels.swift */; };
-		AA000020 /* VisionEngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010020 /* VisionEngineProtocol.swift */; };
-		AA000021 /* OCREngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010021 /* OCREngineProtocol.swift */; };
-		AA000022 /* RecommendationEngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010022 /* RecommendationEngineProtocol.swift */; };
-		AA000030 /* ReplayKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010030 /* ReplayKitManager.swift */; };
-		AA000040 /* OCREngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010040 /* OCREngine.swift */; };
-		AA000050 /* VisionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010050 /* VisionEngine.swift */; };
-		AA000051 /* HeroPortraitDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010051 /* HeroPortraitDetector.swift */; };
-		AA000052 /* FrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010052 /* FrameProcessor.swift */; };
-		AA000060 /* DraftStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010060 /* DraftStateManager.swift */; };
-		AA000070 /* HeroDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010070 /* HeroDatabaseService.swift */; };
-		AA000071 /* heroes.json in Resources */ = {isa = PBXBuildFile; fileRef = AA010071 /* heroes.json */; };
-		AA000080 /* RecommendationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010080 /* RecommendationEngine.swift */; };
-		AA000090 /* ItemRecommendationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010090 /* ItemRecommendationEngine.swift */; };
-		AA000100 /* StrategyEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010100 /* StrategyEngine.swift */; };
-		AA000110 /* MetaEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010110 /* MetaEngine.swift */; };
-		AA000120 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010120 /* NetworkService.swift */; };
-		AA000130 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010130 /* AuthenticationService.swift */; };
-		AA000140 /* AuthenticationFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010140 /* AuthenticationFlowView.swift */; };
-		AA000150 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010150 /* MainTabView.swift */; };
-		AA000160 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010160 /* DashboardView.swift */; };
-		AA000161 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010161 /* DashboardViewModel.swift */; };
-		AA000170 /* DraftAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010170 /* DraftAssistantView.swift */; };
-		AA000171 /* DraftAssistantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010171 /* DraftAssistantViewModel.swift */; };
-		AA000180 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010180 /* SettingsView.swift */; };
-		AA000190 /* AnalyticsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010190 /* AnalyticsDashboardView.swift */; };
-		AA000200 /* Color+Haya.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010200 /* Color+Haya.swift */; };
-		AA000201 /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010201 /* GlassCard.swift */; };
-		AA000202 /* HayaComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010202 /* HayaComponents.swift */; };
-		AA000210 /* InGameRecommendationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010210 /* InGameRecommendationModels.swift */; };
-		AA000211 /* InGameRecommendationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010211 /* InGameRecommendationService.swift */; };
-		AA000212 /* LiveGameModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010212 /* LiveGameModels.swift */; };
-		AA000213 /* InGameFrameAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010213 /* InGameFrameAnalyzer.swift */; };
-		AA000214 /* GameSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010214 /* GameSessionManager.swift */; };
-		AA000215 /* ObjectiveTimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010215 /* ObjectiveTimerService.swift */; };
-		AA000216 /* LiveCoachEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010216 /* LiveCoachEngine.swift */; };
-		AA000217 /* AlertEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010217 /* AlertEngine.swift */; };
-		AA000218 /* TacticalAdvisor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010218 /* TacticalAdvisor.swift */; };
-		AA000219 /* LiveCoachViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010219 /* LiveCoachViewModel.swift */; };
-		AA000220 /* LiveCoachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010220 /* LiveCoachView.swift */; };
-		AA000221 /* GameModeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010221 /* GameModeContainerView.swift */; };
-		BB000001 /* RecommendationEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010001 /* RecommendationEngineTests.swift */; };
-		BB000002 /* DraftStateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010002 /* DraftStateManagerTests.swift */; };
-		BB000003 /* HeroDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010003 /* HeroDatabaseTests.swift */; };
-		BB000004 /* OCREngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010004 /* OCREngineTests.swift */; };
-		BB000005 /* MockHeroDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010005 /* MockHeroDatabaseService.swift */; };
-		BB000006 /* MockHeroFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010006 /* MockHeroFactory.swift */; };
+		AA000001 /* HayaAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010001; };
+		AA000002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010002; };
+		AA000003 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010003; };
+		AA000004 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010004; };
+		AA000010 /* HeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010010; };
+		AA000011 /* DraftStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010011; };
+		AA000012 /* RecommendationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010012; };
+		AA000013 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010013; };
+		AA000014 /* StrategyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010014; };
+		AA000015 /* VisionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010015; };
+		AA000016 /* InGameRecommendationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010016; };
+		AA000017 /* LiveGameModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010017; };
+		AA000020 /* VisionEngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010020; };
+		AA000021 /* OCREngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010021; };
+		AA000022 /* RecommendationEngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010022; };
+		AA000030 /* ReplayKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010030; };
+		AA000040 /* OCREngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010040; };
+		AA000050 /* VisionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010050; };
+		AA000051 /* HeroPortraitDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010051; };
+		AA000052 /* FrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010052; };
+		AA000053 /* InGameFrameAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010053; };
+		AA000060 /* DraftStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010060; };
+		AA000070 /* HeroDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010070; };
+		AA000071 /* heroes.json in Resources */ = {isa = PBXBuildFile; fileRef = AA010071; };
+		AA000080 /* RecommendationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010080; };
+		AA000081 /* InGameRecommendationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010081; };
+		AA000090 /* ItemRecommendationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010090; };
+		AA000100 /* StrategyEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010100; };
+		AA000110 /* MetaEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010110; };
+		AA000120 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010120; };
+		AA000130 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010130; };
+		AA000140 /* AuthenticationFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010140; };
+		AA000150 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010150; };
+		AA000160 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010160; };
+		AA000161 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010161; };
+		AA000170 /* DraftAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010170; };
+		AA000171 /* DraftAssistantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010171; };
+		AA000172 /* LiveCoachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010172; };
+		AA000173 /* LiveCoachViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010173; };
+		AA000174 /* GameModeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010174; };
+		AA000180 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010180; };
+		AA000190 /* AnalyticsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010190; };
+		AA000200 /* Color+Haya.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010200; };
+		AA000201 /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010201; };
+		AA000202 /* HayaComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010202; };
+		AA000210 /* GameSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010210; };
+		AA000211 /* ObjectiveTimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010211; };
+		AA000212 /* LiveCoachEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010212; };
+		AA000213 /* AlertEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010213; };
+		BB000001 /* RecommendationEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010001; };
+		BB000002 /* DraftStateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010002; };
+		BB000003 /* HeroDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010003; };
+		BB000004 /* OCREngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010004; };
+		BB000005 /* MockHeroDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010005; };
+		BB000006 /* MockHeroFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010006; };
+		BB000007 /* LiveCoachEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010007; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,53 +76,53 @@
 		AA010013 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		AA010014 /* StrategyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyModel.swift; sourceTree = "<group>"; };
 		AA010015 /* VisionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionModels.swift; sourceTree = "<group>"; };
+		AA010016 /* InGameRecommendationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameRecommendationModels.swift; sourceTree = "<group>"; };
+		AA010017 /* LiveGameModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGameModels.swift; sourceTree = "<group>"; };
 		AA010020 /* VisionEngineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionEngineProtocol.swift; sourceTree = "<group>"; };
 		AA010021 /* OCREngineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCREngineProtocol.swift; sourceTree = "<group>"; };
 		AA010022 /* RecommendationEngineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationEngineProtocol.swift; sourceTree = "<group>"; };
 		AA010030 /* ReplayKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplayKitManager.swift; sourceTree = "<group>"; };
 		AA010040 /* OCREngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCREngine.swift; sourceTree = "<group>"; };
-		AA010050 /* VisionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionEngine.swift; sourceTree = "<group>"; };
-		AA010051 /* HeroPortraitDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroPortraitDetector.swift; sourceTree = "<group>"; };
-		AA010052 /* FrameProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameProcessor.swift; sourceTree = "<group>"; };
+		AA010050 /* VisionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/VisionEngine.swift"; sourceTree = "<group>"; };
+		AA010051 /* HeroPortraitDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detectors/HeroPortraitDetector.swift"; sourceTree = "<group>"; };
+		AA010052 /* FrameProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Processors/FrameProcessor.swift"; sourceTree = "<group>"; };
+		AA010053 /* InGameFrameAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Processors/InGameFrameAnalyzer.swift"; sourceTree = "<group>"; };
 		AA010060 /* DraftStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftStateManager.swift; sourceTree = "<group>"; };
-		AA010070 /* HeroDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDatabaseService.swift; sourceTree = "<group>"; };
-		AA010071 /* heroes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = heroes.json; sourceTree = "<group>"; };
+		AA010070 /* HeroDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/HeroDatabaseService.swift"; sourceTree = "<group>"; };
+		AA010071 /* heroes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "JSON/heroes.json"; sourceTree = "<group>"; };
 		AA010080 /* RecommendationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationEngine.swift; sourceTree = "<group>"; };
+		AA010081 /* InGameRecommendationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameRecommendationService.swift; sourceTree = "<group>"; };
 		AA010090 /* ItemRecommendationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRecommendationEngine.swift; sourceTree = "<group>"; };
 		AA010100 /* StrategyEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyEngine.swift; sourceTree = "<group>"; };
 		AA010110 /* MetaEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaEngine.swift; sourceTree = "<group>"; };
-		AA010120 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		AA010130 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
-		AA010140 /* AuthenticationFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationFlowView.swift; sourceTree = "<group>"; };
-		AA010150 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		AA010160 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		AA010161 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
-		AA010170 /* DraftAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftAssistantView.swift; sourceTree = "<group>"; };
-		AA010171 /* DraftAssistantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftAssistantViewModel.swift; sourceTree = "<group>"; };
-		AA010180 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		AA010190 /* AnalyticsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsDashboardView.swift; sourceTree = "<group>"; };
-		AA010200 /* Color+Haya.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Haya.swift"; sourceTree = "<group>"; };
-		AA010201 /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCard.swift; sourceTree = "<group>"; };
-		AA010202 /* HayaComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HayaComponents.swift; sourceTree = "<group>"; };
-		AA010210 /* InGameRecommendationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameRecommendationModels.swift; sourceTree = "<group>"; };
-		AA010211 /* InGameRecommendationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameRecommendationService.swift; sourceTree = "<group>"; };
-		AA010212 /* LiveGameModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGameModels.swift; sourceTree = "<group>"; };
-		AA010213 /* InGameFrameAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameFrameAnalyzer.swift; sourceTree = "<group>"; };
-		AA010214 /* GameSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSessionManager.swift; sourceTree = "<group>"; };
-		AA010215 /* ObjectiveTimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveTimerService.swift; sourceTree = "<group>"; };
-		AA010216 /* LiveCoachEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCoachEngine.swift; sourceTree = "<group>"; };
-		AA010217 /* AlertEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertEngine.swift; sourceTree = "<group>"; };
-		AA010218 /* TacticalAdvisor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TacticalAdvisor.swift; sourceTree = "<group>"; };
-		AA010219 /* LiveCoachViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCoachViewModel.swift; sourceTree = "<group>"; };
-		AA010220 /* LiveCoachView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCoachView.swift; sourceTree = "<group>"; };
-		AA010221 /* GameModeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeContainerView.swift; sourceTree = "<group>"; };
+		AA010120 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/NetworkService.swift"; sourceTree = "<group>"; };
+		AA010130 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/AuthenticationService.swift"; sourceTree = "<group>"; };
+		AA010140 /* AuthenticationFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/AuthenticationFlowView.swift"; sourceTree = "<group>"; };
+		AA010150 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/MainTabView.swift"; sourceTree = "<group>"; };
+		AA010160 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/DashboardView.swift"; sourceTree = "<group>"; };
+		AA010161 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/DashboardViewModel.swift"; sourceTree = "<group>"; };
+		AA010170 /* DraftAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/DraftAssistantView.swift"; sourceTree = "<group>"; };
+		AA010171 /* DraftAssistantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/DraftAssistantViewModel.swift"; sourceTree = "<group>"; };
+		AA010172 /* LiveCoachView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/LiveCoachView.swift"; sourceTree = "<group>"; };
+		AA010173 /* LiveCoachViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/LiveCoachViewModel.swift"; sourceTree = "<group>"; };
+		AA010174 /* GameModeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/GameModeContainerView.swift"; sourceTree = "<group>"; };
+		AA010180 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/SettingsView.swift"; sourceTree = "<group>"; };
+		AA010190 /* AnalyticsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/AnalyticsDashboardView.swift"; sourceTree = "<group>"; };
+		AA010200 /* Color+Haya.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions/Color+Haya.swift"; sourceTree = "<group>"; };
+		AA010201 /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Components/GlassCard.swift"; sourceTree = "<group>"; };
+		AA010202 /* HayaComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Components/HayaComponents.swift"; sourceTree = "<group>"; };
+		AA010210 /* GameSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSessionManager.swift; sourceTree = "<group>"; };
+		AA010211 /* ObjectiveTimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveTimerService.swift; sourceTree = "<group>"; };
+		AA010212 /* LiveCoachEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCoachEngine.swift; sourceTree = "<group>"; };
+		AA010213 /* AlertEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertEngine.swift; sourceTree = "<group>"; };
 		AA0FFFFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BB010001 /* RecommendationEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationEngineTests.swift; sourceTree = "<group>"; };
-		BB010002 /* DraftStateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftStateManagerTests.swift; sourceTree = "<group>"; };
-		BB010003 /* HeroDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDatabaseTests.swift; sourceTree = "<group>"; };
-		BB010004 /* OCREngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCREngineTests.swift; sourceTree = "<group>"; };
-		BB010005 /* MockHeroDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHeroDatabaseService.swift; sourceTree = "<group>"; };
-		BB010006 /* MockHeroFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHeroFactory.swift; sourceTree = "<group>"; };
+		BB010001 /* RecommendationEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecommendationEngine/RecommendationEngineTests.swift"; sourceTree = "<group>"; };
+		BB010002 /* DraftStateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DraftEngine/DraftStateManagerTests.swift"; sourceTree = "<group>"; };
+		BB010003 /* HeroDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeroDatabase/HeroDatabaseTests.swift"; sourceTree = "<group>"; };
+		BB010004 /* OCREngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisionEngine/OCREngineTests.swift"; sourceTree = "<group>"; };
+		BB010005 /* MockHeroDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mocks/MockHeroDatabaseService.swift"; sourceTree = "<group>"; };
+		BB010006 /* MockHeroFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mocks/MockHeroFactory.swift"; sourceTree = "<group>"; };
+		BB010007 /* LiveCoachEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisionEngine/LiveCoachEngineTests.swift"; sourceTree = "<group>"; };
 		PROD0001 /* HayaAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HayaAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		TEST0001 /* HayaAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HayaAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -165,6 +165,7 @@
 				GRPAUTH /* Authentication */,
 				GRPDASH /* Dashboard */,
 				GRPDRAFTUI /* DraftAssistant */,
+				GRPSERVICES /* Services */,
 				GRPSETTINGS /* Settings */,
 				GRPANALYTICS /* Analytics */,
 				GRPSHARED /* SharedComponents */,
@@ -193,6 +194,8 @@
 				AA010013 /* UserProfileModel.swift */,
 				AA010014 /* StrategyModel.swift */,
 				AA010015 /* VisionModels.swift */,
+				AA010016 /* InGameRecommendationModels.swift */,
+				AA010017 /* LiveGameModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				AA010050 /* VisionEngine.swift */,
 				AA010051 /* HeroPortraitDetector.swift */,
 				AA010052 /* FrameProcessor.swift */,
+				AA010053 /* InGameFrameAnalyzer.swift */,
 			);
 			path = VisionEngine;
 			sourceTree = "<group>";
@@ -254,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				AA010080 /* RecommendationEngine.swift */,
+				AA010081 /* InGameRecommendationService.swift */,
 			);
 			path = RecommendationEngine;
 			sourceTree = "<group>";
@@ -314,6 +319,9 @@
 			children = (
 				AA010170 /* DraftAssistantView.swift */,
 				AA010171 /* DraftAssistantViewModel.swift */,
+				AA010172 /* LiveCoachView.swift */,
+				AA010173 /* LiveCoachViewModel.swift */,
+				AA010174 /* GameModeContainerView.swift */,
 			);
 			path = DraftAssistant;
 			sourceTree = "<group>";
@@ -344,6 +352,17 @@
 			path = SharedComponents;
 			sourceTree = "<group>";
 		};
+		GRPSERVICES /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AA010210 /* GameSessionManager.swift */,
+				AA010211 /* ObjectiveTimerService.swift */,
+				AA010212 /* LiveCoachEngine.swift */,
+				AA010213 /* AlertEngine.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		GRPRESOURCES /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,6 +380,7 @@
 				BB010004 /* OCREngineTests.swift */,
 				BB010005 /* MockHeroDatabaseService.swift */,
 				BB010006 /* MockHeroFactory.swift */,
+				BB010007 /* LiveCoachEngineTests.swift */,
 			);
 			path = HayaAITests;
 			sourceTree = "<group>";
@@ -455,55 +475,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA000001 /* HayaAIApp.swift in Sources */,
-				AA000002 /* AppDelegate.swift in Sources */,
-				AA000003 /* AppRouter.swift in Sources */,
-				AA000004 /* RootView.swift in Sources */,
-				AA000010 /* HeroModel.swift in Sources */,
-				AA000011 /* DraftStateModel.swift in Sources */,
-				AA000012 /* RecommendationModel.swift in Sources */,
-				AA000013 /* UserProfileModel.swift in Sources */,
-				AA000014 /* StrategyModel.swift in Sources */,
-				AA000015 /* VisionModels.swift in Sources */,
-				AA000020 /* VisionEngineProtocol.swift in Sources */,
-				AA000021 /* OCREngineProtocol.swift in Sources */,
-				AA000022 /* RecommendationEngineProtocol.swift in Sources */,
-				AA000030 /* ReplayKitManager.swift in Sources */,
-				AA000040 /* OCREngine.swift in Sources */,
-				AA000050 /* VisionEngine.swift in Sources */,
-				AA000051 /* HeroPortraitDetector.swift in Sources */,
-				AA000052 /* FrameProcessor.swift in Sources */,
-				AA000060 /* DraftStateManager.swift in Sources */,
-				AA000070 /* HeroDatabaseService.swift in Sources */,
-				AA000080 /* RecommendationEngine.swift in Sources */,
-				AA000090 /* ItemRecommendationEngine.swift in Sources */,
-				AA000100 /* StrategyEngine.swift in Sources */,
-				AA000110 /* MetaEngine.swift in Sources */,
-				AA000120 /* NetworkService.swift in Sources */,
-				AA000130 /* AuthenticationService.swift in Sources */,
-				AA000140 /* AuthenticationFlowView.swift in Sources */,
-				AA000150 /* MainTabView.swift in Sources */,
-				AA000160 /* DashboardView.swift in Sources */,
-				AA000161 /* DashboardViewModel.swift in Sources */,
-				AA000170 /* DraftAssistantView.swift in Sources */,
-				AA000171 /* DraftAssistantViewModel.swift in Sources */,
-				AA000180 /* SettingsView.swift in Sources */,
-				AA000190 /* AnalyticsDashboardView.swift in Sources */,
-				AA000200 /* Color+Haya.swift in Sources */,
-				AA000201 /* GlassCard.swift in Sources */,
-				AA000202 /* HayaComponents.swift in Sources */,
-				AA000210 /* InGameRecommendationModels.swift in Sources */,
-				AA000211 /* InGameRecommendationService.swift in Sources */,
-				AA000212 /* LiveGameModels.swift in Sources */,
-				AA000213 /* InGameFrameAnalyzer.swift in Sources */,
-				AA000214 /* GameSessionManager.swift in Sources */,
-				AA000215 /* ObjectiveTimerService.swift in Sources */,
-				AA000216 /* LiveCoachEngine.swift in Sources */,
-				AA000217 /* AlertEngine.swift in Sources */,
-				AA000218 /* TacticalAdvisor.swift in Sources */,
-				AA000219 /* LiveCoachViewModel.swift in Sources */,
-				AA000220 /* LiveCoachView.swift in Sources */,
-				AA000221 /* GameModeContainerView.swift in Sources */,
+				AA000001,
+				AA000002,
+				AA000003,
+				AA000004,
+				AA000010,
+				AA000011,
+				AA000012,
+				AA000013,
+				AA000014,
+				AA000015,
+				AA000016,
+				AA000017,
+				AA000020,
+				AA000021,
+				AA000022,
+				AA000030,
+				AA000040,
+				AA000050,
+				AA000051,
+				AA000052,
+				AA000053,
+				AA000060,
+				AA000070,
+				AA000080,
+				AA000081,
+				AA000090,
+				AA000100,
+				AA000110,
+				AA000120,
+				AA000130,
+				AA000140,
+				AA000150,
+				AA000160,
+				AA000161,
+				AA000170,
+				AA000171,
+				AA000172,
+				AA000173,
+				AA000174,
+				AA000180,
+				AA000190,
+				AA000200,
+				AA000201,
+				AA000202,
+				AA000210,
+				AA000211,
+				AA000212,
+				AA000213,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,12 +530,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB000001 /* RecommendationEngineTests.swift in Sources */,
-				BB000002 /* DraftStateManagerTests.swift in Sources */,
-				BB000003 /* HeroDatabaseTests.swift in Sources */,
-				BB000004 /* OCREngineTests.swift in Sources */,
-				BB000005 /* MockHeroDatabaseService.swift in Sources */,
-				BB000006 /* MockHeroFactory.swift in Sources */,
+				BB000001,
+				BB000002,
+				BB000003,
+				BB000004,
+				BB000005,
+				BB000006,
+				BB000007,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -46,6 +46,7 @@ jobs:
 
       - name: Build (code-signing disabled)
         run: |
+          set -o pipefail
           xcodebuild archive \
             -project HayaAI.xcodeproj \
             -scheme HayaAI \
@@ -57,7 +58,12 @@ jobs:
             CODE_SIGN_IDENTITY="" \
             PROVISIONING_PROFILE_SPECIFIER="" \
             AD_HOC_CODE_SIGNING_ALLOWED=YES \
-            | xcpretty || true
+            2>&1 | tee "$RUNNER_TEMP/build.log" | grep -E "error:|warning:|BUILD|ARCHIVE" || true
+          # Fail the step if xcodebuild actually failed
+          if grep -q "ARCHIVE FAILED\|BUILD FAILED" "$RUNNER_TEMP/build.log"; then
+            grep "error:" "$RUNNER_TEMP/build.log" | head -20
+            exit 1
+          fi
 
       - name: Package into IPA
         run: |
