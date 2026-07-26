@@ -4,7 +4,7 @@ import SwiftUI
 
 // MARK: - Live Coach View Model
 /// Bridges `GameSessionManager` to the SwiftUI live coach view.
-/// All in-game state, alerts, and advice flow through here.
+/// All in-game state, alerts, advice, and hero recommendations flow through here.
 @MainActor
 final class LiveCoachViewModel: ObservableObject {
 
@@ -21,8 +21,31 @@ final class LiveCoachViewModel: ObservableObject {
     @Published var showAlertDetail: CoachAlert? = nil
     @Published private(set) var recentAlertHistory: [CoachAlert] = []
 
+    // In-game recommendation state
+    @Published private(set) var inGamePackage: InGameRecommendationPackage? = nil
+    @Published private(set) var selectedRecommendationTab: InGameTab = .build
+    @Published private(set) var isGeneratingRecommendation: Bool = false
+
+    // MARK: - In-Game Tab
+    enum InGameTab: String, CaseIterable {
+        case build = "Build"
+        case targets = "Targets"
+        case rotation = "Rotation"
+        case tips = "Tips"
+
+        var icon: String {
+            switch self {
+            case .build: return "hammer.fill"
+            case .targets: return "scope"
+            case .rotation: return "arrow.triangle.turn.up.right.circle.fill"
+            case .tips: return "lightbulb.fill"
+            }
+        }
+    }
+
     // MARK: - Dependencies
     let gameSessionManager: GameSessionManager
+    private let inGameRecommendationService: InGameRecommendationService
 
     // MARK: - Subscriptions
     private var cancellables: Set<AnyCancellable> = []
@@ -30,8 +53,15 @@ final class LiveCoachViewModel: ObservableObject {
 
     init(gameSessionManager: GameSessionManager) {
         self.gameSessionManager = gameSessionManager
+        self.inGameRecommendationService = InGameRecommendationService(
+            heroDatabase: gameSessionManager.draftStateManager.heroDatabase
+        )
         bindGameSession()
         startPeriodicAdviceRefresh()
+    }
+
+    func selectTab(_ tab: InGameTab) {
+        selectedRecommendationTab = tab
     }
 
     // MARK: - Session Control
@@ -91,6 +121,8 @@ final class LiveCoachViewModel: ObservableObject {
                 self.topAlert = self.activeAlerts.first
                 self.turtleTimer = state.objectives.turtle
                 self.lordTimer = state.objectives.lord
+                // Regenerate in-game recommendations when game state changes
+                Task { await self.refreshInGameRecommendations(gameState: state) }
             }
             .store(in: &cancellables)
 
@@ -110,6 +142,25 @@ final class LiveCoachViewModel: ObservableObject {
                 try? await Task.sleep(nanoseconds: 3_000_000_000) // refresh advice every 3s
             }
         }
+    }
+
+    private func refreshInGameRecommendations(gameState: LiveGameState) async {
+        guard gameState.sessionPhase.isInGame else { return }
+        let draftState = gameSessionManager.draftStateManager.currentDraftState
+        let playerHero = draftState.friendlyPicks.first { $0.status == .locked }?.heroName ?? ""
+        guard !playerHero.isEmpty else { return }
+
+        isGeneratingRecommendation = true
+        if let package = await inGameRecommendationService.generatePackage(
+            playerHeroName: playerHero,
+            draftState: draftState,
+            gameState: gameState
+        ) {
+            inGamePackage = package
+            // Sync one-liner into currentAdvice when recommendation is fresh
+            currentAdvice = package.oneLineAdvice
+        }
+        isGeneratingRecommendation = false
     }
 
     deinit {

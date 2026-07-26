@@ -20,7 +20,7 @@ final class GameSessionManager: ObservableObject {
     let draftStateManager: DraftStateManager
     private let inGameAnalyzer: InGameFrameAnalyzer
     private let objectiveTimerService: ObjectiveTimerService
-    private let liveCoachEngine: LiveCoachEngine
+    let liveCoachEngine: LiveCoachEngine
     private let alertEngine: AlertEngine
 
     // MARK: - Combine

@@ -24,6 +24,17 @@ struct TargetPriority: Codable, Identifiable, Sendable {
     let heroName: String
     let priority: PriorityLevel
     let reason: String
+
+    // Helpers used by in-game target UI
+    var priorityLevel: PriorityLevel { priority }
+    var priorityNumber: Int {
+        switch priority {
+        case .critical: return 1
+        case .high: return 2
+        case .medium: return 3
+        case .low: return 4
+        }
+    }
 }
 
 // MARK: - Objective Priority

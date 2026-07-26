@@ -25,7 +25,7 @@ final class DraftStateManager: ObservableObject, DraftEngineProtocol {
     }
 
     // MARK: - Dependencies
-    private let heroDatabase: HeroDatabaseService
+    let heroDatabase: HeroDatabaseService
     private let changeDetector = StateChangeDetector()
     private let reconciler = DraftStateReconciler()
 
