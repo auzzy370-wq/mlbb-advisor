@@ -14,7 +14,9 @@ actor ObjectiveTimerService {
     private var lordTask: Task<Void, Never>? = nil
 
     // MARK: - Publisher
-    private let stateSubject = PassthroughSubject<ObjectiveState, Never>()
+    // `nonisolated let` is safe here: PassthroughSubject is a class (reference type)
+    // and the binding is immutable, so nonisolated contexts can access the reference.
+    nonisolated let stateSubject = PassthroughSubject<ObjectiveState, Never>()
     nonisolated var objectiveStatePublisher: AnyPublisher<ObjectiveState, Never> {
         stateSubject.eraseToAnyPublisher()
     }

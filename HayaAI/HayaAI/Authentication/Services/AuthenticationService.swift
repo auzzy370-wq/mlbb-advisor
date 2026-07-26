@@ -12,7 +12,8 @@ final class AuthenticationService: ObservableObject, AuthenticationServiceProtoc
     @Published private(set) var authError: AuthError? = nil
 
     // True when GoogleService-Info.plist is present and FirebaseApp was configured.
-    static let isFirebaseAvailable: Bool = {
+    // `nonisolated` because it's a one-time constant computed from Bundle.main (thread-safe).
+    nonisolated static let isFirebaseAvailable: Bool = {
         Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") != nil
     }()
 

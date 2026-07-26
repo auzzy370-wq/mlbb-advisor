@@ -1,5 +1,7 @@
 import Foundation
 import Combine
+import CoreGraphics
+import CoreMedia
 
 // MARK: - Game Session Manager
 /// Owns the full lifecycle of one game session: Draft → Loading → In-Game → Post-Game.

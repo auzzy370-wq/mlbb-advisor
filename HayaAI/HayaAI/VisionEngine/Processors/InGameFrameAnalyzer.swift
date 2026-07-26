@@ -204,7 +204,7 @@ actor GameSessionClassifier {
         return .earlyGame
     }
 
-    func detectFromClock(seconds: Int?) -> GameSessionPhase {
+    nonisolated func detectFromClock(seconds: Int?) -> GameSessionPhase {
         guard let s = seconds else { return .earlyGame }
         switch s {
         case 0...480:   return .earlyGame
