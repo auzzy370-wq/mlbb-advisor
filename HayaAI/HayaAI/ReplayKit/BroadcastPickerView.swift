@@ -14,7 +14,7 @@ struct BroadcastPickerButton: UIViewRepresentable {
         picker.showsMicrophoneButton = false
         // Tint the built-in button to match our accent colour
         if let button = picker.subviews.first(where: { $0 is UIButton }) as? UIButton {
-            button.tintColor = UIColor(Color.hayaAccent)
+            button.tintColor = UIColor(Color.hayaBlue)
             button.imageView?.contentMode = .scaleAspectFit
         }
         return picker
