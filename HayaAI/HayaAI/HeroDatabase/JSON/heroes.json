@@ -1,0 +1,580 @@
+{
+  "patchVersion": "1.8.72",
+  "updatedAt": "2024-01-15",
+  "heroes": [
+    {
+      "id": "chou",
+      "name": "Chou",
+      "title": "The King of Chinese Martial Arts",
+      "imageURL": "heroes/chou.png",
+      "primaryRole": "Fighter",
+      "secondaryRole": "Assassin",
+      "primaryLane": "EXP",
+      "secondaryLane": "Jungle",
+      "damageType": "Physical",
+      "difficulty": 3,
+      "earlyStrength": 6.5,
+      "midStrength": 8.5,
+      "lateStrength": 7.0,
+      "mobility": 9.0,
+      "crowdControl": 8.5,
+      "burst": 7.5,
+      "sustain": 5.0,
+      "objectiveControl": 6.0,
+      "waveClear": 5.5,
+      "scaling": 7.0,
+      "strongAgainst": ["Fanny", "Ling", "Hayabusa"],
+      "weakAgainst": ["Esmeralda", "Alice", "Uranus"],
+      "counterHeroes": ["Fanny", "Ling", "Hayabusa", "Lancelot"],
+      "counteredBy": ["Esmeralda", "Alice", "Uranus", "Belerick"],
+      "preferredItems": [
+        {"id": "warrior_boots", "name": "Warrior Boots", "category": "Defense", "description": null},
+        {"id": "blade_of_heptaseas", "name": "Blade of Heptaseas", "category": "Physical", "description": null},
+        {"id": "hunter_strike", "name": "Hunter Strike", "category": "Physical", "description": null},
+        {"id": "queen_wings", "name": "Queen's Wings", "category": "Physical", "description": null},
+        {"id": "immortality", "name": "Immortality", "category": "Defense", "description": null},
+        {"id": "brute_force", "name": "Brute Force Breastplate", "category": "Defense", "description": null}
+      ],
+      "situationalItems": [
+        {"id": "athenas_shield", "name": "Athena's Shield", "category": "Defense", "description": null},
+        {"id": "antique_cuirass", "name": "Antique Cuirass", "category": "Defense", "description": null}
+      ],
+      "counterItems": [
+        {"id": "necklace_of_durance", "name": "Necklace of Durance", "category": "Magic", "description": null}
+      ],
+      "bestSpell": "Execute",
+      "bestEmblem": "Fighter",
+      "talents": [
+        {"id": "chou_t1", "name": "Festival of Blood", "description": "+8% Spell Vamp", "tier": 3}
+      ],
+      "combos": [
+        {"id": "chou_c1", "order": 1, "skill": "S2 → AA → S1 → S3 (kick target away or into wall)", "note": "Core burst combo"},
+        {"id": "chou_c2", "order": 2, "skill": "S3 → dash near target → S1 → AA → S2", "note": "Initiation combo"}
+      ],
+      "rotationGuide": "Farm EXP lane until level 4. Rotate to mid or objectives when ult is ready. Use ult to peel for carries or dive squishies.",
+      "powerSpikes": [
+        {"id": "chou_ps1", "phase": "Mid", "description": "Level 4 ult spike – strong gank threat", "level": 4, "itemTrigger": null},
+        {"id": "chou_ps2", "phase": "Mid", "description": "Hunter Strike powerspike", "level": null, "itemTrigger": "Hunter Strike"}
+      ],
+      "draftPriority": 8.0,
+      "banPriority": 7.5,
+      "metaScore": 8.0,
+      "professionalPickRate": 0.62,
+      "professionalWinRate": 0.54,
+      "rankWinRate": 0.51
+    },
+    {
+      "id": "lancelot",
+      "name": "Lancelot",
+      "title": "Protector of the Crown",
+      "imageURL": "heroes/lancelot.png",
+      "primaryRole": "Assassin",
+      "secondaryRole": null,
+      "primaryLane": "Jungle",
+      "secondaryLane": null,
+      "damageType": "Physical",
+      "difficulty": 4,
+      "earlyStrength": 6.0,
+      "midStrength": 9.0,
+      "lateStrength": 7.5,
+      "mobility": 10.0,
+      "crowdControl": 3.0,
+      "burst": 9.5,
+      "sustain": 3.5,
+      "objectiveControl": 6.5,
+      "waveClear": 5.0,
+      "scaling": 6.5,
+      "strongAgainst": ["Marksman", "Mage", "Support"],
+      "weakAgainst": ["Chou", "Franco", "Kaja"],
+      "counterHeroes": ["Layla", "Miya", "Lunox", "Lylia"],
+      "counteredBy": ["Chou", "Franco", "Kaja", "Khufra"],
+      "preferredItems": [
+        {"id": "warrior_boots", "name": "Warrior Boots", "category": "Defense", "description": null},
+        {"id": "blade_of_despair", "name": "Blade of Despair", "category": "Physical", "description": null},
+        {"id": "endless_battle", "name": "Endless Battle", "category": "Physical", "description": null},
+        {"id": "berserkers_fury", "name": "Berserker's Fury", "category": "Physical", "description": null},
+        {"id": "immortality", "name": "Immortality", "category": "Defense", "description": null},
+        {"id": "malefic_roar", "name": "Malefic Roar", "category": "Physical", "description": null}
+      ],
+      "situationalItems": [
+        {"id": "wind_of_nature", "name": "Wind of Nature", "category": "Physical", "description": null}
+      ],
+      "counterItems": [],
+      "bestSpell": "Retribution",
+      "bestEmblem": "Assassin",
+      "talents": [
+        {"id": "lancelot_t1", "name": "Killing Spree", "description": "Restores HP and grants MS on kill", "tier": 3}
+      ],
+      "combos": [
+        {"id": "lancelot_c1", "order": 1, "skill": "S2 (3 charges) → S1 → AA → S3", "note": "Full burst combo"},
+        {"id": "lancelot_c2", "order": 2, "skill": "S3 to open → S2 spam → S1 to escape", "note": "Teamfight combo"}
+      ],
+      "rotationGuide": "Fast jungle clear. Gank after level 3 when S2 has 2 charges. Prioritize gold lane and mid lane kills.",
+      "powerSpikes": [
+        {"id": "lancelot_ps1", "phase": "Mid", "description": "Level 3 – S2 fully charged", "level": 3, "itemTrigger": null},
+        {"id": "lancelot_ps2", "phase": "Mid", "description": "Blade of Despair spike", "level": null, "itemTrigger": "Blade of Despair"}
+      ],
+      "draftPriority": 8.5,
+      "banPriority": 8.0,
+      "metaScore": 8.5,
+      "professionalPickRate": 0.58,
+      "professionalWinRate": 0.52,
+      "rankWinRate": 0.49
+    },
+    {
+      "id": "ling",
+      "name": "Ling",
+      "title": "Argent Freedom",
+      "imageURL": "heroes/ling.png",
+      "primaryRole": "Assassin",
+      "secondaryRole": null,
+      "primaryLane": "Jungle",
+      "secondaryLane": null,
+      "damageType": "Physical",
+      "difficulty": 4,
+      "earlyStrength": 5.5,
+      "midStrength": 8.0,
+      "lateStrength": 9.5,
+      "mobility": 10.0,
+      "crowdControl": 6.0,
+      "burst": 9.0,
+      "sustain": 4.0,
+      "objectiveControl": 7.0,
+      "waveClear": 5.0,
+      "scaling": 9.0,
+      "strongAgainst": ["Marksman", "Mage", "Support"],
+      "weakAgainst": ["Chou", "Khufra", "Franco"],
+      "counterHeroes": ["Layla", "Miya", "Kagura", "Lunox"],
+      "counteredBy": ["Chou", "Khufra", "Franco", "Kaja"],
+      "preferredItems": [
+        {"id": "warrior_boots", "name": "Warrior Boots", "category": "Defense", "description": null},
+        {"id": "endless_battle", "name": "Endless Battle", "category": "Physical", "description": null},
+        {"id": "blade_of_despair", "name": "Blade of Despair", "category": "Physical", "description": null},
+        {"id": "hunter_strike", "name": "Hunter Strike", "category": "Physical", "description": null},
+        {"id": "immortality", "name": "Immortality", "category": "Defense", "description": null},
+        {"id": "malefic_roar", "name": "Malefic Roar", "category": "Physical", "description": null}
+      ],
+      "situationalItems": [
+        {"id": "oracle", "name": "Oracle", "category": "Defense", "description": null}
+      ],
+      "counterItems": [],
+      "bestSpell": "Retribution",
+      "bestEmblem": "Assassin",
+      "talents": [
+        {"id": "ling_t1", "name": "Killing Spree", "description": "Restores HP and grants MS on kill", "tier": 3}
+      ],
+      "combos": [
+        {"id": "ling_c1", "order": 1, "skill": "Jump wall → S2 → S1 → AA chain → S3", "note": "Wall burst combo"},
+        {"id": "ling_c2", "order": 2, "skill": "S3 → S1 spam → S2 on isolated target", "note": "Teamfight combo"}
+      ],
+      "rotationGuide": "Use walls for mobility. Pressure all lanes with constant roaming. Strong late game carry.",
+      "powerSpikes": [
+        {"id": "ling_ps1", "phase": "Late", "description": "Scales hard into late game", "level": null, "itemTrigger": "Blade of Despair"}
+      ],
+      "draftPriority": 9.0,
+      "banPriority": 8.5,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.72,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.50
+    },
+    {
+      "id": "fanny",
+      "name": "Fanny",
+      "title": "Steel Wings",
+      "imageURL": "heroes/fanny.png",
+      "primaryRole": "Assassin",
+      "secondaryRole": null,
+      "primaryLane": "Jungle",
+      "secondaryLane": null,
+      "damageType": "Physical",
+      "difficulty": 4,
+      "earlyStrength": 7.0,
+      "midStrength": 9.5,
+      "lateStrength": 8.5,
+      "mobility": 10.0,
+      "crowdControl": 2.0,
+      "burst": 10.0,
+      "sustain": 3.0,
+      "objectiveControl": 8.0,
+      "waveClear": 4.5,
+      "scaling": 8.0,
+      "strongAgainst": ["Marksman", "Mage", "Assassin"],
+      "weakAgainst": ["Chou", "Khufra", "Kaja"],
+      "counterHeroes": ["Layla", "Miya", "Lunox", "Harith"],
+      "counteredBy": ["Chou", "Khufra", "Kaja", "Franco"],
+      "preferredItems": [
+        {"id": "warrior_boots", "name": "Warrior Boots", "category": "Defense", "description": null},
+        {"id": "blade_of_despair", "name": "Blade of Despair", "category": "Physical", "description": null},
+        {"id": "endless_battle", "name": "Endless Battle", "category": "Physical", "description": null},
+        {"id": "hunter_strike", "name": "Hunter Strike", "category": "Physical", "description": null},
+        {"id": "brute_force", "name": "Brute Force Breastplate", "category": "Defense", "description": null},
+        {"id": "immortality", "name": "Immortality", "category": "Defense", "description": null}
+      ],
+      "situationalItems": [],
+      "counterItems": [],
+      "bestSpell": "Retribution",
+      "bestEmblem": "Assassin",
+      "talents": [
+        {"id": "fanny_t1", "name": "Killing Spree", "description": "Restores HP and grants MS on kill", "tier": 3}
+      ],
+      "combos": [
+        {"id": "fanny_c1", "order": 1, "skill": "Cable → Cable → S1 → AA → Cable away", "note": "Cable burst combo"},
+        {"id": "fanny_c2", "order": 2, "skill": "S2 → Cable in → S1 → Cable out", "note": "Safe assassination"}
+      ],
+      "rotationGuide": "Master cable mechanics. Zone with cables. Delete isolated targets. Secure objectives fast.",
+      "powerSpikes": [
+        {"id": "fanny_ps1", "phase": "Mid", "description": "Mid-game peak with core items", "level": null, "itemTrigger": "Blade of Despair"}
+      ],
+      "draftPriority": 9.5,
+      "banPriority": 9.5,
+      "metaScore": 9.5,
+      "professionalPickRate": 0.85,
+      "professionalWinRate": 0.58,
+      "rankWinRate": 0.48
+    },
+    {
+      "id": "esmeralda",
+      "name": "Esmeralda",
+      "title": "Astral Reflection",
+      "imageURL": "heroes/esmeralda.png",
+      "primaryRole": "Tank",
+      "secondaryRole": "Mage",
+      "primaryLane": "EXP",
+      "secondaryLane": null,
+      "damageType": "Magic",
+      "difficulty": 2,
+      "earlyStrength": 7.0,
+      "midStrength": 8.0,
+      "lateStrength": 9.5,
+      "mobility": 6.5,
+      "crowdControl": 4.0,
+      "burst": 5.0,
+      "sustain": 10.0,
+      "objectiveControl": 7.0,
+      "waveClear": 8.0,
+      "scaling": 9.0,
+      "strongAgainst": ["Shield heroes", "Chou", "Uranus"],
+      "weakAgainst": ["Burst Mage", "Ling", "Lancelot"],
+      "counterHeroes": ["Chou", "Uranus", "Johnson"],
+      "counteredBy": ["Lunox", "Lylia", "Harith"],
+      "preferredItems": [
+        {"id": "magic_shoes", "name": "Magic Shoes", "category": "Movement", "description": null},
+        {"id": "calamity_reaper", "name": "Calamity Reaper", "category": "Magic", "description": null},
+        {"id": "ice_queen_wand", "name": "Ice Queen Wand", "category": "Magic", "description": null},
+        {"id": "fleeting_time", "name": "Fleeting Time", "category": "Magic", "description": null},
+        {"id": "immortality", "name": "Immortality", "category": "Defense", "description": null},
+        {"id": "glowing_wand", "name": "Glowing Wand", "category": "Magic", "description": null}
+      ],
+      "situationalItems": [
+        {"id": "athenas_shield", "name": "Athena's Shield", "category": "Defense", "description": null}
+      ],
+      "counterItems": [],
+      "bestSpell": "Flicker",
+      "bestEmblem": "Mage",
+      "talents": [
+        {"id": "esme_t1", "name": "Mystery Shop", "description": "-10% item cost", "tier": 3}
+      ],
+      "combos": [
+        {"id": "esme_c1", "order": 1, "skill": "S2 → S1 (absorb shields) → S3 → S1 spam", "note": "Sustain combo"},
+        {"id": "esme_c2", "order": 2, "skill": "S3 to engage → S1 → S2 on clustered enemies", "note": "Team fight initiation"}
+      ],
+      "rotationGuide": "Bully EXP lane. Stack shields with S1. Rotate when ult ready. Unkillable in long fights.",
+      "powerSpikes": [
+        {"id": "esme_ps1", "phase": "Late", "description": "Becomes unkillable with full build", "level": null, "itemTrigger": "Fleeting Time"}
+      ],
+      "draftPriority": 8.5,
+      "banPriority": 8.0,
+      "metaScore": 8.5,
+      "professionalPickRate": 0.55,
+      "professionalWinRate": 0.56,
+      "rankWinRate": 0.53
+    },
+    {
+      "id": "khufra",
+      "name": "Khufra",
+      "title": "Tyrant of the Desert",
+      "imageURL": "heroes/khufra.png",
+      "primaryRole": "Tank",
+      "secondaryRole": null,
+      "primaryLane": "Roam",
+      "secondaryLane": null,
+      "damageType": "Physical",
+      "difficulty": 2,
+      "earlyStrength": 8.0,
+      "midStrength": 8.5,
+      "lateStrength": 7.5,
+      "mobility": 8.5,
+      "crowdControl": 10.0,
+      "burst": 5.0,
+      "sustain": 6.0,
+      "objectiveControl": 5.0,
+      "waveClear": 3.0,
+      "scaling": 6.0,
+      "strongAgainst": ["Ling", "Fanny", "Lancelot"],
+      "weakAgainst": ["Esmeralda", "Barats", "Belerick"],
+      "counterHeroes": ["Ling", "Fanny", "Lancelot", "Benedetta"],
+      "counteredBy": ["Esmeralda", "Barats", "Belerick"],
+      "preferredItems": [
+        {"id": "tough_boots", "name": "Tough Boots", "category": "Defense", "description": null},
+        {"id": "cursed_helmet", "name": "Cursed Helmet", "category": "Defense", "description": null},
+        {"id": "antique_cuirass", "name": "Antique Cuirass", "category": "Defense", "description": null},
+        {"id": "thunder_belt", "name": "Thunder Belt", "category": "Defense", "description": null},
+        {"id": "immortality", "name": "Immortality", "category": "Defense", "description": null},
+        {"id": "dominance_ice", "name": "Dominance Ice", "category": "Defense", "description": null}
+      ],
+      "situationalItems": [
+        {"id": "athenas_shield", "name": "Athena's Shield", "category": "Defense", "description": null}
+      ],
+      "counterItems": [],
+      "bestSpell": "Flicker",
+      "bestEmblem": "Tank",
+      "talents": [
+        {"id": "khufra_t1", "name": "Brave Smite", "description": "Deals damage and slows on CC hit", "tier": 3}
+      ],
+      "combos": [
+        {"id": "khufra_c1", "order": 1, "skill": "S2 (jump in) → S1 (anti-dash) → S3 → AA spam", "note": "Hard engage combo"},
+        {"id": "khufra_c2", "order": 2, "skill": "Flicker → S3 → S1 → S2 escape", "note": "Surprise flicker engage"}
+      ],
+      "rotationGuide": "Roam and set up kills. Counter mobile junglers with S1. Flicker combo for surprise initiations.",
+      "powerSpikes": [
+        {"id": "khufra_ps1", "phase": "Early", "description": "Level 2 – S1 and S2 online", "level": 2, "itemTrigger": null}
+      ],
+      "draftPriority": 9.0,
+      "banPriority": 8.5,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.75,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.52
+    },
+    {
+      "id": "kagura",
+      "name": "Kagura",
+      "title": "Onmyouji Master",
+      "imageURL": "heroes/kagura.png",
+      "primaryRole": "Mage",
+      "secondaryRole": null,
+      "primaryLane": "Mid",
+      "secondaryLane": null,
+      "damageType": "Magic",
+      "difficulty": 4,
+      "earlyStrength": 6.5,
+      "midStrength": 9.0,
+      "lateStrength": 8.5,
+      "mobility": 8.0,
+      "crowdControl": 7.0,
+      "burst": 9.5,
+      "sustain": 3.5,
+      "objectiveControl": 6.0,
+      "waveClear": 7.5,
+      "scaling": 8.5,
+      "strongAgainst": ["Fighter", "Tank"],
+      "weakAgainst": ["Lancelot", "Fanny", "Chou"],
+      "counterHeroes": ["Uranus", "Esmeralda", "Johnson"],
+      "counteredBy": ["Lancelot", "Fanny", "Chou"],
+      "preferredItems": [
+        {"id": "magic_shoes", "name": "Magic Shoes", "category": "Movement", "description": null},
+        {"id": "calamity_reaper", "name": "Calamity Reaper", "category": "Magic", "description": null},
+        {"id": "concentrated_energy", "name": "Concentrated Energy", "category": "Magic", "description": null},
+        {"id": "lightning_truncheon", "name": "Lightning Truncheon", "category": "Magic", "description": null},
+        {"id": "immortality", "name": "Immortality", "category": "Defense", "description": null},
+        {"id": "divine_glaive", "name": "Divine Glaive", "category": "Magic", "description": null}
+      ],
+      "situationalItems": [
+        {"id": "blood_wings", "name": "Blood Wings", "category": "Magic", "description": null}
+      ],
+      "counterItems": [],
+      "bestSpell": "Flicker",
+      "bestEmblem": "Mage",
+      "talents": [
+        {"id": "kagura_t1", "name": "Magic Worship", "description": "Deals extra burn damage at low HP", "tier": 3}
+      ],
+      "combos": [
+        {"id": "kagura_c1", "order": 1, "skill": "S1 place → S2 dodge → S1 teleport → S3 → S1 slow", "note": "Full burst rotation"},
+        {"id": "kagura_c2", "order": 2, "skill": "S3 open → S1 → S2 reposition → S1 burst", "note": "Teamfight combo"}
+      ],
+      "rotationGuide": "Control mid lane. Use umbrella for safe poke and burst. Rotate when enemy has no dash.",
+      "powerSpikes": [
+        {"id": "kagura_ps1", "phase": "Mid", "description": "Level 4 – full skill set online", "level": 4, "itemTrigger": null}
+      ],
+      "draftPriority": 8.0,
+      "banPriority": 7.0,
+      "metaScore": 8.0,
+      "professionalPickRate": 0.48,
+      "professionalWinRate": 0.53,
+      "rankWinRate": 0.51
+    },
+    {
+      "id": "granger",
+      "name": "Granger",
+      "title": "Demon Destroyer",
+      "imageURL": "heroes/granger.png",
+      "primaryRole": "Marksman",
+      "secondaryRole": "Assassin",
+      "primaryLane": "Gold",
+      "secondaryLane": "Jungle",
+      "damageType": "Physical",
+      "difficulty": 3,
+      "earlyStrength": 7.5,
+      "midStrength": 9.5,
+      "lateStrength": 8.0,
+      "mobility": 7.5,
+      "crowdControl": 3.0,
+      "burst": 9.5,
+      "sustain": 2.5,
+      "objectiveControl": 7.0,
+      "waveClear": 6.5,
+      "scaling": 7.5,
+      "strongAgainst": ["Tank", "Fighter"],
+      "weakAgainst": ["Assassin", "Lancelot", "Fanny"],
+      "counterHeroes": ["Uranus", "Barats", "Belerick"],
+      "counteredBy": ["Lancelot", "Fanny", "Chou"],
+      "preferredItems": [
+        {"id": "warrior_boots", "name": "Warrior Boots", "category": "Defense", "description": null},
+        {"id": "blade_of_despair", "name": "Blade of Despair", "category": "Physical", "description": null},
+        {"id": "berserkers_fury", "name": "Berserker's Fury", "category": "Physical", "description": null},
+        {"id": "malefic_roar", "name": "Malefic Roar", "category": "Physical", "description": null},
+        {"id": "immortality", "name": "Immortality", "category": "Defense", "description": null},
+        {"id": "wind_of_nature", "name": "Wind of Nature", "category": "Physical", "description": null}
+      ],
+      "situationalItems": [
+        {"id": "sea_halberd", "name": "Sea Halberd", "category": "Physical", "description": null}
+      ],
+      "counterItems": [],
+      "bestSpell": "Flicker",
+      "bestEmblem": "Marksman",
+      "talents": [
+        {"id": "granger_t1", "name": "Weakness Finder", "description": "Basic attacks slow the target", "tier": 3}
+      ],
+      "combos": [
+        {"id": "granger_c1", "order": 1, "skill": "S1 → AA (6th bullet crit) → S2 dash → S3 snipe", "note": "Burst damage combo"},
+        {"id": "granger_c2", "order": 2, "skill": "S3 long range → S2 close → S1 finish", "note": "Siege combo"}
+      ],
+      "rotationGuide": "Dominate early with strong laning. Poke with 6th bullet. Use S3 to pick off retreating enemies.",
+      "powerSpikes": [
+        {"id": "granger_ps1", "phase": "Early", "description": "Level 2 – S1 and AA synergy", "level": 2, "itemTrigger": null},
+        {"id": "granger_ps2", "phase": "Mid", "description": "First item spike", "level": null, "itemTrigger": "Blade of Despair"}
+      ],
+      "draftPriority": 8.0,
+      "banPriority": 7.0,
+      "metaScore": 8.0,
+      "professionalPickRate": 0.50,
+      "professionalWinRate": 0.52,
+      "rankWinRate": 0.50
+    },
+    {
+      "id": "franco",
+      "name": "Franco",
+      "title": "The Frozen Warrior",
+      "imageURL": "heroes/franco.png",
+      "primaryRole": "Tank",
+      "secondaryRole": "Fighter",
+      "primaryLane": "Roam",
+      "secondaryLane": null,
+      "damageType": "Physical",
+      "difficulty": 2,
+      "earlyStrength": 9.0,
+      "midStrength": 8.0,
+      "lateStrength": 6.5,
+      "mobility": 7.0,
+      "crowdControl": 10.0,
+      "burst": 6.0,
+      "sustain": 8.0,
+      "objectiveControl": 5.0,
+      "waveClear": 3.0,
+      "scaling": 5.5,
+      "strongAgainst": ["Ling", "Fanny", "Lancelot"],
+      "weakAgainst": ["Esmeralda", "Barats", "Akai"],
+      "counterHeroes": ["Ling", "Fanny", "Lancelot", "Hayabusa"],
+      "counteredBy": ["Esmeralda", "Purify users"],
+      "preferredItems": [
+        {"id": "tough_boots", "name": "Tough Boots", "category": "Defense", "description": null},
+        {"id": "dominance_ice", "name": "Dominance Ice", "category": "Defense", "description": null},
+        {"id": "thunder_belt", "name": "Thunder Belt", "category": "Defense", "description": null},
+        {"id": "antique_cuirass", "name": "Antique Cuirass", "category": "Defense", "description": null},
+        {"id": "immortality", "name": "Immortality", "category": "Defense", "description": null},
+        {"id": "oracle", "name": "Oracle", "category": "Defense", "description": null}
+      ],
+      "situationalItems": [
+        {"id": "athenas_shield", "name": "Athena's Shield", "category": "Defense", "description": null}
+      ],
+      "counterItems": [],
+      "bestSpell": "Flicker",
+      "bestEmblem": "Tank",
+      "talents": [
+        {"id": "franco_t1", "name": "Concussive Blast", "description": "After 4 skills, deal AoE damage", "tier": 3}
+      ],
+      "combos": [
+        {"id": "franco_c1", "order": 1, "skill": "S1 hook → S2 suppress → S3 ult execute", "note": "Hard CC chain"},
+        {"id": "franco_c2", "order": 2, "skill": "Bush → S1 hook → teammates follow up", "note": "Roam gank combo"}
+      ],
+      "rotationGuide": "Roam bushes for hook opportunities. Set vision and create picks. Suppress priority targets in teamfights.",
+      "powerSpikes": [
+        {"id": "franco_ps1", "phase": "Early", "description": "Level 1 – hook online", "level": 1, "itemTrigger": null}
+      ],
+      "draftPriority": 7.5,
+      "banPriority": 6.5,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.40,
+      "professionalWinRate": 0.51,
+      "rankWinRate": 0.49
+    },
+    {
+      "id": "wanwan",
+      "name": "Wanwan",
+      "title": "Swift Shadow",
+      "imageURL": "heroes/wanwan.png",
+      "primaryRole": "Marksman",
+      "secondaryRole": null,
+      "primaryLane": "Gold",
+      "secondaryLane": null,
+      "damageType": "Physical",
+      "difficulty": 3,
+      "earlyStrength": 6.0,
+      "midStrength": 8.0,
+      "lateStrength": 10.0,
+      "mobility": 9.5,
+      "crowdControl": 5.0,
+      "burst": 8.0,
+      "sustain": 3.5,
+      "objectiveControl": 7.5,
+      "waveClear": 7.0,
+      "scaling": 10.0,
+      "strongAgainst": ["Tank", "Fighter", "Assassin"],
+      "weakAgainst": ["Burst Mage", "CC heavy"],
+      "counterHeroes": ["Uranus", "Barats", "Johnson"],
+      "counteredBy": ["Kaja", "Franco", "Chou"],
+      "preferredItems": [
+        {"id": "swift_boots", "name": "Swift Boots", "category": "Movement", "description": null},
+        {"id": "corrosion_scythe", "name": "Corrosion Scythe", "category": "Physical", "description": null},
+        {"id": "windtalker", "name": "Windtalker", "category": "Physical", "description": null},
+        {"id": "blade_of_despair", "name": "Blade of Despair", "category": "Physical", "description": null},
+        {"id": "wind_of_nature", "name": "Wind of Nature", "category": "Physical", "description": null},
+        {"id": "immortality", "name": "Immortality", "category": "Defense", "description": null}
+      ],
+      "situationalItems": [
+        {"id": "sea_halberd", "name": "Sea Halberd", "category": "Physical", "description": null}
+      ],
+      "counterItems": [],
+      "bestSpell": "Inspire",
+      "bestEmblem": "Marksman",
+      "talents": [
+        {"id": "wanwan_t1", "name": "Weakness Finder", "description": "Basic attacks slow the target", "tier": 3}
+      ],
+      "combos": [
+        {"id": "wanwan_c1", "order": 1, "skill": "S2 → AA weakpoints → S3 ult chain", "note": "Full burst with ult"},
+        {"id": "wanwan_c2", "order": 2, "skill": "S2 jump → AA → S1 slow → AA ult trigger", "note": "Escape + burst"}
+      ],
+      "rotationGuide": "Scale safely in gold lane. Use S2 to dodge CC. Unleash ult when enemies have all weakpoints revealed.",
+      "powerSpikes": [
+        {"id": "wanwan_ps1", "phase": "Late", "description": "Late game hypercarry with attack speed items", "level": null, "itemTrigger": "Corrosion Scythe"}
+      ],
+      "draftPriority": 8.5,
+      "banPriority": 8.0,
+      "metaScore": 8.5,
+      "professionalPickRate": 0.60,
+      "professionalWinRate": 0.53,
+      "rankWinRate": 0.51
+    }
+  ]
+}

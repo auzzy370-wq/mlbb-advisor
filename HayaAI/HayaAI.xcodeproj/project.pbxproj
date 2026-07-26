@@ -1,0 +1,1162 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		WD020001 /* CoachLiveActivityAttributes.swift in Sources (App) */ = {isa = PBXBuildFile; fileRef = WD010001; };
+		WD020002 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = WD010002; };
+		WD020003 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = WD010003; };
+		WD020004 /* CoachLiveActivityAttributes.swift in Sources (Widget) */ = {isa = PBXBuildFile; fileRef = WD010001; };
+		WD020005 /* HayaAIWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = WD010004; };
+		WD020006 /* CoachLiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = WD010005; };
+		WD020008 /* HayaAIWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = WD000001; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		WD020009 /* WidgetKit.framework in Frameworks (Widget) */ = {isa = PBXBuildFile; fileRef = WDFRM_WIDGETKIT; };
+		AA000001 /* HayaAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010001; };
+		AA000002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010002; };
+		AA000003 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010003; };
+		AA000004 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010004; };
+		AA000010 /* HeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010010; };
+		AA000011 /* DraftStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010011; };
+		AA000012 /* RecommendationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010012; };
+		AA000013 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010013; };
+		AA000014 /* StrategyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010014; };
+		AA000015 /* VisionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010015; };
+		AA000016 /* InGameRecommendationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010016; };
+		AA000017 /* LiveGameModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010017; };
+		AA000020 /* VisionEngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010020; };
+		AA000021 /* OCREngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010021; };
+		AA000022 /* RecommendationEngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010022; };
+		AA000030 /* ReplayKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010030; };
+		AA000031 /* BroadcastFrameReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010031; };
+		AA000032 /* BroadcastPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010032; };
+		CC000001 /* SampleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC010001; settings = {COMPILER_FLAGS = ""; }; };
+		CC000002 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC010002; };
+		CC000010 /* HayaAIBroadcast.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CC020000; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA000040 /* OCREngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010040; };
+		AA000050 /* VisionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010050; };
+		AA000051 /* HeroPortraitDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010051; };
+		AA000052 /* FrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010052; };
+		AA000053 /* InGameFrameAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010053; };
+		AA000060 /* DraftStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010060; };
+		AA000070 /* HeroDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010070; };
+		AA000071 /* heroes.json in Resources */ = {isa = PBXBuildFile; fileRef = AA010071; };
+		AA000080 /* RecommendationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010080; };
+		AA000081 /* InGameRecommendationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010081; };
+		AA000090 /* ItemRecommendationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010090; };
+		AA000100 /* StrategyEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010100; };
+		AA000110 /* MetaEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010110; };
+		AA000120 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010120; };
+		AA000130 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010130; };
+		AA000140 /* AuthenticationFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010140; };
+		AA000150 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010150; };
+		AA000160 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010160; };
+		AA000161 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010161; };
+		AA000170 /* DraftAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010170; };
+		AA000171 /* DraftAssistantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010171; };
+		AA000172 /* LiveCoachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010172; };
+		AA000173 /* LiveCoachViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010173; };
+		AA000174 /* GameModeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010174; };
+		AA000180 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010180; };
+		AA000190 /* AnalyticsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010190; };
+		AA000200 /* Color+Haya.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010200; };
+		AA000201 /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010201; };
+		AA000202 /* HayaComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010202; };
+		AA000210 /* GameSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010210; };
+		AA000211 /* ObjectiveTimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010211; };
+		AA000212 /* LiveCoachEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010212; };
+		AA000213 /* AlertEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010213; };
+		BB000001 /* RecommendationEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010001; };
+		BB000002 /* DraftStateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010002; };
+		BB000003 /* HeroDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010003; };
+		BB000004 /* OCREngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010004; };
+		BB000005 /* MockHeroDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010005; };
+		BB000006 /* MockHeroFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010006; };
+		BB000007 /* LiveCoachEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010007; };
+		SPMLINK_FIREBASEAUTH /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = SPMPROD_FIREBASEAUTH; };
+		SPMLINK_FIRESTORE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = SPMPROD_FIRESTORE; };
+		SPMLINK_FBANALYTICS /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = SPMPROD_FBANALYTICS; };
+		SPMLINK_SUPABASE /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = SPMPROD_SUPABASE; };
+		SPMLINK_SQLITE /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = SPMPROD_SQLITE; };
+		SPMLINK_OPENAI /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = SPMPROD_OPENAI; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		WD000001 /* HayaAIWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HayaAIWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		WD010001 /* CoachLiveActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachLiveActivityAttributes.swift; sourceTree = "<group>"; };
+		WD010002 /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
+		WD010003 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		WD010004 /* HayaAIWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HayaAIWidgetBundle.swift; sourceTree = "<group>"; };
+		WD010005 /* CoachLiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachLiveActivityView.swift; sourceTree = "<group>"; };
+		WD010006 /* HayaAIWidget/Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		WDFRM_WIDGETKIT /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		AA010001 /* HayaAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HayaAIApp.swift; sourceTree = "<group>"; };
+		AA010002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AA010003 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		AA010004 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		AA010010 /* HeroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroModel.swift; sourceTree = "<group>"; };
+		AA010011 /* DraftStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftStateModel.swift; sourceTree = "<group>"; };
+		AA010012 /* RecommendationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationModel.swift; sourceTree = "<group>"; };
+		AA010013 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
+		AA010014 /* StrategyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyModel.swift; sourceTree = "<group>"; };
+		AA010015 /* VisionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionModels.swift; sourceTree = "<group>"; };
+		AA010016 /* InGameRecommendationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameRecommendationModels.swift; sourceTree = "<group>"; };
+		AA010017 /* LiveGameModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGameModels.swift; sourceTree = "<group>"; };
+		AA010020 /* VisionEngineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionEngineProtocol.swift; sourceTree = "<group>"; };
+		AA010021 /* OCREngineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCREngineProtocol.swift; sourceTree = "<group>"; };
+		AA010022 /* RecommendationEngineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationEngineProtocol.swift; sourceTree = "<group>"; };
+		AA010030 /* ReplayKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplayKitManager.swift; sourceTree = "<group>"; };
+		AA010031 /* BroadcastFrameReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastFrameReader.swift; sourceTree = "<group>"; };
+		AA010032 /* BroadcastPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastPickerView.swift; sourceTree = "<group>"; };
+		CC010001 /* SampleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleHandler.swift; sourceTree = "<group>"; };
+		CC010002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC020000 /* HayaAIBroadcast.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HayaAIBroadcast.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA010040 /* OCREngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCREngine.swift; sourceTree = "<group>"; };
+		AA010050 /* VisionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/VisionEngine.swift"; sourceTree = "<group>"; };
+		AA010051 /* HeroPortraitDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detectors/HeroPortraitDetector.swift"; sourceTree = "<group>"; };
+		AA010052 /* FrameProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Processors/FrameProcessor.swift"; sourceTree = "<group>"; };
+		AA010053 /* InGameFrameAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Processors/InGameFrameAnalyzer.swift"; sourceTree = "<group>"; };
+		AA010060 /* DraftStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftStateManager.swift; sourceTree = "<group>"; };
+		AA010070 /* HeroDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/HeroDatabaseService.swift"; sourceTree = "<group>"; };
+		AA010071 /* heroes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "JSON/heroes.json"; sourceTree = "<group>"; };
+		AA010080 /* RecommendationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationEngine.swift; sourceTree = "<group>"; };
+		AA010081 /* InGameRecommendationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameRecommendationService.swift; sourceTree = "<group>"; };
+		AA010090 /* ItemRecommendationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRecommendationEngine.swift; sourceTree = "<group>"; };
+		AA010100 /* StrategyEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyEngine.swift; sourceTree = "<group>"; };
+		AA010110 /* MetaEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaEngine.swift; sourceTree = "<group>"; };
+		AA010120 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/NetworkService.swift"; sourceTree = "<group>"; };
+		AA010130 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/AuthenticationService.swift"; sourceTree = "<group>"; };
+		AA010140 /* AuthenticationFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/AuthenticationFlowView.swift"; sourceTree = "<group>"; };
+		AA010150 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/MainTabView.swift"; sourceTree = "<group>"; };
+		AA010160 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/DashboardView.swift"; sourceTree = "<group>"; };
+		AA010161 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/DashboardViewModel.swift"; sourceTree = "<group>"; };
+		AA010170 /* DraftAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/DraftAssistantView.swift"; sourceTree = "<group>"; };
+		AA010171 /* DraftAssistantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/DraftAssistantViewModel.swift"; sourceTree = "<group>"; };
+		AA010172 /* LiveCoachView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/LiveCoachView.swift"; sourceTree = "<group>"; };
+		AA010173 /* LiveCoachViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/LiveCoachViewModel.swift"; sourceTree = "<group>"; };
+		AA010174 /* GameModeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/GameModeContainerView.swift"; sourceTree = "<group>"; };
+		AA010180 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/SettingsView.swift"; sourceTree = "<group>"; };
+		AA010190 /* AnalyticsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/AnalyticsDashboardView.swift"; sourceTree = "<group>"; };
+		AA010200 /* Color+Haya.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions/Color+Haya.swift"; sourceTree = "<group>"; };
+		AA010201 /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Components/GlassCard.swift"; sourceTree = "<group>"; };
+		AA010202 /* HayaComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Components/HayaComponents.swift"; sourceTree = "<group>"; };
+		AA010210 /* GameSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSessionManager.swift; sourceTree = "<group>"; };
+		AA010211 /* ObjectiveTimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveTimerService.swift; sourceTree = "<group>"; };
+		AA010212 /* LiveCoachEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCoachEngine.swift; sourceTree = "<group>"; };
+		AA010213 /* AlertEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertEngine.swift; sourceTree = "<group>"; };
+		AA0FFFFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB010001 /* RecommendationEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecommendationEngine/RecommendationEngineTests.swift"; sourceTree = "<group>"; };
+		BB010002 /* DraftStateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DraftEngine/DraftStateManagerTests.swift"; sourceTree = "<group>"; };
+		BB010003 /* HeroDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeroDatabase/HeroDatabaseTests.swift"; sourceTree = "<group>"; };
+		BB010004 /* OCREngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisionEngine/OCREngineTests.swift"; sourceTree = "<group>"; };
+		BB010005 /* MockHeroDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mocks/MockHeroDatabaseService.swift"; sourceTree = "<group>"; };
+		BB010006 /* MockHeroFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mocks/MockHeroFactory.swift"; sourceTree = "<group>"; };
+		BB010007 /* LiveCoachEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisionEngine/LiveCoachEngineTests.swift"; sourceTree = "<group>"; };
+		PROD0001 /* HayaAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HayaAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		TEST0001 /* HayaAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HayaAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		ROOT = {
+			isa = PBXGroup;
+			children = (
+				GRPAPP /* HayaAI */,
+				GRPTEST /* HayaAITests */,
+				GRPBROADCAST /* HayaAIBroadcast */,
+				GRPWIDGET /* HayaAIWidget */,
+				GRPPROD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		GRPWIDGET /* HayaAIWidget */ = {
+			isa = PBXGroup;
+			children = (
+				WD010004 /* HayaAIWidgetBundle.swift */,
+				WD010005 /* CoachLiveActivityView.swift */,
+				WD010006 /* Info.plist */,
+			);
+			name = HayaAIWidget;
+			path = HayaAIWidget;
+			sourceTree = "<group>";
+		};
+		GRPOVERLAY /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				WD010001 /* CoachLiveActivityAttributes.swift */,
+				WD010002 /* LiveActivityManager.swift */,
+				WD010003 /* NotificationService.swift */,
+			);
+			path = Overlay;
+			sourceTree = "<group>";
+		};
+		GRPBROADCAST /* HayaAIBroadcast */ = {
+			isa = PBXGroup;
+			children = (
+				CC010001 /* SampleHandler.swift */,
+				CC010002 /* Info.plist */,
+			);
+			name = HayaAIBroadcast;
+			path = HayaAIBroadcast;
+			sourceTree = "<group>";
+		};
+		GRPFRAMEWORKS /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				WDFRM_WIDGETKIT /* WidgetKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		GRPPROD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				PROD0001 /* HayaAI.app */,
+				TEST0001 /* HayaAITests.xctest */,
+				CC020000 /* HayaAIBroadcast.appex */,
+				WD000001 /* HayaAIWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		GRPAPP /* HayaAI */ = {
+			isa = PBXGroup;
+			children = (
+				GRPAPPCORE /* App */,
+				GRPMODELS /* Models */,
+				GRPPROTOCOLS /* Protocols */,
+				GRPREPLAY /* ReplayKit */,
+				GRPOCR /* OCREngine */,
+				GRPVISION /* VisionEngine */,
+				GRPDRAFT /* DraftEngine */,
+				GRPHERODBSVC /* HeroDatabase */,
+				GRPREC /* RecommendationEngine */,
+				GRPITEM /* ItemEngine */,
+				GRPSTRAT /* StrategyEngine */,
+				GRPMETA /* MetaEngine */,
+				GRPNETWORK /* Networking */,
+				GRPAUTH /* Authentication */,
+				GRPDASH /* Dashboard */,
+				GRPDRAFTUI /* DraftAssistant */,
+				GRPSERVICES /* Services */,
+				GRPOVERLAY /* Overlay */,
+				GRPSETTINGS /* Settings */,
+				GRPANALYTICS /* Analytics */,
+				GRPSHARED /* SharedComponents */,
+				GRPRESOURCES /* Resources */,
+			);
+			path = HayaAI;
+			sourceTree = "<group>";
+		};
+		GRPAPPCORE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AA010001 /* HayaAIApp.swift */,
+				AA010002 /* AppDelegate.swift */,
+				AA010003 /* AppRouter.swift */,
+				AA010004 /* RootView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		GRPMODELS /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA010010 /* HeroModel.swift */,
+				AA010011 /* DraftStateModel.swift */,
+				AA010012 /* RecommendationModel.swift */,
+				AA010013 /* UserProfileModel.swift */,
+				AA010014 /* StrategyModel.swift */,
+				AA010015 /* VisionModels.swift */,
+				AA010016 /* InGameRecommendationModels.swift */,
+				AA010017 /* LiveGameModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		GRPPROTOCOLS /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				AA010020 /* VisionEngineProtocol.swift */,
+				AA010021 /* OCREngineProtocol.swift */,
+				AA010022 /* RecommendationEngineProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		GRPREPLAY /* ReplayKit */ = {
+			isa = PBXGroup;
+			children = (
+				AA010030 /* ReplayKitManager.swift */,
+				AA010031 /* BroadcastFrameReader.swift */,
+				AA010032 /* BroadcastPickerView.swift */,
+			);
+			path = ReplayKit;
+			sourceTree = "<group>";
+		};
+		GRPOCR /* OCREngine */ = {
+			isa = PBXGroup;
+			children = (
+				AA010040 /* OCREngine.swift */,
+			);
+			path = OCREngine;
+			sourceTree = "<group>";
+		};
+		GRPVISION /* VisionEngine */ = {
+			isa = PBXGroup;
+			children = (
+				AA010050 /* VisionEngine.swift */,
+				AA010051 /* HeroPortraitDetector.swift */,
+				AA010052 /* FrameProcessor.swift */,
+				AA010053 /* InGameFrameAnalyzer.swift */,
+			);
+			path = VisionEngine;
+			sourceTree = "<group>";
+		};
+		GRPDRAFT /* DraftEngine */ = {
+			isa = PBXGroup;
+			children = (
+				AA010060 /* DraftStateManager.swift */,
+			);
+			path = DraftEngine;
+			sourceTree = "<group>";
+		};
+		GRPHERODBSVC /* HeroDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				AA010070 /* HeroDatabaseService.swift */,
+				AA010071 /* heroes.json */,
+			);
+			path = HeroDatabase;
+			sourceTree = "<group>";
+		};
+		GRPREC /* RecommendationEngine */ = {
+			isa = PBXGroup;
+			children = (
+				AA010080 /* RecommendationEngine.swift */,
+				AA010081 /* InGameRecommendationService.swift */,
+			);
+			path = RecommendationEngine;
+			sourceTree = "<group>";
+		};
+		GRPITEM /* ItemEngine */ = {
+			isa = PBXGroup;
+			children = (
+				AA010090 /* ItemRecommendationEngine.swift */,
+			);
+			path = ItemEngine;
+			sourceTree = "<group>";
+		};
+		GRPSTRAT /* StrategyEngine */ = {
+			isa = PBXGroup;
+			children = (
+				AA010100 /* StrategyEngine.swift */,
+			);
+			path = StrategyEngine;
+			sourceTree = "<group>";
+		};
+		GRPMETA /* MetaEngine */ = {
+			isa = PBXGroup;
+			children = (
+				AA010110 /* MetaEngine.swift */,
+			);
+			path = MetaEngine;
+			sourceTree = "<group>";
+		};
+		GRPNETWORK /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				AA010120 /* NetworkService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		GRPAUTH /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				AA010130 /* AuthenticationService.swift */,
+				AA010140 /* AuthenticationFlowView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		GRPDASH /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				AA010150 /* MainTabView.swift */,
+				AA010160 /* DashboardView.swift */,
+				AA010161 /* DashboardViewModel.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		GRPDRAFTUI /* DraftAssistant */ = {
+			isa = PBXGroup;
+			children = (
+				AA010170 /* DraftAssistantView.swift */,
+				AA010171 /* DraftAssistantViewModel.swift */,
+				AA010172 /* LiveCoachView.swift */,
+				AA010173 /* LiveCoachViewModel.swift */,
+				AA010174 /* GameModeContainerView.swift */,
+			);
+			path = DraftAssistant;
+			sourceTree = "<group>";
+		};
+		GRPSETTINGS /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AA010180 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		GRPANALYTICS /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				AA010190 /* AnalyticsDashboardView.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		GRPSHARED /* SharedComponents */ = {
+			isa = PBXGroup;
+			children = (
+				AA010200 /* Color+Haya.swift */,
+				AA010201 /* GlassCard.swift */,
+				AA010202 /* HayaComponents.swift */,
+			);
+			path = SharedComponents;
+			sourceTree = "<group>";
+		};
+		GRPSERVICES /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AA010210 /* GameSessionManager.swift */,
+				AA010211 /* ObjectiveTimerService.swift */,
+				AA010212 /* LiveCoachEngine.swift */,
+				AA010213 /* AlertEngine.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		GRPRESOURCES /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AA0FFFFF /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		GRPTEST /* HayaAITests */ = {
+			isa = PBXGroup;
+			children = (
+				BB010001 /* RecommendationEngineTests.swift */,
+				BB010002 /* DraftStateManagerTests.swift */,
+				BB010003 /* HeroDatabaseTests.swift */,
+				BB010004 /* OCREngineTests.swift */,
+				BB010005 /* MockHeroDatabaseService.swift */,
+				BB010006 /* MockHeroFactory.swift */,
+				BB010007 /* LiveCoachEngineTests.swift */,
+			);
+			path = HayaAITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		TGTAPP0001 /* HayaAI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFGLISTAPP;
+			buildPhases = (
+				BPHASESRC /* Sources */,
+				BPHASERESOURCE /* Resources */,
+				BPHASEFRAME /* Frameworks */,
+				BPHASEEMBED /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BROADCASTDEP /* PBXTargetDependency */,
+				WIDGETDEP /* PBXTargetDependency */,
+			);
+			name = HayaAI;
+			packageProductDependencies = (
+				SPMPROD_FIREBASEAUTH /* FirebaseAuth */,
+				SPMPROD_FIRESTORE /* FirebaseFirestore */,
+				SPMPROD_FBANALYTICS /* FirebaseAnalytics */,
+				SPMPROD_SUPABASE /* Supabase */,
+				SPMPROD_SQLITE /* SQLite */,
+				SPMPROD_OPENAI /* OpenAI */,
+			);
+			productName = HayaAI;
+			productReference = PROD0001 /* HayaAI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		TGTTEST0001 /* HayaAITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFGLISTTEST;
+			buildPhases = (
+				BPHASESRCTEST /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				TESTDEP0001 /* PBXTargetDependency */,
+			);
+			name = HayaAITests;
+			productName = HayaAITests;
+			productReference = TEST0001 /* HayaAITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		TGTBROADCAST /* HayaAIBroadcast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFGLISTBROADCAST;
+			buildPhases = (
+				BPHASESRCBROADCAST /* Sources */,
+				BPHASERESBROADCAST /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HayaAIBroadcast;
+			productName = HayaAIBroadcast;
+			productReference = CC020000 /* HayaAIBroadcast.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		TGTWIDGET /* HayaAIWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFGLISTWIDGET;
+			buildPhases = (
+				BPHASESRCWIDGET /* Sources */,
+				BPHASERESWIDGET /* Resources */,
+				BPHASEFRAMEWIDGET /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HayaAIWidget;
+			productName = HayaAIWidget;
+			productReference = WD000001 /* HayaAIWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		PROJ0001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					TGTAPP0001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					TGTTEST0001 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = TGTAPP0001;
+					};
+				};
+			};
+			buildConfigurationList = CFGLISTPROJ;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ROOT;
+			packageReferences = (
+				SPMREF_FIREBASE /* firebase-ios-sdk */,
+				SPMREF_SUPABASE /* supabase-swift */,
+				SPMREF_SQLITE /* SQLite.swift */,
+				SPMREF_OPENAI /* OpenAI */,
+			);
+			productRefGroup = GRPPROD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				TGTAPP0001 /* HayaAI */,
+				TGTTEST0001 /* HayaAITests */,
+				TGTBROADCAST /* HayaAIBroadcast */,
+				TGTWIDGET /* HayaAIWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BPHASERESOURCE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000071 /* heroes.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BPHASESRC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				WD020001 /* CoachLiveActivityAttributes.swift */,
+				WD020002 /* LiveActivityManager.swift */,
+				WD020003 /* NotificationService.swift */,
+				AA000001,
+				AA000002,
+				AA000003,
+				AA000004,
+				AA000010,
+				AA000011,
+				AA000012,
+				AA000013,
+				AA000014,
+				AA000015,
+				AA000016,
+				AA000017,
+				AA000020,
+				AA000021,
+				AA000022,
+				AA000030,
+				AA000031,
+				AA000032,
+				AA000040,
+				AA000050,
+				AA000051,
+				AA000052,
+				AA000053,
+				AA000060,
+				AA000070,
+				AA000080,
+				AA000081,
+				AA000090,
+				AA000100,
+				AA000110,
+				AA000120,
+				AA000130,
+				AA000140,
+				AA000150,
+				AA000160,
+				AA000161,
+				AA000170,
+				AA000171,
+				AA000172,
+				AA000173,
+				AA000174,
+				AA000180,
+				AA000190,
+				AA000200,
+				AA000201,
+				AA000202,
+				AA000210,
+				AA000211,
+				AA000212,
+				AA000213,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BPHASESRCTEST /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB000001,
+				BB000002,
+				BB000003,
+				BB000004,
+				BB000005,
+				BB000006,
+				BB000007,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BPHASESRCBROADCAST /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC000001,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BPHASESRCWIDGET /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				WD020004 /* CoachLiveActivityAttributes.swift */,
+				WD020005 /* HayaAIWidgetBundle.swift */,
+				WD020006 /* CoachLiveActivityView.swift */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BPHASEFRAME /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				SPMLINK_FIREBASEAUTH /* FirebaseAuth in Frameworks */,
+				SPMLINK_FIRESTORE /* FirebaseFirestore in Frameworks */,
+				SPMLINK_FBANALYTICS /* FirebaseAnalytics in Frameworks */,
+				SPMLINK_SUPABASE /* Supabase in Frameworks */,
+				SPMLINK_SQLITE /* SQLite in Frameworks */,
+				SPMLINK_OPENAI /* OpenAI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BPHASEEMBED /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CC000010 /* HayaAIBroadcast.appex in Embed App Extensions */,
+				WD020008 /* HayaAIWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BPHASERESBROADCAST /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BPHASERESWIDGET /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFrameworksBuildPhase section (Widget) */
+		BPHASEFRAMEWIDGET /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				WD020009 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section (Widget) */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		SPMREF_FIREBASE /* firebase-ios-sdk */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "10.0.0";
+			};
+		};
+		SPMREF_SUPABASE /* supabase-swift */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase-community/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "2.0.0";
+			};
+		};
+		SPMREF_SQLITE /* SQLite.swift */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "0.15.0";
+			};
+		};
+		SPMREF_OPENAI /* OpenAI */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = "0.3.0";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		SPMPROD_FIREBASEAUTH /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = SPMREF_FIREBASE;
+			productName = FirebaseAuth;
+		};
+		SPMPROD_FIRESTORE /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = SPMREF_FIREBASE;
+			productName = FirebaseFirestore;
+		};
+		SPMPROD_FBANALYTICS /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = SPMREF_FIREBASE;
+			productName = FirebaseAnalytics;
+		};
+		SPMPROD_SUPABASE /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = SPMREF_SUPABASE;
+			productName = Supabase;
+		};
+		SPMPROD_SQLITE /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = SPMREF_SQLITE;
+			productName = SQLite;
+		};
+		SPMPROD_OPENAI /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = SPMREF_OPENAI;
+			productName = OpenAI;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin PBXTargetDependency section */
+		TESTDEP0001 = {
+			isa = PBXTargetDependency;
+			target = TGTAPP0001 /* HayaAI */;
+			targetProxy = CONTRPXY0001;
+		};
+		BROADCASTDEP = {
+			isa = PBXTargetDependency;
+			target = TGTBROADCAST /* HayaAIBroadcast */;
+			targetProxy = CONTRPXY0002;
+		};
+		WIDGETDEP = {
+			isa = PBXTargetDependency;
+			target = TGTWIDGET /* HayaAIWidget */;
+			targetProxy = WIDGETPROXY;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXContainerItemProxy section */
+		CONTRPXY0001 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = PROJ0001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = TGTAPP0001;
+			remoteInfo = HayaAI;
+		};
+		CONTRPXY0002 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = PROJ0001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = TGTBROADCAST;
+			remoteInfo = HayaAIBroadcast;
+		};
+		WIDGETPROXY = {
+			isa = PBXContainerItemProxy;
+			containerPortal = PROJ0001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = TGTWIDGET;
+			remoteInfo = HayaAIWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin XCBuildConfiguration section */
+		CFGDEBUGPROJ /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		CFGRELEASEPROJ /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CFGDEBUGAPP /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = HayaAI/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CFGRELEASEAPP /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = HayaAI/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CFGDEBUGTEST /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HayaAI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HayaAI";
+			};
+			name = Debug;
+		};
+		CFGRELEASETEST /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HayaAI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HayaAI";
+			};
+			name = Release;
+		};
+		CFGDEBUGBROADCAST /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = "HayaAIBroadcast/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app.broadcast;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CFGRELEASEBROADCAST /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = "HayaAIBroadcast/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app.broadcast;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CFGDEBUGWIDGET /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = "HayaAIWidget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CFGRELEASEWIDGET /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = "HayaAIWidget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CFGLISTPROJ /* Build configuration list for PBXProject "HayaAI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFGDEBUGPROJ /* Debug */,
+				CFGRELEASEPROJ /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFGLISTAPP /* Build configuration list for PBXNativeTarget "HayaAI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFGDEBUGAPP /* Debug */,
+				CFGRELEASEAPP /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFGLISTTEST /* Build configuration list for PBXNativeTarget "HayaAITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFGDEBUGTEST /* Debug */,
+				CFGRELEASETEST /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFGLISTBROADCAST /* Build configuration list for PBXNativeTarget "HayaAIBroadcast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFGDEBUGBROADCAST /* Debug */,
+				CFGRELEASEBROADCAST /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFGLISTWIDGET /* Build configuration list for PBXNativeTarget "HayaAIWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFGDEBUGWIDGET /* Debug */,
+				CFGRELEASEWIDGET /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = PROJ0001 /* Project object */;
+}
