@@ -14,8 +14,11 @@ final class BroadcastFrameReader: ObservableObject {
 
     // MARK: - Public state
     @Published private(set) var isRunning: Bool = false
+    /// "running" while the iOS broadcast is active; any other value means idle.
     @Published private(set) var broadcastStatus: String = "stopped"
     @Published private(set) var framesReceived: Int = 0
+    /// Convenience flag: true whenever broadcastStatus == "running".
+    var isLive: Bool { broadcastStatus == "running" }
 
     /// Called on the main actor whenever a new frame arrives.
     var onFrame: ((CGImage, TimeInterval) -> Void)?

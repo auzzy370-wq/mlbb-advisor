@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct MainTabView: View {
     @EnvironmentObject private var appRouter: AppRouter
@@ -69,5 +70,27 @@ struct MainTabView: View {
         }
         .tint(Color.hayaGold)
         .preferredColorScheme(.dark)
+        // ── Auto-activate coaching overlay ──────────────────────────────────
+        // When the Broadcast Extension starts writing frames (user started a
+        // screen broadcast from MLBB or Control Center), automatically kick off
+        // the coaching session so the Dynamic Island Live Activity and
+        // notification banners appear without the user having to return to
+        // Haya AI and tap anything.
+        .onReceive(draftViewModel.broadcastFrameReader.$broadcastStatus) { status in
+            Task { @MainActor in
+                if status == "running", !liveCoachViewModel.isCapturing {
+                    await liveCoachViewModel.startSession()
+                } else if status != "running", liveCoachViewModel.isCapturing {
+                    await liveCoachViewModel.endSession()
+                }
+            }
+        }
+        // Re-arm the reader whenever the app returns to the foreground in case
+        // the OS paused it while backgrounded for an extended period.
+        .onReceive(
+            NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)
+        ) { _ in
+            draftViewModel.broadcastFrameReader.start()
+        }
     }
 }

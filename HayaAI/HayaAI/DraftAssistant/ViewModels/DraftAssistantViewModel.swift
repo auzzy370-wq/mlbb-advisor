@@ -57,6 +57,10 @@ final class DraftAssistantViewModel: ObservableObject {
         bindDraftState()
         bindCaptureStatus()
         setupBroadcastPipeline()
+
+        // Begin polling the shared App Group immediately so we detect the
+        // broadcast the instant the user starts it from any app — no button tap required.
+        broadcastFrameReader.start()
     }
 
     // MARK: - Capture Control

@@ -69,18 +69,21 @@ final class LiveCoachViewModel: ObservableObject {
     // MARK: - Session Control
 
     func startSession() async {
+        guard !isCapturing else { return }   // prevent double-start
+
         // Request notification permission on first session start (no-op if already granted)
         await notificationService.requestPermission()
 
-        // Start the Live Activity using the player's hero name if available
+        // Start the Live Activity — hero name may be empty at this point
+        // (broadcast started before draft phase); the activity will be updated
+        // as soon as the draft is detected.
         let heroName = gameSessionManager.draftStateManager.currentDraftState
             .friendlyPicks.first { $0.status == .locked }?.heroName ?? ""
-        await liveActivityManager.start(heroName: heroName)
+        await liveActivityManager.start(heroName: heroName.isEmpty ? "Haya AI" : heroName)
 
         do {
             try await gameSessionManager.startSession()
         } catch {
-            // Surface error via alert
             let alert = CoachAlert(
                 id: UUID().uuidString,
                 type: .gameOver,
@@ -96,6 +99,7 @@ final class LiveCoachViewModel: ObservableObject {
     }
 
     func endSession() async {
+        guard isCapturing else { return }    // prevent double-stop
         await gameSessionManager.endSession()
         await liveActivityManager.end()
         await notificationService.cancelAll()

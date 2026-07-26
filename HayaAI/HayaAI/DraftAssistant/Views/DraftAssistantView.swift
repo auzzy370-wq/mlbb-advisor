@@ -26,32 +26,46 @@ struct DraftAssistantView: View {
 
     // MARK: - Capture Control Bar
     private var captureControlBar: some View {
-        VStack(spacing: 0) {
-            // Broadcast row — uses the system broadcast picker so it captures
-            // Mobile Legends even while MLBB is in the foreground.
+        let isLive = viewModel.broadcastFrameReader.broadcastStatus == "running"
+        return VStack(spacing: 0) {
             HStack(spacing: 12) {
-                Circle()
-                    .fill(viewModel.broadcastFrameReader.broadcastStatus == "running"
-                          ? Color.green : Color.secondary.opacity(0.4))
-                    .frame(width: 8, height: 8)
+                // Pulsing live indicator
+                ZStack {
+                    if isLive {
+                        Circle()
+                            .fill(Color.green.opacity(0.3))
+                            .frame(width: 16, height: 16)
+                    }
+                    Circle()
+                        .fill(isLive ? Color.green : Color.secondary.opacity(0.35))
+                        .frame(width: 8, height: 8)
+                }
 
-                Text(viewModel.broadcastFrameReader.broadcastStatus == "running"
-                     ? "Broadcast Live — screen is being read"
-                     : "Tap ● to broadcast your screen")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(isLive ? "Coaching Active" : "Ready to Coach")
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(isLive ? .green : .primary)
+                    Text(isLive
+                         ? "Dynamic Island showing live tips"
+                         : "Start broadcast — overlay activates automatically")
+                        .font(.system(size: 10))
+                        .foregroundStyle(.secondary)
+                }
 
                 Spacer()
 
-                // Native iOS broadcast picker button
+                // Native iOS broadcast picker
                 BroadcastPickerButton()
                     .frame(width: 44, height: 44)
             }
             .padding(.horizontal, 16)
-            .padding(.vertical, 8)
-            .background(.ultraThinMaterial)
+            .padding(.vertical, 10)
+            .background(isLive
+                        ? Color.green.opacity(0.08).background(.ultraThinMaterial)
+                        : Color.clear.background(.ultraThinMaterial))
+            .animation(.easeInOut(duration: 0.3), value: isLive)
 
-            // Error banner (only shown if something went wrong)
             if case .error(let msg) = viewModel.captureStatus {
                 Text("⚠️ \(msg)")
                     .font(.caption2)

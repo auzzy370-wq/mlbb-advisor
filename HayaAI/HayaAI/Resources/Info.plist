@@ -17,9 +17,9 @@
     <key>CFBundlePackageType</key>
     <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.2.0</string>
+    <string>1.2.1</string>
     <key>CFBundleVersion</key>
-    <string>3</string>
+    <string>4</string>
     <key>NSSupportsLiveActivities</key>
     <true/>
     <key>NSSupportsLiveActivitiesFrequentUpdates</key>
@@ -70,5 +70,13 @@
     </array>
     <key>UIUserInterfaceStyle</key>
     <string>Dark</string>
+    <!-- Keep the app alive in the background so it can read broadcast frames
+         and keep the Live Activity / notification pipeline running while the
+         user is playing Mobile Legends. -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>processing</string>
+        <string>fetch</string>
+    </array>
 </dict>
 </plist>
