@@ -25,9 +25,9 @@ actor HeroPortraitDetector {
         // classificationModel = vnModel
     }
 
-    func updateHeroNames(_ names: [String]) {
+    func updateHeroNames(_ names: [String]) async {
         heroNames = names
-        fallbackOCR.updateHeroNames(names)
+        await fallbackOCR.updateHeroNames(names)
     }
 
     // MARK: - Detect Heroes

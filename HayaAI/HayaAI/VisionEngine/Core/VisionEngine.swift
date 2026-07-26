@@ -5,12 +5,15 @@ import CoreGraphics
 
 // MARK: - Vision Engine
 /// Central orchestrator for all computer-vision processing of captured frames.
-/// Runs on a dedicated actor to ensure thread-safe access to its state.
-actor VisionEngine: VisionEngineProtocol {
+/// @MainActor-isolated so all property access is thread-safe on the main actor,
+/// while actual heavy Vision work is dispatched to background threads via
+/// withCheckedThrowingContinuation inside each detector.
+@MainActor
+final class VisionEngine: VisionEngineProtocol {
 
     // MARK: - State
     private(set) var isProcessing: Bool = false
-    nonisolated var onFrameAnalyzed: ((FrameAnalysisResult) -> Void)?
+    var onFrameAnalyzed: ((FrameAnalysisResult) -> Void)?
 
     // MARK: - Dependencies
     private let ocrEngine: OCREngine

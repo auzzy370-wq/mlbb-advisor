@@ -17,7 +17,7 @@ final class ReplayKitManager: NSObject, ObservableObject, ReplayKitManagerProtoc
     @Published private(set) var lastError: CapturError? = nil
 
     // MARK: - Protocol Conformance
-    nonisolated var onFrameCaptured: ((CVPixelBufferRef, CMTimeValue) -> Void)?
+    var onFrameCaptured: ((CVPixelBufferRef, CMTimeValue) -> Void)?
 
     // MARK: - Private
     private let recorder = RPScreenRecorder.shared()
