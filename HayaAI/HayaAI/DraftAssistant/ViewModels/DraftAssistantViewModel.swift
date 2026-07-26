@@ -34,6 +34,12 @@ final class DraftAssistantViewModel: ObservableObject {
     /// (including Mobile Legends) even while MLBB is in the foreground.
     let broadcastFrameReader = BroadcastFrameReader()
 
+    /// Live OCR engine fed hero names from the database.
+    /// Nil only during the brief async init window; assigned before any frame arrives.
+    private var ocrEngine: OCREngine?
+    /// Throttle: skip OCR if the previous request finished fewer than 1.2 s ago.
+    private var lastOCRTime: Date = .distantPast
+
     // MARK: - Subscriptions
     private var cancellables: Set<AnyCancellable> = []
     private var stateTask: Task<Void, Never>?
@@ -61,6 +67,20 @@ final class DraftAssistantViewModel: ObservableObject {
         // Begin polling the shared App Group immediately so we detect the
         // broadcast the instant the user starts it from any app — no button tap required.
         broadcastFrameReader.start()
+
+        // Initialise the OCR engine with every hero name in the database so
+        // Vision can match hero text found on screen during draft / in-game.
+        Task {
+            let names = await draftStateManager.heroDatabase.allHeroNames()
+            let cfg = OCREngine.Configuration(
+                recognitionLevel: .fast,   // fast = ~200 ms/frame vs ~1 s for accurate
+                recognitionLanguages: ["en-US"],
+                usesLanguageCorrection: false,
+                minimumTextHeight: 0.018,
+                customWords: names          // prime Vision with all hero names
+            )
+            ocrEngine = OCREngine(configuration: cfg, heroNames: names)
+        }
     }
 
     // MARK: - Capture Control
@@ -125,19 +145,89 @@ final class DraftAssistantViewModel: ObservableObject {
         }
     }
 
-    /// Converts a raw CGImage from the broadcast extension into a FrameAnalysisResult
-    /// that DraftStateManager understands.
+    /// Runs Vision OCR on a broadcast frame and returns a fully-populated
+    /// `FrameAnalysisResult` that `DraftStateManager` can reconcile into
+    /// the live `DraftState`.
+    ///
+    /// OCR is throttled to once every 1.2 s so it doesn't starve the UI thread.
+    /// We run full-image text recognition and use bounding-box positions to
+    /// assign heroes to friendly/enemy sides and approximate slot indices.
     private func inGameAnalysis(from image: CGImage, timestamp: Int) async -> FrameAnalysisResult {
-        FrameAnalysisResult(
-            detectedHeroes: [],
-            detectedTexts: [],
-            detectedPhase: nil,
-            detectedTimer: timestamp > 0 ? timestamp : nil,
-            detectedTurn: nil,
-            detectedPatch: nil,
+        let emptyResult = FrameAnalysisResult(
+            detectedHeroes: [], detectedTexts: [],
+            detectedPhase: nil, detectedTimer: nil,
+            detectedTurn: nil, detectedPatch: nil,
             processingTimeMs: 0,
             frameTimestamp: CMTimeValue(timestamp),
-            overallConfidence: 0.0
+            overallConfidence: 0
+        )
+
+        guard let ocr = ocrEngine else { return emptyResult }
+
+        // Throttle: skip this frame if OCR ran too recently
+        let now = Date()
+        guard now.timeIntervalSince(lastOCRTime) >= 1.2 else { return emptyResult }
+        lastOCRTime = now
+
+        let startTime = now
+
+        // Full-screen text recognition — Vision coordinate origin is bottom-left.
+        let allTexts = (try? await ocr.recognizeText(in: image, roi: nil)) ?? []
+        guard !allTexts.isEmpty else { return emptyResult }
+
+        var detectedHeroes: [DetectedHero] = []
+        var detectedPhase: DraftPhase? = nil
+        var detectedTimer: Int? = nil
+        var bestConfidence = 0.0
+
+        for text in allTexts where text.confidence > 0.45 {
+            bestConfidence = max(bestConfidence, text.confidence)
+            let box = text.boundingBox   // normalized, origin bottom-left
+
+            switch text.category {
+            case .heroName:
+                // Horizontal split: left half = friendly, right half = enemy.
+                // This matches the MLBB draft layout in landscape orientation.
+                let team: DraftTurn = box.midX < 0.5 ? .friendly : .enemy
+
+                // Vertical slot estimation inside the pick column (approx y=0.15…0.85).
+                // Vision y=1.0 is the TOP of the image; heroes are ordered top→bottom.
+                let relY = (box.midY - 0.15) / 0.70   // 0=bottom of pick area, 1=top
+                let slot = min(4, max(0, Int((1.0 - relY) * 5)))
+
+                detectedHeroes.append(DetectedHero(
+                    name: text.text,
+                    boundingBox: box,
+                    confidence: text.confidence,
+                    team: team,
+                    slotIndex: slot,
+                    detectionMethod: .ocr
+                ))
+
+            case .phase:
+                let lower = text.text.lowercased()
+                if lower.contains("ban")        { detectedPhase = .banPhase1 }
+                else if lower.contains("pick")  { detectedPhase = .pickPhase1 }
+
+            case .timer:
+                if let v = Int(text.text), v >= 1, v <= 99 { detectedTimer = v }
+
+            default:
+                break
+            }
+        }
+
+        let elapsedMs = Date().timeIntervalSince(startTime) * 1_000
+        return FrameAnalysisResult(
+            detectedHeroes: detectedHeroes,
+            detectedTexts: allTexts,
+            detectedPhase: detectedPhase,
+            detectedTimer: detectedTimer,
+            detectedTurn: nil,
+            detectedPatch: nil,
+            processingTimeMs: elapsedMs,
+            frameTimestamp: CMTimeValue(timestamp),
+            overallConfidence: bestConfidence
         )
     }
 
