@@ -45,6 +45,18 @@
 		AA000200 /* Color+Haya.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010200 /* Color+Haya.swift */; };
 		AA000201 /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010201 /* GlassCard.swift */; };
 		AA000202 /* HayaComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010202 /* HayaComponents.swift */; };
+		AA000210 /* InGameRecommendationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010210 /* InGameRecommendationModels.swift */; };
+		AA000211 /* InGameRecommendationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010211 /* InGameRecommendationService.swift */; };
+		AA000212 /* LiveGameModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010212 /* LiveGameModels.swift */; };
+		AA000213 /* InGameFrameAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010213 /* InGameFrameAnalyzer.swift */; };
+		AA000214 /* GameSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010214 /* GameSessionManager.swift */; };
+		AA000215 /* ObjectiveTimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010215 /* ObjectiveTimerService.swift */; };
+		AA000216 /* LiveCoachEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010216 /* LiveCoachEngine.swift */; };
+		AA000217 /* AlertEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010217 /* AlertEngine.swift */; };
+		AA000218 /* TacticalAdvisor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010218 /* TacticalAdvisor.swift */; };
+		AA000219 /* LiveCoachViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010219 /* LiveCoachViewModel.swift */; };
+		AA000220 /* LiveCoachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010220 /* LiveCoachView.swift */; };
+		AA000221 /* GameModeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010221 /* GameModeContainerView.swift */; };
 		BB000001 /* RecommendationEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010001 /* RecommendationEngineTests.swift */; };
 		BB000002 /* DraftStateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010002 /* DraftStateManagerTests.swift */; };
 		BB000003 /* HeroDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB010003 /* HeroDatabaseTests.swift */; };
@@ -92,6 +104,18 @@
 		AA010200 /* Color+Haya.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Haya.swift"; sourceTree = "<group>"; };
 		AA010201 /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCard.swift; sourceTree = "<group>"; };
 		AA010202 /* HayaComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HayaComponents.swift; sourceTree = "<group>"; };
+		AA010210 /* InGameRecommendationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameRecommendationModels.swift; sourceTree = "<group>"; };
+		AA010211 /* InGameRecommendationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameRecommendationService.swift; sourceTree = "<group>"; };
+		AA010212 /* LiveGameModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGameModels.swift; sourceTree = "<group>"; };
+		AA010213 /* InGameFrameAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameFrameAnalyzer.swift; sourceTree = "<group>"; };
+		AA010214 /* GameSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSessionManager.swift; sourceTree = "<group>"; };
+		AA010215 /* ObjectiveTimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveTimerService.swift; sourceTree = "<group>"; };
+		AA010216 /* LiveCoachEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCoachEngine.swift; sourceTree = "<group>"; };
+		AA010217 /* AlertEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertEngine.swift; sourceTree = "<group>"; };
+		AA010218 /* TacticalAdvisor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TacticalAdvisor.swift; sourceTree = "<group>"; };
+		AA010219 /* LiveCoachViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCoachViewModel.swift; sourceTree = "<group>"; };
+		AA010220 /* LiveCoachView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCoachView.swift; sourceTree = "<group>"; };
+		AA010221 /* GameModeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeContainerView.swift; sourceTree = "<group>"; };
 		AA0FFFFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB010001 /* RecommendationEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationEngineTests.swift; sourceTree = "<group>"; };
 		BB010002 /* DraftStateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftStateManagerTests.swift; sourceTree = "<group>"; };
@@ -468,6 +492,18 @@
 				AA000200 /* Color+Haya.swift in Sources */,
 				AA000201 /* GlassCard.swift in Sources */,
 				AA000202 /* HayaComponents.swift in Sources */,
+				AA000210 /* InGameRecommendationModels.swift in Sources */,
+				AA000211 /* InGameRecommendationService.swift in Sources */,
+				AA000212 /* LiveGameModels.swift in Sources */,
+				AA000213 /* InGameFrameAnalyzer.swift in Sources */,
+				AA000214 /* GameSessionManager.swift in Sources */,
+				AA000215 /* ObjectiveTimerService.swift in Sources */,
+				AA000216 /* LiveCoachEngine.swift in Sources */,
+				AA000217 /* AlertEngine.swift in Sources */,
+				AA000218 /* TacticalAdvisor.swift in Sources */,
+				AA000219 /* LiveCoachViewModel.swift in Sources */,
+				AA000220 /* LiveCoachView.swift in Sources */,
+				AA000221 /* GameModeContainerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
