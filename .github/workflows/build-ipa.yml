@@ -30,22 +30,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Select Xcode 16
-        run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
-
-      - name: Show Xcode version
-        run: xcodebuild -version
+      - name: Show available Xcode versions + select latest
+        run: |
+          ls /Applications/ | grep -i xcode || true
+          # Use the latest available Xcode (has iOS SDK pre-installed)
+          LATEST_XCODE=$(ls /Applications/ | grep -E "^Xcode_?[0-9]" | sort -V | tail -1)
+          echo "Using: $LATEST_XCODE"
+          sudo xcode-select -s "/Applications/$LATEST_XCODE/Contents/Developer"
+          xcodebuild -version
+          xcodebuild -showsdks 2>&1 | grep -i "ios" || true
 
       - name: Build + archive (ad-hoc signed)
-        # Uses '-' (local ad-hoc) signing: compiles all SPM packages including
-        # Firebase, produces a valid .app bundle. The IPA can then be re-signed
-        # by Sideloadly/AltStore with the user's own Apple ID on their machine.
+        # Uses '-' (local ad-hoc) signing so all SPM packages (Firebase etc.)
+        # compile properly. The resulting IPA can be re-signed by Sideloadly /
+        # AltStore with the user's own Apple ID.
         run: |
           set -o pipefail
+          # Pick the installed iphoneos SDK version dynamically
+          SDK=$(xcodebuild -showsdks 2>/dev/null | grep -oE "iphoneos[0-9.]+" | sort -V | tail -1)
+          echo "Using SDK: $SDK"
+
           xcodebuild archive \
             -project HayaAI.xcodeproj \
             -scheme HayaAI \
             -configuration Release \
+            -sdk "${SDK:-iphoneos}" \
             -destination "generic/platform=iOS" \
             -archivePath "$RUNNER_TEMP/HayaAI.xcarchive" \
             -derivedDataPath "$RUNNER_TEMP/DerivedData" \
@@ -55,13 +64,14 @@ jobs:
             AD_HOC_CODE_SIGNING_ALLOWED=YES \
             PROVISIONING_PROFILE_SPECIFIER="" \
             DEVELOPMENT_TEAM="" \
-            2>&1 | tee "$RUNNER_TEMP/build.log" | \
-              grep -E "^(error:|warning:|.*error:.*|ARCHIVE|BUILD)" || true
-          if grep -q "ARCHIVE FAILED\|BUILD FAILED" "$RUNNER_TEMP/build.log"; then
+            2>&1 | tee "$RUNNER_TEMP/build.log"
+          EXIT_CODE=${PIPESTATUS[0]}
+          if [ $EXIT_CODE -ne 0 ] || grep -q "ARCHIVE FAILED\|BUILD FAILED" "$RUNNER_TEMP/build.log"; then
             echo "=== Build errors ==="
             grep "error:" "$RUNNER_TEMP/build.log" | grep -v "^warning" | head -30
             exit 1
           fi
+          echo "Archive created successfully."
 
       - name: Package into IPA
         run: |
