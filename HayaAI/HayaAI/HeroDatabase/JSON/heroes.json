@@ -1,6 +1,6 @@
 {
-  "patchVersion": "1.8.94",
-  "updatedAt": "2026-07-26",
+  "patchVersion": "2.1.90",
+  "updatedAt": "2026-07-27",
   "heroes": [
     {
       "id": "chou",
@@ -147,10 +147,10 @@
         }
       ],
       "draftPriority": 8.0,
-      "banPriority": 7.5,
+      "banPriority": 7.8,
       "metaScore": 8.0,
-      "professionalPickRate": 0.62,
-      "professionalWinRate": 0.54,
+      "professionalPickRate": 0.55,
+      "professionalWinRate": 0.52,
       "rankWinRate": 0.51
     },
     {
@@ -284,12 +284,12 @@
           "itemTrigger": "Blade of Despair"
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.58,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.49
+      "draftPriority": 7.5,
+      "banPriority": 7.5,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.5,
+      "professionalWinRate": 0.51,
+      "rankWinRate": 0.5
     },
     {
       "id": "ling",
@@ -415,12 +415,12 @@
           "itemTrigger": "Blade of Despair"
         }
       ],
-      "draftPriority": 9.0,
-      "banPriority": 8.5,
-      "metaScore": 9.0,
-      "professionalPickRate": 0.72,
-      "professionalWinRate": 0.55,
-      "rankWinRate": 0.5
+      "draftPriority": 8.5,
+      "banPriority": 8.2,
+      "metaScore": 8.5,
+      "professionalPickRate": 0.62,
+      "professionalWinRate": 0.53,
+      "rankWinRate": 0.52
     },
     {
       "id": "fanny",
@@ -539,12 +539,12 @@
           "itemTrigger": "Blade of Despair"
         }
       ],
-      "draftPriority": 9.5,
-      "banPriority": 9.5,
-      "metaScore": 9.5,
-      "professionalPickRate": 0.85,
-      "professionalWinRate": 0.58,
-      "rankWinRate": 0.48
+      "draftPriority": 8.0,
+      "banPriority": 8.0,
+      "metaScore": 8.0,
+      "professionalPickRate": 0.58,
+      "professionalWinRate": 0.52,
+      "rankWinRate": 0.51
     },
     {
       "id": "esmeralda",
@@ -668,12 +668,12 @@
           "itemTrigger": "Fleeting Time"
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.55,
+      "draftPriority": 9.3,
+      "banPriority": 9.0,
+      "metaScore": 9.5,
+      "professionalPickRate": 0.72,
       "professionalWinRate": 0.56,
-      "rankWinRate": 0.53
+      "rankWinRate": 0.55
     },
     {
       "id": "khufra",
@@ -798,12 +798,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 9.0,
-      "banPriority": 8.5,
-      "metaScore": 9.0,
-      "professionalPickRate": 0.75,
-      "professionalWinRate": 0.55,
-      "rankWinRate": 0.52
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.45,
+      "professionalWinRate": 0.52,
+      "rankWinRate": 0.51
     },
     {
       "id": "kagura",
@@ -926,11 +926,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.0,
+      "draftPriority": 7.5,
       "banPriority": 7.0,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.48,
-      "professionalWinRate": 0.53,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.45,
+      "professionalWinRate": 0.52,
       "rankWinRate": 0.51
     },
     {
@@ -1061,12 +1061,12 @@
           "itemTrigger": "Blade of Despair"
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.0,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.5,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.5
+      "draftPriority": 9.0,
+      "banPriority": 8.5,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.65,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.53
     },
     {
       "id": "franco",
@@ -1318,11 +1318,11 @@
           "itemTrigger": "Corrosion Scythe"
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.6,
-      "professionalWinRate": 0.53,
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.45,
+      "professionalWinRate": 0.51,
       "rankWinRate": 0.51
     },
     {
@@ -1570,12 +1570,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.5,
-      "banPriority": 7.0,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.4,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "draftPriority": 8.0,
+      "banPriority": 8.0,
+      "metaScore": 8.0,
+      "professionalPickRate": 0.58,
+      "professionalWinRate": 0.53,
+      "rankWinRate": 0.52
     },
     {
       "id": "minotaur",
@@ -1695,12 +1695,12 @@
           "itemTrigger": "Cursed Helmet"
         }
       ],
-      "draftPriority": 7.0,
-      "banPriority": 6.0,
-      "metaScore": 7.0,
-      "professionalPickRate": 0.3,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "draftPriority": 9.0,
+      "banPriority": 8.5,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.65,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.54
     },
     {
       "id": "lolita",
@@ -1821,11 +1821,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.5,
-      "banPriority": 7.0,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.38,
-      "professionalWinRate": 0.52,
+      "draftPriority": 6.5,
+      "banPriority": 6.0,
+      "metaScore": 6.5,
+      "professionalPickRate": 0.32,
+      "professionalWinRate": 0.5,
       "rankWinRate": 0.51
     },
     {
@@ -2455,11 +2455,11 @@
           "itemTrigger": "Oracle"
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.45,
-      "professionalWinRate": 0.55,
+      "draftPriority": 8.5,
+      "banPriority": 8.0,
+      "metaScore": 8.5,
+      "professionalPickRate": 0.58,
+      "professionalWinRate": 0.54,
       "rankWinRate": 0.53
     },
     {
@@ -2580,12 +2580,12 @@
           "itemTrigger": "Oracle"
         }
       ],
-      "draftPriority": 7.0,
-      "banPriority": 6.0,
-      "metaScore": 7.0,
-      "professionalPickRate": 0.28,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "draftPriority": 8.0,
+      "banPriority": 7.5,
+      "metaScore": 8.0,
+      "professionalPickRate": 0.5,
+      "professionalWinRate": 0.54,
+      "rankWinRate": 0.53
     },
     {
       "id": "atlas",
@@ -2706,11 +2706,11 @@
           "itemTrigger": "Cursed Helmet"
         }
       ],
-      "draftPriority": 9.0,
-      "banPriority": 9.0,
-      "metaScore": 9.0,
-      "professionalPickRate": 0.72,
-      "professionalWinRate": 0.55,
+      "draftPriority": 8.5,
+      "banPriority": 8.5,
+      "metaScore": 8.5,
+      "professionalPickRate": 0.6,
+      "professionalWinRate": 0.54,
       "rankWinRate": 0.52
     },
     {
@@ -3082,12 +3082,12 @@
           "itemTrigger": "Cursed Helmet"
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.45,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "draftPriority": 9.0,
+      "banPriority": 8.8,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.7,
+      "professionalWinRate": 0.54,
+      "rankWinRate": 0.53
     },
     {
       "id": "chip",
@@ -3210,9 +3210,9 @@
       "draftPriority": 8.5,
       "banPriority": 8.0,
       "metaScore": 8.5,
-      "professionalPickRate": 0.5,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "professionalPickRate": 0.55,
+      "professionalWinRate": 0.54,
+      "rankWinRate": 0.53
     },
     {
       "id": "balmond",
@@ -3332,12 +3332,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 6.5,
+      "draftPriority": 6.0,
       "banPriority": 5.5,
-      "metaScore": 6.5,
+      "metaScore": 6.0,
       "professionalPickRate": 0.28,
-      "professionalWinRate": 0.51,
-      "rankWinRate": 0.52
+      "professionalWinRate": 0.49,
+      "rankWinRate": 0.5
     },
     {
       "id": "freya",
@@ -3457,12 +3457,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 6.5,
-      "banPriority": 5.5,
-      "metaScore": 6.5,
-      "professionalPickRate": 0.25,
-      "professionalWinRate": 0.51,
-      "rankWinRate": 0.51
+      "draftPriority": 8.5,
+      "banPriority": 8.2,
+      "metaScore": 8.5,
+      "professionalPickRate": 0.6,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.54
     },
     {
       "id": "sun",
@@ -3835,7 +3835,7 @@
       "banPriority": 7.5,
       "metaScore": 8.0,
       "professionalPickRate": 0.5,
-      "professionalWinRate": 0.54,
+      "professionalWinRate": 0.53,
       "rankWinRate": 0.52
     },
     {
@@ -3957,12 +3957,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.5,
-      "banPriority": 6.5,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.38,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "draftPriority": 6.5,
+      "banPriority": 6.0,
+      "metaScore": 6.5,
+      "professionalPickRate": 0.32,
+      "professionalWinRate": 0.49,
+      "rankWinRate": 0.5
     },
     {
       "id": "jawhead",
@@ -4208,12 +4208,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.5,
-      "banPriority": 7.0,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.4,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "draftPriority": 6.5,
+      "banPriority": 6.0,
+      "metaScore": 6.5,
+      "professionalPickRate": 0.32,
+      "professionalWinRate": 0.49,
+      "rankWinRate": 0.5
     },
     {
       "id": "aldous",
@@ -4334,11 +4334,11 @@
           "itemTrigger": "Blade of Despair"
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 9.0,
-      "professionalPickRate": 0.55,
-      "professionalWinRate": 0.53,
+      "draftPriority": 6.0,
+      "banPriority": 6.0,
+      "metaScore": 6.0,
+      "professionalPickRate": 0.3,
+      "professionalWinRate": 0.49,
       "rankWinRate": 0.5
     },
     {
@@ -4459,12 +4459,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.5,
-      "banPriority": 7.0,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.38,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "draftPriority": 9.0,
+      "banPriority": 8.5,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.62,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.53
     },
     {
       "id": "thamuz",
@@ -4585,9 +4585,9 @@
         }
       ],
       "draftPriority": 8.0,
-      "banPriority": 7.0,
+      "banPriority": 7.5,
       "metaScore": 8.0,
-      "professionalPickRate": 0.42,
+      "professionalPickRate": 0.55,
       "professionalWinRate": 0.53,
       "rankWinRate": 0.52
     },
@@ -4835,11 +4835,11 @@
         }
       ],
       "draftPriority": 8.0,
-      "banPriority": 7.5,
+      "banPriority": 7.8,
       "metaScore": 8.0,
-      "professionalPickRate": 0.48,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "professionalPickRate": 0.52,
+      "professionalWinRate": 0.52,
+      "rankWinRate": 0.51
     },
     {
       "id": "xborg",
@@ -5212,9 +5212,9 @@
       "draftPriority": 8.0,
       "banPriority": 7.5,
       "metaScore": 8.0,
-      "professionalPickRate": 0.42,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "professionalPickRate": 0.5,
+      "professionalWinRate": 0.53,
+      "rankWinRate": 0.52
     },
     {
       "id": "silvanna",
@@ -5334,12 +5334,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.45,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "draftPriority": 6.5,
+      "banPriority": 6.0,
+      "metaScore": 6.5,
+      "professionalPickRate": 0.32,
+      "professionalWinRate": 0.49,
+      "rankWinRate": 0.5
     },
     {
       "id": "yu_zhong",
@@ -5466,11 +5466,11 @@
           "itemTrigger": "Endless Battle"
         }
       ],
-      "draftPriority": 9.0,
-      "banPriority": 8.5,
-      "metaScore": 9.0,
-      "professionalPickRate": 0.6,
-      "professionalWinRate": 0.54,
+      "draftPriority": 8.0,
+      "banPriority": 7.5,
+      "metaScore": 8.0,
+      "professionalPickRate": 0.52,
+      "professionalWinRate": 0.53,
       "rankWinRate": 0.52
     },
     {
@@ -5591,12 +5591,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.5,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.55,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.51
+      "draftPriority": 9.0,
+      "banPriority": 8.8,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.68,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.54
     },
     {
       "id": "phoveus",
@@ -5719,12 +5719,12 @@
           "itemTrigger": "Hunter Strike"
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.55,
-      "professionalWinRate": 0.54,
-      "rankWinRate": 0.52
+      "draftPriority": 9.0,
+      "banPriority": 8.5,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.6,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.53
     },
     {
       "id": "aulus",
@@ -5844,11 +5844,11 @@
           "itemTrigger": "Blade of Despair"
         }
       ],
-      "draftPriority": 7.5,
+      "draftPriority": 7.0,
       "banPriority": 6.5,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.35,
-      "professionalWinRate": 0.52,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
       "rankWinRate": 0.51
     },
     {
@@ -5971,12 +5971,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 9.0,
-      "banPriority": 8.5,
-      "metaScore": 9.0,
-      "professionalPickRate": 0.55,
-      "professionalWinRate": 0.54,
-      "rankWinRate": 0.52
+      "draftPriority": 7.0,
+      "banPriority": 7.0,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
+      "rankWinRate": 0.5
     },
     {
       "id": "julian",
@@ -6096,12 +6096,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.5,
-      "metaScore": 9.0,
-      "professionalPickRate": 0.5,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.51
+      "draftPriority": 9.3,
+      "banPriority": 9.2,
+      "metaScore": 9.5,
+      "professionalPickRate": 0.7,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.53
     },
     {
       "id": "lapu_lapu",
@@ -6221,12 +6221,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.5,
-      "banPriority": 7.0,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.38,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "draftPriority": 9.0,
+      "banPriority": 8.5,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.6,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.53
     },
     {
       "id": "terizla",
@@ -6472,12 +6472,12 @@
           "itemTrigger": "Endless Battle"
         }
       ],
-      "draftPriority": 7.5,
-      "banPriority": 7.0,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.38,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "draftPriority": 8.5,
+      "banPriority": 8.0,
+      "metaScore": 8.5,
+      "professionalPickRate": 0.55,
+      "professionalWinRate": 0.54,
+      "rankWinRate": 0.53
     },
     {
       "id": "minsitthar",
@@ -6598,12 +6598,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.5,
-      "banPriority": 7.0,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.38,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "draftPriority": 8.0,
+      "banPriority": 7.8,
+      "metaScore": 8.0,
+      "professionalPickRate": 0.5,
+      "professionalWinRate": 0.53,
+      "rankWinRate": 0.52
     },
     {
       "id": "zilong",
@@ -6724,12 +6724,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.0,
-      "banPriority": 6.0,
-      "metaScore": 7.0,
-      "professionalPickRate": 0.3,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "draftPriority": 6.0,
+      "banPriority": 5.5,
+      "metaScore": 6.0,
+      "professionalPickRate": 0.28,
+      "professionalWinRate": 0.49,
+      "rankWinRate": 0.5
     },
     {
       "id": "saber",
@@ -6851,12 +6851,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.0,
+      "draftPriority": 6.5,
       "banPriority": 6.0,
-      "metaScore": 7.0,
-      "professionalPickRate": 0.3,
-      "professionalWinRate": 0.51,
-      "rankWinRate": 0.5
+      "metaScore": 6.5,
+      "professionalPickRate": 0.32,
+      "professionalWinRate": 0.5,
+      "rankWinRate": 0.51
     },
     {
       "id": "alucard",
@@ -6976,12 +6976,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 6.5,
+      "draftPriority": 6.0,
       "banPriority": 5.5,
-      "metaScore": 6.5,
-      "professionalPickRate": 0.25,
-      "professionalWinRate": 0.51,
-      "rankWinRate": 0.51
+      "metaScore": 6.0,
+      "professionalPickRate": 0.28,
+      "professionalWinRate": 0.49,
+      "rankWinRate": 0.5
     },
     {
       "id": "hayabusa",
@@ -7103,12 +7103,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 9.0,
-      "banPriority": 8.5,
-      "metaScore": 9.0,
-      "professionalPickRate": 0.6,
-      "professionalWinRate": 0.54,
-      "rankWinRate": 0.5
+      "draftPriority": 9.3,
+      "banPriority": 9.2,
+      "metaScore": 9.5,
+      "professionalPickRate": 0.72,
+      "professionalWinRate": 0.56,
+      "rankWinRate": 0.55
     },
     {
       "id": "natalia",
@@ -7230,11 +7230,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.5,
-      "professionalWinRate": 0.54,
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
       "rankWinRate": 0.51
     },
     {
@@ -7355,12 +7355,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.45,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "draftPriority": 9.0,
+      "banPriority": 8.8,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.68,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.54
     },
     {
       "id": "helcurt",
@@ -7482,12 +7482,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.5,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.51
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.49,
+      "rankWinRate": 0.5
     },
     {
       "id": "hanzo",
@@ -7609,11 +7609,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.48,
-      "professionalWinRate": 0.53,
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
       "rankWinRate": 0.51
     },
     {
@@ -7735,12 +7735,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 9.0,
-      "banPriority": 9.0,
-      "metaScore": 9.0,
-      "professionalPickRate": 0.62,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.49
+      "draftPriority": 8.0,
+      "banPriority": 7.8,
+      "metaScore": 8.0,
+      "professionalPickRate": 0.52,
+      "professionalWinRate": 0.52,
+      "rankWinRate": 0.51
     },
     {
       "id": "karina",
@@ -7862,11 +7862,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
       "professionalPickRate": 0.45,
-      "professionalWinRate": 0.53,
+      "professionalWinRate": 0.51,
       "rankWinRate": 0.51
     },
     {
@@ -7990,11 +7990,11 @@
         }
       ],
       "draftPriority": 9.0,
-      "banPriority": 9.0,
+      "banPriority": 8.8,
       "metaScore": 9.0,
       "professionalPickRate": 0.65,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.48
+      "professionalWinRate": 0.54,
+      "rankWinRate": 0.53
     },
     {
       "id": "aamon",
@@ -8243,11 +8243,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 9.0,
-      "banPriority": 9.0,
-      "metaScore": 9.5,
-      "professionalPickRate": 0.65,
-      "professionalWinRate": 0.55,
+      "draftPriority": 8.5,
+      "banPriority": 8.2,
+      "metaScore": 8.5,
+      "professionalPickRate": 0.6,
+      "professionalWinRate": 0.54,
       "rankWinRate": 0.52
     },
     {
@@ -8373,9 +8373,9 @@
       "draftPriority": 8.5,
       "banPriority": 8.0,
       "metaScore": 8.5,
-      "professionalPickRate": 0.5,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.51
+      "professionalPickRate": 0.58,
+      "professionalWinRate": 0.54,
+      "rankWinRate": 0.53
     },
     {
       "id": "suyou",
@@ -8497,11 +8497,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.48,
-      "professionalWinRate": 0.53,
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.42,
+      "professionalWinRate": 0.51,
       "rankWinRate": 0.51
     },
     {
@@ -8622,11 +8622,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.0,
-      "banPriority": 6.5,
-      "metaScore": 7.0,
-      "professionalPickRate": 0.35,
-      "professionalWinRate": 0.52,
+      "draftPriority": 6.5,
+      "banPriority": 6.0,
+      "metaScore": 6.5,
+      "professionalPickRate": 0.32,
+      "professionalWinRate": 0.5,
       "rankWinRate": 0.52
     },
     {
@@ -8747,12 +8747,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.5,
-      "banPriority": 7.0,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.4,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.52
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
+      "rankWinRate": 0.51
     },
     {
       "id": "aurora",
@@ -8873,11 +8873,11 @@
           "itemTrigger": "Holy Crystal"
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.45,
-      "professionalWinRate": 0.52,
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
       "rankWinRate": 0.51
     },
     {
@@ -8999,12 +8999,12 @@
           "itemTrigger": "Holy Crystal"
         }
       ],
-      "draftPriority": 7.5,
-      "banPriority": 7.0,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.35,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "draftPriority": 6.5,
+      "banPriority": 6.0,
+      "metaScore": 6.5,
+      "professionalPickRate": 0.3,
+      "professionalWinRate": 0.49,
+      "rankWinRate": 0.5
     },
     {
       "id": "odette",
@@ -9125,11 +9125,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.42,
-      "professionalWinRate": 0.53,
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
       "rankWinRate": 0.51
     },
     {
@@ -9250,11 +9250,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.5,
-      "banPriority": 7.0,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.35,
-      "professionalWinRate": 0.52,
+      "draftPriority": 6.5,
+      "banPriority": 6.0,
+      "metaScore": 6.5,
+      "professionalPickRate": 0.32,
+      "professionalWinRate": 0.49,
       "rankWinRate": 0.51
     },
     {
@@ -9377,12 +9377,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.52,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.51
+      "draftPriority": 9.0,
+      "banPriority": 8.8,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.65,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.53
     },
     {
       "id": "pharsa",
@@ -9503,12 +9503,12 @@
           "itemTrigger": "Holy Crystal"
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.52,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "draftPriority": 9.0,
+      "banPriority": 8.5,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.65,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.53
     },
     {
       "id": "lunox",
@@ -9628,12 +9628,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 9.5,
-      "banPriority": 9.5,
-      "metaScore": 9.5,
-      "professionalPickRate": 0.72,
-      "professionalWinRate": 0.55,
-      "rankWinRate": 0.52
+      "draftPriority": 7.0,
+      "banPriority": 7.0,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.4,
+      "professionalWinRate": 0.5,
+      "rankWinRate": 0.5
     },
     {
       "id": "lylia",
@@ -9753,11 +9753,11 @@
           "itemTrigger": "Holy Crystal"
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.5,
-      "professionalWinRate": 0.53,
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.45,
+      "professionalWinRate": 0.52,
       "rankWinRate": 0.52
     },
     {
@@ -9878,11 +9878,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.45,
-      "professionalWinRate": 0.52,
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
       "rankWinRate": 0.51
     },
     {
@@ -10004,11 +10004,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.45,
-      "professionalWinRate": 0.52,
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
       "rankWinRate": 0.51
     },
     {
@@ -10129,11 +10129,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.45,
-      "professionalWinRate": 0.52,
+      "draftPriority": 6.5,
+      "banPriority": 6.0,
+      "metaScore": 6.5,
+      "professionalPickRate": 0.32,
+      "professionalWinRate": 0.5,
       "rankWinRate": 0.52
     },
     {
@@ -10255,12 +10255,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
       "professionalPickRate": 0.45,
       "professionalWinRate": 0.52,
-      "rankWinRate": 0.52
+      "rankWinRate": 0.51
     },
     {
       "id": "cecilion",
@@ -10381,12 +10381,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.42,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
+      "rankWinRate": 0.51
     },
     {
       "id": "yve",
@@ -10507,12 +10507,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.5,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "draftPriority": 9.0,
+      "banPriority": 8.5,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.65,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.53
     },
     {
       "id": "xavier",
@@ -10632,11 +10632,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.48,
-      "professionalWinRate": 0.53,
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
       "rankWinRate": 0.51
     },
     {
@@ -10757,11 +10757,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.48,
-      "professionalWinRate": 0.53,
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.45,
+      "professionalWinRate": 0.52,
       "rankWinRate": 0.51
     },
     {
@@ -11008,12 +11008,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 9.0,
-      "banPriority": 9.0,
-      "metaScore": 9.0,
-      "professionalPickRate": 0.62,
-      "professionalWinRate": 0.54,
-      "rankWinRate": 0.51
+      "draftPriority": 9.3,
+      "banPriority": 9.2,
+      "metaScore": 9.5,
+      "professionalPickRate": 0.68,
+      "professionalWinRate": 0.56,
+      "rankWinRate": 0.54
     },
     {
       "id": "selena",
@@ -11135,11 +11135,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 9.5,
-      "banPriority": 9.5,
-      "metaScore": 9.5,
-      "professionalPickRate": 0.72,
-      "professionalWinRate": 0.55,
+      "draftPriority": 7.5,
+      "banPriority": 7.5,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.5,
+      "professionalWinRate": 0.51,
       "rankWinRate": 0.51
     },
     {
@@ -11260,12 +11260,12 @@
           "itemTrigger": "Concentrated Energy"
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.5,
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
       "professionalPickRate": 0.45,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "professionalWinRate": 0.52,
+      "rankWinRate": 0.51
     },
     {
       "id": "eudora",
@@ -11510,12 +11510,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.4,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.52
+      "draftPriority": 9.8,
+      "banPriority": 9.8,
+      "metaScore": 9.8,
+      "professionalPickRate": 0.88,
+      "professionalWinRate": 0.57,
+      "rankWinRate": 0.54
     },
     {
       "id": "layla",
@@ -11760,10 +11760,10 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.0,
-      "banPriority": 6.0,
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
       "metaScore": 7.5,
-      "professionalPickRate": 0.28,
+      "professionalPickRate": 0.42,
       "professionalWinRate": 0.51,
       "rankWinRate": 0.52
     },
@@ -12261,12 +12261,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.48,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.52
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.45,
+      "professionalWinRate": 0.51,
+      "rankWinRate": 0.51
     },
     {
       "id": "karrie",
@@ -12388,12 +12388,12 @@
           "itemTrigger": "Demon Hunter Sword"
         }
       ],
-      "draftPriority": 9.0,
-      "banPriority": 8.5,
-      "metaScore": 9.0,
-      "professionalPickRate": 0.62,
-      "professionalWinRate": 0.55,
-      "rankWinRate": 0.53
+      "draftPriority": 9.2,
+      "banPriority": 9.0,
+      "metaScore": 9.5,
+      "professionalPickRate": 0.68,
+      "professionalWinRate": 0.56,
+      "rankWinRate": 0.55
     },
     {
       "id": "irithel",
@@ -12639,12 +12639,12 @@
           "itemTrigger": "Corrosion Scythe"
         }
       ],
-      "draftPriority": 9.0,
-      "banPriority": 8.5,
-      "metaScore": 9.5,
-      "professionalPickRate": 0.62,
-      "professionalWinRate": 0.54,
-      "rankWinRate": 0.52
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.49,
+      "rankWinRate": 0.49
     },
     {
       "id": "hanabi",
@@ -12764,12 +12764,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.48,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
+      "rankWinRate": 0.51
     },
     {
       "id": "kimmy",
@@ -12889,12 +12889,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.5,
-      "banPriority": 7.0,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.38,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "draftPriority": 9.2,
+      "banPriority": 9.0,
+      "metaScore": 9.5,
+      "professionalPickRate": 0.7,
+      "professionalWinRate": 0.57,
+      "rankWinRate": 0.56
     },
     {
       "id": "popol_kupa",
@@ -13140,11 +13140,11 @@
         }
       ],
       "draftPriority": 8.5,
-      "banPriority": 8.5,
+      "banPriority": 8.0,
       "metaScore": 8.5,
-      "professionalPickRate": 0.55,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.51
+      "professionalPickRate": 0.6,
+      "professionalWinRate": 0.54,
+      "rankWinRate": 0.52
     },
     {
       "id": "brody",
@@ -13264,12 +13264,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.52,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.45,
+      "professionalWinRate": 0.51,
+      "rankWinRate": 0.51
     },
     {
       "id": "natan",
@@ -13389,10 +13389,10 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.48,
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.45,
       "professionalWinRate": 0.52,
       "rankWinRate": 0.51
     },
@@ -13515,12 +13515,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.5,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.45,
+      "professionalWinRate": 0.52,
+      "rankWinRate": 0.51
     },
     {
       "id": "ixia",
@@ -13643,7 +13643,7 @@
       "draftPriority": 7.5,
       "banPriority": 7.0,
       "metaScore": 7.5,
-      "professionalPickRate": 0.35,
+      "professionalPickRate": 0.45,
       "professionalWinRate": 0.52,
       "rankWinRate": 0.52
     },
@@ -13765,11 +13765,11 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 6.5,
-      "banPriority": 6.0,
-      "metaScore": 6.5,
-      "professionalPickRate": 0.28,
-      "professionalWinRate": 0.51,
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.52,
       "rankWinRate": 0.52
     },
     {
@@ -13893,7 +13893,7 @@
       "draftPriority": 8.0,
       "banPriority": 7.5,
       "metaScore": 8.0,
-      "professionalPickRate": 0.48,
+      "professionalPickRate": 0.5,
       "professionalWinRate": 0.53,
       "rankWinRate": 0.52
     },
@@ -14015,12 +14015,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.55,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "draftPriority": 9.3,
+      "banPriority": 9.2,
+      "metaScore": 9.5,
+      "professionalPickRate": 0.75,
+      "professionalWinRate": 0.57,
+      "rankWinRate": 0.55
     },
     {
       "id": "diggie",
@@ -14143,9 +14143,9 @@
       "draftPriority": 8.0,
       "banPriority": 7.5,
       "metaScore": 8.0,
-      "professionalPickRate": 0.45,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "professionalPickRate": 0.5,
+      "professionalWinRate": 0.53,
+      "rankWinRate": 0.52
     },
     {
       "id": "faramis",
@@ -14265,11 +14265,11 @@
           "itemTrigger": "Enchanted Talisman"
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.45,
-      "professionalWinRate": 0.52,
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
       "rankWinRate": 0.51
     },
     {
@@ -14390,12 +14390,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.52,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "draftPriority": 9.5,
+      "banPriority": 9.5,
+      "metaScore": 9.5,
+      "professionalPickRate": 0.78,
+      "professionalWinRate": 0.56,
+      "rankWinRate": 0.54
     },
     {
       "id": "floryn",
@@ -14515,12 +14515,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 7.5,
-      "banPriority": 7.0,
-      "metaScore": 7.5,
-      "professionalPickRate": 0.38,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.52
+      "draftPriority": 9.0,
+      "banPriority": 8.8,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.68,
+      "professionalWinRate": 0.56,
+      "rankWinRate": 0.55
     },
     {
       "id": "kaja",
@@ -14642,12 +14642,12 @@
           "itemTrigger": null
         }
       ],
-      "draftPriority": 8.5,
-      "banPriority": 8.0,
-      "metaScore": 8.5,
-      "professionalPickRate": 0.52,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.52
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
+      "rankWinRate": 0.51
     },
     {
       "id": "bane",
@@ -14962,12 +14962,12 @@
           "impact": "Massive CC teamfight control"
         }
       ],
-      "draftPriority": 8.0,
-      "banPriority": 7.5,
-      "metaScore": 8.0,
-      "professionalPickRate": 0.35,
-      "professionalWinRate": 0.53,
-      "rankWinRate": 0.51,
+      "draftPriority": 8.5,
+      "banPriority": 8.0,
+      "metaScore": 8.5,
+      "professionalPickRate": 0.55,
+      "professionalWinRate": 0.54,
+      "rankWinRate": 0.53,
       "bestEmblem": "Mage",
       "bestSpell": "Flicker",
       "situationalItems": [],
@@ -15074,9 +15074,9 @@
       "draftPriority": 8.5,
       "banPriority": 8.0,
       "metaScore": 8.5,
-      "professionalPickRate": 0.4,
+      "professionalPickRate": 0.58,
       "professionalWinRate": 0.54,
-      "rankWinRate": 0.52,
+      "rankWinRate": 0.53,
       "bestEmblem": "Mage",
       "bestSpell": "Flicker",
       "situationalItems": [],
@@ -15180,17 +15180,1371 @@
           "impact": "Extremely sticky and hard to kill in lane"
         }
       ],
-      "draftPriority": 7.0,
-      "banPriority": 6.5,
-      "metaScore": 7.0,
-      "professionalPickRate": 0.22,
-      "professionalWinRate": 0.52,
-      "rankWinRate": 0.51,
+      "draftPriority": 9.0,
+      "banPriority": 8.8,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.7,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.54,
       "bestEmblem": "Tank",
       "bestSpell": "Vengeance",
       "situationalItems": [],
       "counterItems": [],
       "talents": []
+    },
+    {
+      "id": "sora",
+      "name": "Sora",
+      "title": "The Phantom Sword",
+      "imageURL": "heroes/sora.png",
+      "primaryRole": "Fighter",
+      "secondaryRole": "Assassin",
+      "primaryLane": "EXP",
+      "secondaryLane": "Jungle",
+      "damageType": "Physical",
+      "difficulty": 2,
+      "earlyStrength": 8.0,
+      "midStrength": 9.5,
+      "lateStrength": 9.0,
+      "mobility": 9.5,
+      "crowdControl": 7.0,
+      "burst": 9.0,
+      "sustain": 6.5,
+      "objectiveControl": 7.5,
+      "waveClear": 8.0,
+      "scaling": 8.5,
+      "strongAgainst": [
+        "Masha",
+        "Fredrinn",
+        "Uranus"
+      ],
+      "weakAgainst": [
+        "Phoveus",
+        "Esmeralda",
+        "Freya"
+      ],
+      "counterHeroes": [
+        "Masha",
+        "Fredrinn",
+        "Uranus",
+        "Silvanna"
+      ],
+      "counteredBy": [
+        "Phoveus",
+        "Esmeralda",
+        "Freya",
+        "Khufra"
+      ],
+      "preferredItems": [
+        {
+          "id": "warriors_boots",
+          "name": "Warrior Boots",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "blade_of_despair",
+          "name": "Blade of Despair",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "bloodlust_axe",
+          "name": "Bloodlust Axe",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "hunter_strike",
+          "name": "Hunter Strike",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "malefic_roar",
+          "name": "Malefic Roar",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "immortality",
+          "name": "Immortality",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "situationalItems": [
+        {
+          "id": "athenas_shield",
+          "name": "Athena's Shield",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "dominance_ice",
+          "name": "Dominance Ice",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "counterItems": [
+        {
+          "id": "sea_halberd",
+          "name": "Sea Halberd",
+          "category": "Physical",
+          "description": null
+        }
+      ],
+      "bestSpell": "Flicker",
+      "bestEmblem": "Fighter",
+      "talents": [],
+      "combos": [
+        {
+          "id": "sora_c1",
+          "order": 1,
+          "skill": "Skill 2 \u2192 Skill 1 \u2192 Basic Attack \u00d7 3 \u2192 Ultimate",
+          "note": "Gap close then burst combo"
+        },
+        {
+          "id": "sora_c2",
+          "order": 2,
+          "skill": "Ultimate \u2192 Skill 2 \u2192 Skill 1 \u2192 Basic Attacks",
+          "note": "Initiate with ult for maximum damage window"
+        }
+      ],
+      "rotationGuide": "Dominate the EXP lane early with aggressive trades. Sora's high mobility lets her dive the backline. Rotate after first turret falls to assist jungle objectives. In teamfights, flank to assassinate priority targets before re-engaging the frontline.",
+      "powerSpikes": [
+        {
+          "id": "sora_ps1",
+          "phase": "Mid",
+          "description": "Level 4 with first item complete \u2014 strong kill threat on isolated targets",
+          "level": 4,
+          "itemTrigger": "Bloodlust Axe"
+        },
+        {
+          "id": "sora_ps2",
+          "phase": "Mid",
+          "description": "Blade of Despair purchased \u2014 extreme burst damage in 1v1 duels",
+          "level": 12,
+          "itemTrigger": "Blade of Despair"
+        },
+        {
+          "id": "sora_ps3",
+          "phase": "Late",
+          "description": "Full build \u2014 shreds any target; priority ban in drafts",
+          "level": 15,
+          "itemTrigger": "Malefic Roar"
+        }
+      ],
+      "draftPriority": 9.8,
+      "banPriority": 9.8,
+      "metaScore": 9.8,
+      "professionalPickRate": 0.85,
+      "professionalWinRate": 0.56,
+      "rankWinRate": 0.53
+    },
+    {
+      "id": "marcel",
+      "name": "Marcel",
+      "title": "The Phantom Conductor",
+      "imageURL": "heroes/marcel.png",
+      "primaryRole": "Support",
+      "secondaryRole": "Tank",
+      "primaryLane": "Roam",
+      "secondaryLane": null,
+      "damageType": "Magic",
+      "difficulty": 2,
+      "earlyStrength": 8.5,
+      "midStrength": 9.5,
+      "lateStrength": 9.0,
+      "mobility": 8.5,
+      "crowdControl": 9.0,
+      "burst": 6.0,
+      "sustain": 8.0,
+      "objectiveControl": 8.5,
+      "waveClear": 5.0,
+      "scaling": 8.0,
+      "strongAgainst": [
+        "Fanny",
+        "Ling",
+        "Hayabusa"
+      ],
+      "weakAgainst": [
+        "Diggie",
+        "Valir",
+        "Khufra"
+      ],
+      "counterHeroes": [
+        "Fanny",
+        "Ling",
+        "Hayabusa",
+        "Julian"
+      ],
+      "counteredBy": [
+        "Diggie",
+        "Valir",
+        "Khufra",
+        "Gloo"
+      ],
+      "preferredItems": [
+        {
+          "id": "roaming_boots",
+          "name": "Roaming Boots",
+          "category": "Roaming",
+          "description": null
+        },
+        {
+          "id": "courage_mask",
+          "name": "Courage Mask",
+          "category": "Roaming",
+          "description": null
+        },
+        {
+          "id": "fleeting_time",
+          "name": "Fleeting Time",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "oracle",
+          "name": "Oracle",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "dominance_ice",
+          "name": "Dominance Ice",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "immortality",
+          "name": "Immortality",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "situationalItems": [
+        {
+          "id": "antique_cuirass",
+          "name": "Antique Cuirass",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "athenas_shield",
+          "name": "Athena's Shield",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "counterItems": [
+        {
+          "id": "necklace_of_durance",
+          "name": "Necklace of Durance",
+          "category": "Magic",
+          "description": null
+        }
+      ],
+      "bestSpell": "Flicker",
+      "bestEmblem": "Support",
+      "talents": [],
+      "combos": [
+        {
+          "id": "marcel_c1",
+          "order": 1,
+          "skill": "Skill 1 \u2192 Basic Attack \u2192 Skill 2 \u2192 Ultimate",
+          "note": "Engage and lock down priority target"
+        },
+        {
+          "id": "marcel_c2",
+          "order": 2,
+          "skill": "Ultimate \u2192 Skill 2 \u2192 Skill 1 \u2192 Roam skills",
+          "note": "Team-wide initiation combo"
+        }
+      ],
+      "rotationGuide": "Roam aggressively in the early game to secure vision and contest jungle objectives. Marcel's kit enables global pressure \u2014 rotate between all lanes to create pick opportunities. Prioritize protecting your gold laner and mage. In teamfights, use your skills to peel for carries and initiate on grouped enemies.",
+      "powerSpikes": [
+        {
+          "id": "marcel_ps1",
+          "phase": "Early",
+          "description": "Level 2 \u2014 skill unlock makes roaming picks lethal",
+          "level": 2,
+          "itemTrigger": null
+        },
+        {
+          "id": "marcel_ps2",
+          "phase": "Mid",
+          "description": "Courage Mask + Oracle \u2014 near-unkillable support with strong engage",
+          "level": 8,
+          "itemTrigger": "Courage Mask"
+        },
+        {
+          "id": "marcel_ps3",
+          "phase": "Late",
+          "description": "Full defensive build \u2014 team sustain and CC make him irreplaceable",
+          "level": 14,
+          "itemTrigger": "Dominance Ice"
+        }
+      ],
+      "draftPriority": 9.8,
+      "banPriority": 9.8,
+      "metaScore": 9.8,
+      "professionalPickRate": 0.9,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.55
+    },
+    {
+      "id": "zetian",
+      "name": "Zetian",
+      "title": "The Iron Empress",
+      "imageURL": "heroes/zetian.png",
+      "primaryRole": "Mage",
+      "secondaryRole": null,
+      "primaryLane": "Mid",
+      "secondaryLane": null,
+      "damageType": "Magic",
+      "difficulty": 2,
+      "earlyStrength": 8.0,
+      "midStrength": 9.5,
+      "lateStrength": 9.0,
+      "mobility": 7.0,
+      "crowdControl": 8.5,
+      "burst": 9.5,
+      "sustain": 6.0,
+      "objectiveControl": 8.0,
+      "waveClear": 8.5,
+      "scaling": 8.5,
+      "strongAgainst": [
+        "Lancelot",
+        "Fanny",
+        "Ling"
+      ],
+      "weakAgainst": [
+        "Valir",
+        "Lunox",
+        "Selena"
+      ],
+      "counterHeroes": [
+        "Lancelot",
+        "Fanny",
+        "Ling",
+        "Hayabusa"
+      ],
+      "counteredBy": [
+        "Valir",
+        "Lunox",
+        "Selena",
+        "Helcurt"
+      ],
+      "preferredItems": [
+        {
+          "id": "arcane_boots",
+          "name": "Arcane Boots",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "clock_of_destiny",
+          "name": "Clock of Destiny",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "holy_crystal",
+          "name": "Holy Crystal",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "divine_glaive",
+          "name": "Divine Glaive",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "blood_wings",
+          "name": "Blood Wings",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "immortality",
+          "name": "Immortality",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "situationalItems": [
+        {
+          "id": "necklace_of_durance",
+          "name": "Necklace of Durance",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "athenas_shield",
+          "name": "Athena's Shield",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "counterItems": [
+        {
+          "id": "athenas_shield",
+          "name": "Athena's Shield",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "bestSpell": "Flicker",
+      "bestEmblem": "Mage",
+      "talents": [],
+      "combos": [
+        {
+          "id": "zetian_c1",
+          "order": 1,
+          "skill": "Skill 2 \u2192 Skill 1 \u2192 Basic Attack \u2192 Ultimate",
+          "note": "Burst combo on single target"
+        },
+        {
+          "id": "zetian_c2",
+          "order": 2,
+          "skill": "Ultimate \u2192 Skill 2 \u2192 Skill 1 \u2192 Basic Attacks",
+          "note": "Team fight initiation with AoE damage"
+        }
+      ],
+      "rotationGuide": "Farm mid lane efficiently and look for early ganks once level 4. Zetian's poke and burst make her dangerous in lane. Rotate to help secure objectives. In late game, position safely and look for multi-target ultimates in teamfights.",
+      "powerSpikes": [
+        {
+          "id": "zetian_ps1",
+          "phase": "Early",
+          "description": "Level 4 \u2014 full skill kit unlocked, strong zone control",
+          "level": 4,
+          "itemTrigger": null
+        },
+        {
+          "id": "zetian_ps2",
+          "phase": "Mid",
+          "description": "Holy Crystal completed \u2014 burst damage peaks, one-shots most squishies",
+          "level": 10,
+          "itemTrigger": "Holy Crystal"
+        },
+        {
+          "id": "zetian_ps3",
+          "phase": "Late",
+          "description": "Full build \u2014 game-deciding teamfight impact with AoE burst",
+          "level": 15,
+          "itemTrigger": "Blood Wings"
+        }
+      ],
+      "draftPriority": 9.5,
+      "banPriority": 9.5,
+      "metaScore": 9.5,
+      "professionalPickRate": 0.72,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.53
+    },
+    {
+      "id": "arlott",
+      "name": "Arlott",
+      "title": "The Branded One",
+      "imageURL": "heroes/arlott.png",
+      "primaryRole": "Fighter",
+      "secondaryRole": "Assassin",
+      "primaryLane": "EXP",
+      "secondaryLane": "Jungle",
+      "damageType": "Physical",
+      "difficulty": 2,
+      "earlyStrength": 8.0,
+      "midStrength": 9.0,
+      "lateStrength": 8.5,
+      "mobility": 8.5,
+      "crowdControl": 7.5,
+      "burst": 8.5,
+      "sustain": 6.5,
+      "objectiveControl": 7.0,
+      "waveClear": 7.5,
+      "scaling": 8.0,
+      "strongAgainst": [
+        "Mage",
+        "Marksman",
+        "Support"
+      ],
+      "weakAgainst": [
+        "Phoveus",
+        "Esmeralda",
+        "Fredrinn"
+      ],
+      "counterHeroes": [
+        "Masha",
+        "Layla",
+        "Angela"
+      ],
+      "counteredBy": [
+        "Phoveus",
+        "Esmeralda",
+        "Fredrinn",
+        "Khufra"
+      ],
+      "preferredItems": [
+        {
+          "id": "warriors_boots",
+          "name": "Warrior Boots",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "blade_of_despair",
+          "name": "Blade of Despair",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "hunter_strike",
+          "name": "Hunter Strike",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "bloodlust_axe",
+          "name": "Bloodlust Axe",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "malefic_roar",
+          "name": "Malefic Roar",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "immortality",
+          "name": "Immortality",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "situationalItems": [
+        {
+          "id": "brute_force",
+          "name": "Brute Force Breastplate",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "queen_wings",
+          "name": "Queen's Wings",
+          "category": "Physical",
+          "description": null
+        }
+      ],
+      "counterItems": [
+        {
+          "id": "wind_of_nature",
+          "name": "Wind of Nature",
+          "category": "Physical",
+          "description": null
+        }
+      ],
+      "bestSpell": "Execute",
+      "bestEmblem": "Fighter",
+      "talents": [],
+      "combos": [
+        {
+          "id": "arlott_c1",
+          "order": 1,
+          "skill": "Skill 2 \u2192 Basic Attack \u2192 Skill 1 \u2192 Ultimate \u2192 Basic Attacks",
+          "note": "Standard burst combo"
+        },
+        {
+          "id": "arlott_c2",
+          "order": 2,
+          "skill": "Ultimate \u2192 Skill 2 \u2192 Skill 1 \u2192 Basic Attack spam",
+          "note": "Initiate with ult to chase and eliminate"
+        }
+      ],
+      "rotationGuide": "Bully opponents in the EXP lane using your passive stacks. Look for aggressive dives after unlocking your ultimate at level 4. Arlott excels at eliminating isolated carries. Coordinate with your team for objective fights after winning your lane.",
+      "powerSpikes": [
+        {
+          "id": "arlott_ps1",
+          "phase": "Early",
+          "description": "Level 4 \u2014 ultimate unlocked, strong kill pressure",
+          "level": 4,
+          "itemTrigger": null
+        },
+        {
+          "id": "arlott_ps2",
+          "phase": "Mid",
+          "description": "Hunter Strike + Bloodlust Axe \u2014 high sustain damage with lifesteal",
+          "level": 10,
+          "itemTrigger": "Hunter Strike"
+        },
+        {
+          "id": "arlott_ps3",
+          "phase": "Late",
+          "description": "Full build \u2014 dominant in 1v1 and dives into grouped enemies",
+          "level": 14,
+          "itemTrigger": "Blade of Despair"
+        }
+      ],
+      "draftPriority": 9.0,
+      "banPriority": 8.5,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.6,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.54
+    },
+    {
+      "id": "cici",
+      "name": "Cici",
+      "title": "The Flirtatious Maestro",
+      "imageURL": "heroes/cici.png",
+      "primaryRole": "Fighter",
+      "secondaryRole": null,
+      "primaryLane": "EXP",
+      "secondaryLane": null,
+      "damageType": "Magic",
+      "difficulty": 2,
+      "earlyStrength": 7.5,
+      "midStrength": 9.0,
+      "lateStrength": 9.5,
+      "mobility": 9.0,
+      "crowdControl": 7.5,
+      "burst": 8.5,
+      "sustain": 7.5,
+      "objectiveControl": 8.0,
+      "waveClear": 8.5,
+      "scaling": 9.0,
+      "strongAgainst": [
+        "Fredrinn",
+        "Esmeralda",
+        "Uranus"
+      ],
+      "weakAgainst": [
+        "Phoveus",
+        "Sora",
+        "Arlott"
+      ],
+      "counterHeroes": [
+        "Fredrinn",
+        "Esmeralda",
+        "Uranus",
+        "Ruby"
+      ],
+      "counteredBy": [
+        "Phoveus",
+        "Sora",
+        "Arlott",
+        "Benedetta"
+      ],
+      "preferredItems": [
+        {
+          "id": "arcane_boots",
+          "name": "Arcane Boots",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "calamity_reaper",
+          "name": "Calamity Reaper",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "ice_queen_wand",
+          "name": "Ice Queen Wand",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "holy_crystal",
+          "name": "Holy Crystal",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "oracle",
+          "name": "Oracle",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "immortality",
+          "name": "Immortality",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "situationalItems": [
+        {
+          "id": "necklace_of_durance",
+          "name": "Necklace of Durance",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "athenas_shield",
+          "name": "Athena's Shield",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "counterItems": [
+        {
+          "id": "antique_cuirass",
+          "name": "Antique Cuirass",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "bestSpell": "Flicker",
+      "bestEmblem": "Mage",
+      "talents": [],
+      "combos": [
+        {
+          "id": "cici_c1",
+          "order": 1,
+          "skill": "Skill 1 \u2192 Skill 2 \u2192 Ultimate \u2192 Basic Attack combo",
+          "note": "Sustain fighting combo"
+        },
+        {
+          "id": "cici_c2",
+          "order": 2,
+          "skill": "Ultimate \u2192 Skill 1 \u2192 Skill 2 \u2192 Repeat",
+          "note": "Team fight engage with AoE damage"
+        }
+      ],
+      "rotationGuide": "Cici thrives in extended 1v1 fights and teamfights due to her sustain and mobility. Farm the EXP lane safely early, then look for angles to dive backlines in mid-game teamfights. Her scaling means she becomes increasingly threatening from mid-game onward.",
+      "powerSpikes": [
+        {
+          "id": "cici_ps1",
+          "phase": "Early",
+          "description": "Level 4 \u2014 full kit available, strong lane bully",
+          "level": 4,
+          "itemTrigger": null
+        },
+        {
+          "id": "cici_ps2",
+          "phase": "Mid",
+          "description": "Calamity Reaper online \u2014 consistent magic damage on every skill",
+          "level": 10,
+          "itemTrigger": "Calamity Reaper"
+        },
+        {
+          "id": "cici_ps3",
+          "phase": "Late",
+          "description": "Full build \u2014 unstoppable in extended fights, difficult to kill",
+          "level": 15,
+          "itemTrigger": "Holy Crystal"
+        }
+      ],
+      "draftPriority": 9.0,
+      "banPriority": 8.5,
+      "metaScore": 9.0,
+      "professionalPickRate": 0.62,
+      "professionalWinRate": 0.55,
+      "rankWinRate": 0.53
+    },
+    {
+      "id": "kalea",
+      "name": "Kalea",
+      "title": "The Leaping Leopard",
+      "imageURL": "heroes/kalea.png",
+      "primaryRole": "Support",
+      "secondaryRole": "Fighter",
+      "primaryLane": "Roam",
+      "secondaryLane": null,
+      "damageType": "Physical",
+      "difficulty": 2,
+      "earlyStrength": 8.5,
+      "midStrength": 8.5,
+      "lateStrength": 8.0,
+      "mobility": 8.5,
+      "crowdControl": 8.5,
+      "burst": 7.0,
+      "sustain": 7.5,
+      "objectiveControl": 8.0,
+      "waveClear": 5.5,
+      "scaling": 7.5,
+      "strongAgainst": [
+        "Fanny",
+        "Ling",
+        "Julian"
+      ],
+      "weakAgainst": [
+        "Diggie",
+        "Athena",
+        "Belerick"
+      ],
+      "counterHeroes": [
+        "Fanny",
+        "Ling",
+        "Julian",
+        "Hayabusa"
+      ],
+      "counteredBy": [
+        "Diggie",
+        "Belerick",
+        "Gloo"
+      ],
+      "preferredItems": [
+        {
+          "id": "roaming_boots",
+          "name": "Roaming Boots",
+          "category": "Roaming",
+          "description": null
+        },
+        {
+          "id": "courage_mask",
+          "name": "Courage Mask",
+          "category": "Roaming",
+          "description": null
+        },
+        {
+          "id": "dominance_ice",
+          "name": "Dominance Ice",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "oracle",
+          "name": "Oracle",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "antique_cuirass",
+          "name": "Antique Cuirass",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "immortality",
+          "name": "Immortality",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "situationalItems": [
+        {
+          "id": "athenas_shield",
+          "name": "Athena's Shield",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "fleeting_time",
+          "name": "Fleeting Time",
+          "category": "Magic",
+          "description": null
+        }
+      ],
+      "counterItems": [
+        {
+          "id": "necklace_of_durance",
+          "name": "Necklace of Durance",
+          "category": "Magic",
+          "description": null
+        }
+      ],
+      "bestSpell": "Flicker",
+      "bestEmblem": "Support",
+      "talents": [],
+      "combos": [
+        {
+          "id": "kalea_c1",
+          "order": 1,
+          "skill": "Skill 2 \u2192 Skill 1 \u2192 Ultimate \u2192 Follow up team",
+          "note": "Engage and peel combo"
+        },
+        {
+          "id": "kalea_c2",
+          "order": 2,
+          "skill": "Ultimate \u2192 Skill 1 \u2192 Skill 2 \u2192 Protect carry",
+          "note": "Reactive engage for team fights"
+        }
+      ],
+      "rotationGuide": "Rotate aggressively between lanes to set up kills. Kalea excels at diving and disrupting the enemy backline while protecting your carries. Prioritize vision control and contesting jungle buffs. In teamfights, use your mobility to chain CC and keep threats off your damage dealers.",
+      "powerSpikes": [
+        {
+          "id": "kalea_ps1",
+          "phase": "Early",
+          "description": "Level 2 \u2014 early aggressive roam with CC",
+          "level": 2,
+          "itemTrigger": null
+        },
+        {
+          "id": "kalea_ps2",
+          "phase": "Mid",
+          "description": "Courage Mask + Dominance Ice \u2014 great engage and peel",
+          "level": 8,
+          "itemTrigger": "Courage Mask"
+        },
+        {
+          "id": "kalea_ps3",
+          "phase": "Late",
+          "description": "Full tank build \u2014 near-unkillable with strong team utility",
+          "level": 14,
+          "itemTrigger": "Antique Cuirass"
+        }
+      ],
+      "draftPriority": 8.5,
+      "banPriority": 8.0,
+      "metaScore": 8.5,
+      "professionalPickRate": 0.55,
+      "professionalWinRate": 0.54,
+      "rankWinRate": 0.53
+    },
+    {
+      "id": "carmilla",
+      "name": "Carmilla",
+      "title": "The Crimson Bat",
+      "imageURL": "heroes/carmilla.png",
+      "primaryRole": "Support",
+      "secondaryRole": "Tank",
+      "primaryLane": "Roam",
+      "secondaryLane": null,
+      "damageType": "Magic",
+      "difficulty": 2,
+      "earlyStrength": 7.5,
+      "midStrength": 7.5,
+      "lateStrength": 7.0,
+      "mobility": 7.5,
+      "crowdControl": 8.0,
+      "burst": 6.0,
+      "sustain": 7.5,
+      "objectiveControl": 7.0,
+      "waveClear": 5.0,
+      "scaling": 7.0,
+      "strongAgainst": [
+        "Hayabusa",
+        "Lancelot",
+        "Benedetta"
+      ],
+      "weakAgainst": [
+        "Atlas",
+        "Khufra",
+        "Gloo"
+      ],
+      "counterHeroes": [
+        "Hayabusa",
+        "Lancelot",
+        "Benedetta",
+        "Fanny"
+      ],
+      "counteredBy": [
+        "Atlas",
+        "Khufra",
+        "Gloo",
+        "Diggie"
+      ],
+      "preferredItems": [
+        {
+          "id": "roaming_boots",
+          "name": "Roaming Boots",
+          "category": "Roaming",
+          "description": null
+        },
+        {
+          "id": "courage_mask",
+          "name": "Courage Mask",
+          "category": "Roaming",
+          "description": null
+        },
+        {
+          "id": "oracle",
+          "name": "Oracle",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "dominance_ice",
+          "name": "Dominance Ice",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "antique_cuirass",
+          "name": "Antique Cuirass",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "immortality",
+          "name": "Immortality",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "situationalItems": [
+        {
+          "id": "athenas_shield",
+          "name": "Athena's Shield",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "fleeting_time",
+          "name": "Fleeting Time",
+          "category": "Magic",
+          "description": null
+        }
+      ],
+      "counterItems": [
+        {
+          "id": "necklace_of_durance",
+          "name": "Necklace of Durance",
+          "category": "Magic",
+          "description": null
+        }
+      ],
+      "bestSpell": "Flicker",
+      "bestEmblem": "Support",
+      "talents": [],
+      "combos": [
+        {
+          "id": "carmilla_c1",
+          "order": 1,
+          "skill": "Skill 2 \u2192 Skill 1 \u2192 Ultimate (link) \u2192 CC chain",
+          "note": "Link enemies together for shared CC"
+        },
+        {
+          "id": "carmilla_c2",
+          "order": 2,
+          "skill": "Ultimate \u2192 Skill 2 \u2192 Skill 1 \u2192 Protect carry",
+          "note": "Engage on grouped enemies"
+        }
+      ],
+      "rotationGuide": "Carmilla is most effective when enemies are grouped together. Her ultimate links nearby enemy health pools. Pair with AoE damage dealers for maximum effect. Roam to set up ganks in the early game; focus on team fights in mid-to-late game where her passive sharing is most impactful.",
+      "powerSpikes": [
+        {
+          "id": "carmilla_ps1",
+          "phase": "Early",
+          "description": "Level 4 \u2014 ultimate available, strong engage vs grouped enemies",
+          "level": 4,
+          "itemTrigger": null
+        },
+        {
+          "id": "carmilla_ps2",
+          "phase": "Mid",
+          "description": "Oracle + Dominance Ice \u2014 tanky support with strong engagement",
+          "level": 10,
+          "itemTrigger": "Oracle"
+        },
+        {
+          "id": "carmilla_ps3",
+          "phase": "Late",
+          "description": "Full build \u2014 disrupts the enemy team when they cluster",
+          "level": 14,
+          "itemTrigger": "Immortality"
+        }
+      ],
+      "draftPriority": 7.0,
+      "banPriority": 6.5,
+      "metaScore": 7.0,
+      "professionalPickRate": 0.38,
+      "professionalWinRate": 0.5,
+      "rankWinRate": 0.5
+    },
+    {
+      "id": "obsidia",
+      "name": "Obsidia",
+      "title": "The Obsidian Guardian",
+      "imageURL": "heroes/obsidia.png",
+      "primaryRole": "Marksman",
+      "secondaryRole": null,
+      "primaryLane": "Gold",
+      "secondaryLane": null,
+      "damageType": "Physical",
+      "difficulty": 2,
+      "earlyStrength": 7.0,
+      "midStrength": 8.0,
+      "lateStrength": 8.5,
+      "mobility": 6.5,
+      "crowdControl": 6.0,
+      "burst": 7.5,
+      "sustain": 6.0,
+      "objectiveControl": 8.0,
+      "waveClear": 8.0,
+      "scaling": 8.5,
+      "strongAgainst": [
+        "Tank",
+        "Fighter",
+        "Support"
+      ],
+      "weakAgainst": [
+        "Assassin",
+        "Mage",
+        "Diver"
+      ],
+      "counterHeroes": [
+        "Khufra",
+        "Gloo",
+        "Fredrinn"
+      ],
+      "counteredBy": [
+        "Julian",
+        "Sora",
+        "Hayabusa",
+        "Fanny"
+      ],
+      "preferredItems": [
+        {
+          "id": "swift_boots",
+          "name": "Swift Boots",
+          "category": "Movement",
+          "description": null
+        },
+        {
+          "id": "corrosion_scythe",
+          "name": "Corrosion Scythe",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "windtalker",
+          "name": "Windtalker",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "berserkers_fury",
+          "name": "Berserker's Fury",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "malefic_roar",
+          "name": "Malefic Roar",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "immortality",
+          "name": "Immortality",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "situationalItems": [
+        {
+          "id": "haas_claws",
+          "name": "Haas's Claws",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "wind_of_nature",
+          "name": "Wind of Nature",
+          "category": "Physical",
+          "description": null
+        }
+      ],
+      "counterItems": [
+        {
+          "id": "sea_halberd",
+          "name": "Sea Halberd",
+          "category": "Physical",
+          "description": null
+        }
+      ],
+      "bestSpell": "Flicker",
+      "bestEmblem": "Marksman",
+      "talents": [],
+      "combos": [
+        {
+          "id": "obsidia_c1",
+          "order": 1,
+          "skill": "Skill 2 \u2192 Basic Attack \u00d7 3 \u2192 Skill 1 \u2192 Basic Attacks",
+          "note": "Sustained DPS rotation"
+        },
+        {
+          "id": "obsidia_c2",
+          "order": 2,
+          "skill": "Skill 1 \u2192 Ultimate \u2192 Skill 2 \u2192 Basic Attacks",
+          "note": "Kite while dealing burst damage"
+        }
+      ],
+      "rotationGuide": "Farm safely in the Gold lane early. Obsidia is strongest in extended fights where she can stack her passive. Stay behind your frontline and apply consistent damage. Avoid assassins \u2014 always have an escape plan. Focus on objectives over kills in the late game.",
+      "powerSpikes": [
+        {
+          "id": "obsidia_ps1",
+          "phase": "Mid",
+          "description": "2-item Corrosion Scythe + Windtalker \u2014 high attack speed and consistent damage",
+          "level": 10,
+          "itemTrigger": "Corrosion Scythe"
+        },
+        {
+          "id": "obsidia_ps2",
+          "phase": "Late",
+          "description": "Berserker's Fury \u2014 critical hit damage online",
+          "level": 13,
+          "itemTrigger": "Berserker's Fury"
+        },
+        {
+          "id": "obsidia_ps3",
+          "phase": "Late",
+          "description": "Malefic Roar + full build \u2014 shreds any armor composition",
+          "level": 15,
+          "itemTrigger": "Malefic Roar"
+        }
+      ],
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.4,
+      "professionalWinRate": 0.52,
+      "rankWinRate": 0.52
+    },
+    {
+      "id": "lukas",
+      "name": "Lukas",
+      "title": "The Iron Fist",
+      "imageURL": "heroes/lukas.png",
+      "primaryRole": "Fighter",
+      "secondaryRole": null,
+      "primaryLane": "EXP",
+      "secondaryLane": null,
+      "damageType": "Physical",
+      "difficulty": 3,
+      "earlyStrength": 7.0,
+      "midStrength": 8.0,
+      "lateStrength": 8.0,
+      "mobility": 7.5,
+      "crowdControl": 7.0,
+      "burst": 8.5,
+      "sustain": 6.5,
+      "objectiveControl": 7.0,
+      "waveClear": 7.5,
+      "scaling": 8.0,
+      "strongAgainst": [
+        "Mage",
+        "Marksman",
+        "Support"
+      ],
+      "weakAgainst": [
+        "Phoveus",
+        "Esmeralda",
+        "Fredrinn"
+      ],
+      "counterHeroes": [
+        "Masha",
+        "Layla",
+        "Nana"
+      ],
+      "counteredBy": [
+        "Phoveus",
+        "Esmeralda",
+        "Sora"
+      ],
+      "preferredItems": [
+        {
+          "id": "warriors_boots",
+          "name": "Warrior Boots",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "bloodlust_axe",
+          "name": "Bloodlust Axe",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "hunter_strike",
+          "name": "Hunter Strike",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "blade_of_despair",
+          "name": "Blade of Despair",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "malefic_roar",
+          "name": "Malefic Roar",
+          "category": "Physical",
+          "description": null
+        },
+        {
+          "id": "immortality",
+          "name": "Immortality",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "situationalItems": [
+        {
+          "id": "athenas_shield",
+          "name": "Athena's Shield",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "brute_force",
+          "name": "Brute Force Breastplate",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "counterItems": [
+        {
+          "id": "wind_of_nature",
+          "name": "Wind of Nature",
+          "category": "Physical",
+          "description": null
+        }
+      ],
+      "bestSpell": "Execute",
+      "bestEmblem": "Fighter",
+      "talents": [],
+      "combos": [
+        {
+          "id": "lukas_c1",
+          "order": 1,
+          "skill": "Skill 1 \u2192 Basic Attack \u2192 Skill 2 \u2192 Ultimate \u2192 Basic Attacks",
+          "note": "Full burst combo"
+        },
+        {
+          "id": "lukas_c2",
+          "order": 2,
+          "skill": "Skill 2 \u2192 Skill 1 \u2192 Basic Attacks \u2192 Execute",
+          "note": "Execute combo to secure kills"
+        }
+      ],
+      "rotationGuide": "Play aggressively in the EXP lane. Lukas' combo damage is among the highest for fighters, but he has a learning curve. Once comfortable with combos, he can solo-carry games. Rotate to assist objectives after winning lane trades.",
+      "powerSpikes": [
+        {
+          "id": "lukas_ps1",
+          "phase": "Early",
+          "description": "Level 4 \u2014 ultimate available, strong all-in potential",
+          "level": 4,
+          "itemTrigger": null
+        },
+        {
+          "id": "lukas_ps2",
+          "phase": "Mid",
+          "description": "Hunter Strike + Bloodlust Axe \u2014 high burst with sustain",
+          "level": 10,
+          "itemTrigger": "Hunter Strike"
+        },
+        {
+          "id": "lukas_ps3",
+          "phase": "Late",
+          "description": "Blade of Despair \u2014 extreme damage with full combo",
+          "level": 14,
+          "itemTrigger": "Blade of Despair"
+        }
+      ],
+      "draftPriority": 7.5,
+      "banPriority": 7.0,
+      "metaScore": 7.5,
+      "professionalPickRate": 0.4,
+      "professionalWinRate": 0.51,
+      "rankWinRate": 0.51
     }
   ]
 }

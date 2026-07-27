@@ -3,14 +3,13 @@ import Foundation
 // MARK: - Meta Engine
 actor MetaEngine: MetaEngineProtocol {
 
-    private var patch: String = "1.8.72"
     private let heroDatabase: HeroDatabaseService
 
     init(heroDatabase: HeroDatabaseService) {
         self.heroDatabase = heroDatabase
     }
 
-    func currentPatch() async -> String { patch }
+    func currentPatch() async -> String { await heroDatabase.currentPatch }
 
     func metaScore(for hero: Hero) async -> Double {
         // Weighted combination of pro and rank data with ban priority
@@ -29,10 +28,9 @@ actor MetaEngine: MetaEngineProtocol {
     }
 
     func updateMeta(from data: Data) async throws {
-        let decoder = JSONDecoder()
-        let metaUpdate = try decoder.decode(MetaUpdate.self, from: data)
-        patch = metaUpdate.patchVersion
-        // Notify subscribers that meta has been updated
+        // Meta updates are now handled automatically by HeroDatabaseService
+        // fetching the full heroes.json from GitHub — this method is kept for
+        // protocol conformance only.
     }
 }
 
