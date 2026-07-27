@@ -71,6 +71,15 @@ struct MainTabView: View {
         }
         .tint(Color.hayaGold)
         .preferredColorScheme(.dark)
+        // ── Route broadcast frames into the coaching engine ─────────────────
+        // BroadcastFrameReader fires onFrame for every frame from the Haya AI
+        // Broadcast Extension. Wire it directly to GameSessionManager so the
+        // InGameFrameAnalyzer (OCR clock, kills, gold) runs on real MLBB frames.
+        .onAppear {
+            draftViewModel.broadcastFrameReader.onFrame = { [weak sessionManager] image, ts in
+                Task { await sessionManager?.routeBroadcastFrame(image, timestamp: ts) }
+            }
+        }
         // ── Auto-activate coaching overlay ──────────────────────────────────
         // When the Broadcast Extension starts writing frames (user started a
         // screen broadcast from MLBB or Control Center), automatically kick off

@@ -55,14 +55,34 @@ final class GameSessionManager: ObservableObject {
         isActive = true
         sessionPhase = .draft
         liveGameState.sessionPhase = .draft
+        draftStateManager.startTracking()
+        // ReplayKit in-app capture is a stub; real frames arrive via routeBroadcastFrame
+    }
 
-        replayKitManager.onFrameCaptured = { [weak self] pixelBuffer, timestamp in
-            guard let self else { return }
-            Task { await self.routeFrame(pixelBuffer, timestamp: timestamp) }
+    /// Called by MainTabView for every frame from the Broadcast Extension.
+    /// This is the primary frame ingestion path — no CVPixelBuffer required.
+    func routeBroadcastFrame(_ image: CGImage, timestamp: TimeInterval) async {
+        guard isActive else { return }
+        frameCount += 1
+
+        let cmTimestamp = CMTimeValue(timestamp * 1_000)
+
+        if sessionPhase == .draft || sessionPhase == .loading || sessionPhase == .idle {
+            let analysis = await inGameAnalyzer.analyze(image, timestamp: cmTimestamp)
+            if let clock = analysis.gameTimestamp, clock > 0 {
+                await transitionToGame(at: clock)
+            } else if frameCount >= 20 {
+                // User is already in-game (broadcast started mid-match and OCR
+                // hasn't detected the clock yet). Force-transition so the coaching
+                // engine starts evaluating immediately.
+                await transitionToGame(at: 0, forced: true)
+            }
+            return
         }
 
-        try await replayKitManager.startCapture()
-        draftStateManager.startTracking()
+        guard sessionPhase.isInGame else { return }
+        let analysis = await inGameAnalyzer.analyze(image, timestamp: cmTimestamp)
+        await applyInGameAnalysis(analysis)
     }
 
     func endSession() async {
@@ -139,21 +159,27 @@ final class GameSessionManager: ObservableObject {
 
     // MARK: - Phase Transitions
 
-    private func transitionToGame(at clock: Int) async {
+    private func transitionToGame(at clock: Int, forced: Bool = false) async {
         guard sessionPhase != .earlyGame && sessionPhase != .midGame && sessionPhase != .lateGame else { return }
 
-        consecutiveInGameFrames += 1
+        if forced {
+            consecutiveInGameFrames = phaseTransitionThreshold  // skip threshold
+        } else {
+            consecutiveInGameFrames += 1
+        }
         guard consecutiveInGameFrames >= phaseTransitionThreshold else { return }
         consecutiveInGameFrames = 0
 
-        let phase = GameSessionClassifier().detectFromClock(seconds: clock)
+        let phase = GameSessionClassifier().detectFromClock(seconds: clock > 0 ? clock : nil)
         sessionPhase = phase
         liveGameState.sessionPhase = phase
         draftStateManager.stopTracking()
 
-        // Start objective timers
-        await objectiveTimerService.startTurtleTimer(respawnSeconds: 240)
-        await objectiveTimerService.startLordTimer(firstSpawnSeconds: 900)
+        // Start objective timers (offset by detected clock if available)
+        let turtleFirst = clock > 0 ? max(1, 240 - clock) : 240
+        let lordFirst   = clock > 0 ? max(1, 900 - clock) : 900
+        await objectiveTimerService.startTurtleTimer(respawnSeconds: turtleFirst)
+        await objectiveTimerService.startLordTimer(firstSpawnSeconds: lordFirst)
     }
 
     // MARK: - Objective Timer Binding
