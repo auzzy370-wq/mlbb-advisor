@@ -143,12 +143,15 @@ final class LiveCoachViewModel: ObservableObject {
                 // Push overlay updates off main thread to avoid blocking UI
                 Task {
                     await self.refreshInGameRecommendations(gameState: state)
-                    // Update Live Activity with latest state (rate-limited by ActivityKit)
                     await self.liveActivityManager.update(gameState: state, topAlert: topAlert)
-                    // Fire local notification banners for new high-priority alerts
                     await self.notificationService.deliver(state.activeAlerts)
-                    // Update floating PiP window if active
+                    // PiP update — pass real game state so it shows actual data
                     self.pipManager.update(alert: topAlert, gameState: state)
+                    // Sync locked hero name into PiP
+                    let heroName = self.gameSessionManager.draftStateManager
+                        .currentDraftState.friendlyPicks
+                        .first(where: { $0.status == .locked })?.heroName ?? ""
+                    if !heroName.isEmpty { self.pipManager.setHero(heroName) }
                 }
             }
             .store(in: &cancellables)

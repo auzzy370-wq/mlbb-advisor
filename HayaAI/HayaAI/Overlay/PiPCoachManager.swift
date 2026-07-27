@@ -6,14 +6,10 @@ import Combine
 // MARK: - PiP Coach Manager
 /// Manages the floating Picture-in-Picture coaching window.
 ///
-/// The PiP window uses AVPictureInPictureVideoCallViewController so iOS
-/// treats it as a persistent call-style window that floats over all apps,
-/// including Mobile Legends. The user can reposition it by dragging.
-///
-/// Usage:
-///   1. Call `start(from:)` once when the coaching session begins.
-///   2. Call `update(alert:gameState:)` as game state changes.
-///   3. Call `stop()` when the session ends.
+/// Display priority:
+///   1. Real alert from coaching engine (priority ≥ medium) — shown immediately
+///   2. Real game state (clock/score detected by OCR) — shown between alerts
+///   3. Timed fallback tip — only shown if no real screen data in 10+ seconds
 @MainActor
 final class PiPCoachManager: NSObject, ObservableObject {
 
@@ -22,14 +18,21 @@ final class PiPCoachManager: NSObject, ObservableObject {
 
     private var pipController: AVPictureInPictureController?
     private let contentVC = CoachPiPViewController()
-    private var sourceView: UIView?
 
-    // Internal game clock — ticks whenever PiP is active so coaching tips
-    // fire on schedule even if OCR hasn't detected a game clock yet.
+    // ── Real data from OCR ──────────────────────────────────────
+    private var lastRealDataAt: Date = .distantPast
+    private var latestGameTime: String?
+    private var latestFriendlyKills: Int?
+    private var latestEnemyKills: Int?
+    private var latestHero: String?
+    private var latestPhase: String = "Waiting"
+    private var isCapturing: Bool = false
+
+    // ── Clock ticker ────────────────────────────────────────────
     private var clockTask: Task<Void, Never>?
     private var elapsedSeconds: Int = 0
-    private var lastRealGameTime: Int = 0   // last value from OCR/vision
-    private var lastExternalAlert: String = ""
+    private var lastAlertAt: Date = .distantPast
+    private var currentAlert: (message: String, icon: String, priority: AlertPriority)?
 
     override init() {
         super.init()
@@ -38,17 +41,10 @@ final class PiPCoachManager: NSObject, ObservableObject {
 
     // MARK: - Public API
 
-    /// Starts the PiP window. `sourceView` is any view currently on screen
-    /// in the Haya AI app — it anchors the PiP position on launch.
     func start(from sourceView: UIView) {
         guard AVPictureInPictureController.isPictureInPictureSupported() else { return }
         guard !isActive else { return }
-
-        // Activate audio session so iOS allows PiP to persist in background.
-        // We use ambient mode so it doesn't interrupt MLBB audio.
         activateAudioSession()
-
-        self.sourceView = sourceView
 
         let source = AVPictureInPictureController.ContentSource(
             activeVideoCallSourceView: sourceView,
@@ -58,60 +54,62 @@ final class PiPCoachManager: NSObject, ObservableObject {
         pip.delegate = self
         pip.canStartPictureInPictureAutomaticallyFromInline = true
         pipController = pip
-
-        // Set initial content
-        contentVC.update(
-            message: "Haya AI is watching",
-            icon: "eye.fill",
-            priority: .low,
-            gameTime: "0:00",
-            hero: "",
-            phase: "Draft"
-        )
-
         pip.startPictureInPicture()
         startClock()
+        push()
     }
 
-    /// Updates the floating window with the latest game state from the coach engine.
+    /// Called every time the coaching engine produces a new game state.
+    /// Real data from OCR always takes priority over timed tips.
     func update(alert: CoachAlert?, gameState: LiveGameState) {
-        // Sync internal clock to real OCR-detected game time whenever available
-        // so the displayed timer matches the actual MLBB clock.
-        if gameState.gameTimeSeconds > 0 && abs(gameState.gameTimeSeconds - elapsedSeconds) > 3 {
-            elapsedSeconds = gameState.gameTimeSeconds
+        // Sync real clock from OCR
+        if gameState.gameTimeSeconds > 0 {
+            let mins = gameState.gameTimeSeconds / 60
+            let secs = gameState.gameTimeSeconds % 60
+            latestGameTime = String(format: "%d:%02d", mins, secs)
+            if abs(gameState.gameTimeSeconds - elapsedSeconds) > 3 {
+                elapsedSeconds = gameState.gameTimeSeconds
+            }
+            lastRealDataAt = Date()
         }
 
-        guard isActive else { return }
+        // Sync kills
+        if gameState.killScore.friendly > 0 || gameState.killScore.enemy > 0 {
+            latestFriendlyKills = gameState.killScore.friendly
+            latestEnemyKills = gameState.killScore.enemy
+            lastRealDataAt = Date()
+        }
 
-        // Only override the timed tip if there's a real alert
+        latestPhase = gameState.sessionPhase.rawValue
+        isCapturing = gameState.sessionPhase != .idle
+
+        // Real coaching alert overrides everything
         if let alert = alert, alert.priority >= .medium {
-            lastExternalAlert = alert.message
-            push(
-                message: alert.message,
-                icon: alert.type.icon,
-                priority: alert.priority,
-                gameTime: gameState.gameTimeFormatted,
-                phase: gameState.sessionPhase.rawValue
-            )
+            currentAlert = (alert.message, alert.type.icon, alert.priority)
+            lastAlertAt = Date()
+            push()
         }
     }
 
-    /// Stops and dismisses the PiP window.
+    /// Called when a hero is locked from draft OCR so PiP shows your hero.
+    func setHero(_ heroName: String) {
+        latestHero = heroName
+        push()
+    }
+
     func stop() {
         clockTask?.cancel()
         clockTask = nil
-        elapsedSeconds = 0
         pipController?.stopPictureInPicture()
         pipController = nil
         isActive = false
         deactivateAudioSession()
     }
 
-    // MARK: - Internal clock + timed tips
+    // MARK: - Clock
 
     private func startClock() {
         clockTask?.cancel()
-        elapsedSeconds = 0
         clockTask = Task { [weak self] in
             while !Task.isCancelled {
                 try? await Task.sleep(nanoseconds: 1_000_000_000)
@@ -122,101 +120,109 @@ final class PiPCoachManager: NSObject, ObservableObject {
 
     private func tick() {
         elapsedSeconds += 1
-        let t = elapsedSeconds
-        let (icon, msg, priority) = milestoneTip(at: t)
-        let mins = t / 60; let secs = t % 60
-        let timeStr = String(format: "%d:%02d", mins, secs)
-        push(message: msg, icon: icon, priority: priority, gameTime: timeStr, phase: phaseName(t))
+        // Clear stale alerts (> 8s old)
+        if let _ = currentAlert, Date().timeIntervalSince(lastAlertAt) > 8 {
+            currentAlert = nil
+        }
+        push()
     }
 
-    private func push(message: String, icon: String, priority: AlertPriority,
-                      gameTime: String, phase: String) {
+    // MARK: - Display
+
+    private func push() {
         guard isActive else { return }
-        contentVC.update(
+
+        let hasRealData = Date().timeIntervalSince(lastRealDataAt) < 10
+
+        let (message, icon, priority) = resolveMessage(hasRealData: hasRealData)
+
+        let state = PiPDisplayState(
+            gameTime: latestGameTime ?? (elapsedSeconds > 0 ? formattedElapsed() : nil),
+            friendlyKills: latestFriendlyKills,
+            enemyKills: latestEnemyKills,
+            heroName: latestHero,
+            phase: latestPhase,
+            isLiveData: hasRealData,
             message: message,
             icon: icon,
             priority: priority,
-            gameTime: gameTime,
-            hero: "",
-            phase: phase
+            isCapturing: isCapturing
         )
+        contentVC.update(state: state)
     }
 
-    private func phaseName(_ t: Int) -> String {
-        switch t {
-        case 0..<480:  return "Early Game"
-        case 480..<900: return "Mid Game"
-        default:       return "Late Game"
+    private func resolveMessage(hasRealData: Bool) -> (String, String, AlertPriority) {
+        // 1. Active real alert
+        if let alert = currentAlert {
+            return (alert.message, alert.icon, alert.priority)
         }
+
+        // 2. Real data flowing — generate context-aware tip from actual game state
+        if hasRealData {
+            return realDataTip()
+        }
+
+        // 3. No real data — show fallback timed tip but label it as generic
+        return timedFallbackTip()
     }
 
-    /// Returns the most relevant coaching message for a given game time (seconds).
-    /// Tips are shown once at milestone times; between milestones the last tip is kept.
-    private func milestoneTip(at t: Int) -> (icon: String, message: String, priority: AlertPriority) {
+    private func realDataTip() -> (String, String, AlertPriority) {
+        let t = elapsedSeconds
+        let f = latestFriendlyKills ?? 0
+        let e = latestEnemyKills ?? 0
+
+        // Kill-based tips
+        if f - e >= 3 { return ("You're ahead — push towers and take objectives", "bolt.fill", .medium) }
+        if e - f >= 3 { return ("You're behind — play safe and farm to scale", "shield.fill", .medium) }
+        if e - f >= 5 { return ("Big deficit — group up, avoid solo fights", "exclamationmark.triangle.fill", .high) }
+
+        // Time-based tips using REAL detected clock
         switch t {
-        case 5:
-            return ("figure.run", "Farm your lane — don't overextend early", .low)
-        case 60:
-            return ("eye.fill", "Ward jungle entrance to avoid enemy ganks", .low)
-        case 90:
-            return ("map.fill", "Check minimap every 5 seconds", .low)
-        case 120:
-            return ("bolt.fill", "Rotate to assist if ally is getting ganked", .medium)
-        case 180:
-            return ("star.fill", "Focus on cs — avoid risky fights before 4 min", .low)
-        case 210:
-            return ("tortoise.fill", "Turtle spawns in 30s — push your lane now", .high)
-        case 240:
-            return ("exclamationmark.triangle.fill", "Turtle is UP — group up and contest!", .critical)
-        case 270:
-            return ("arrow.triangle.2.circlepath", "After Turtle — push mid tower together", .high)
-        case 330:
-            return ("tortoise.fill", "2nd Turtle at ~8 min — set up vision early", .medium)
-        case 390:
-            return ("crown.fill", "Lord spawns at 8:00 — buy vision ward now", .high)
-        case 420:
-            return ("exclamationmark.triangle.fill", "Secure Turtle and contest Lord vision", .high)
-        case 480:
-            return ("crown.fill", "Lord is active — win teamfight to secure!", .critical)
-        case 540:
-            return ("arrow.right.circle.fill", "Push towers — apply pressure on all lanes", .medium)
-        case 600:
-            return ("person.3.fill", "Group mid lane — play for teamfights now", .medium)
-        case 660:
-            return ("tortoise.fill", "3rd Turtle soon — prepare to zone enemy team", .medium)
-        case 720:
-            return ("house.fill", "Destroy base tower — open the enemy base", .high)
-        case 780:
-            return ("crown.fill", "Second Lord soon — rotate and vision up", .high)
-        case 840:
-            return ("flag.checkered", "Late game — one Lord push can end the match", .critical)
-        case 900:
-            return ("crown.fill", "Lord is CRITICAL — win this fight to close out", .critical)
+        case 210..<250: return ("Turtle spawning soon — push and rotate", "tortoise.fill", .high)
+        case 250..<300: return ("Turtle is UP — contest it now!", "exclamationmark.triangle.fill", .critical)
+        case 390..<430: return ("Lord spawns at 8:00 — set up vision", "crown.fill", .high)
+        case 430..<500: return ("Lord is active — win teamfight to secure!", "crown.fill", .critical)
+        case 600..<660: return ("Group mid — rotate for objectives", "person.3.fill", .medium)
         default:
-            // Between milestones: rotate generic tips every 30s
-            let tipIndex = (t / 30) % genericTips.count
-            let tip = genericTips[tipIndex]
-            return (tip.0, tip.1, .low)
+            // Phase-based generic real advice
+            switch latestPhase {
+            case "Early Game": return ("Track minimap — monitor enemy jungler", "map.fill", .low)
+            case "Mid Game":   return ("Group for objectives — don't split", "figure.walk", .low)
+            case "Late Game":  return ("One teamfight can end the game — stay together", "flag.checkered", .medium)
+            default:           return ("Watching your game...", "eye.fill", .low)
+            }
         }
     }
 
-    private let genericTips: [(String, String)] = [
-        ("eye.fill",               "Check minimap — track enemy positions"),
-        ("heart.fill",             "Recall when below 40% HP — don't feed"),
-        ("bolt.fill",              "Use skills aggressively in teamfights"),
-        ("arrow.triangle.2.circlepath", "Rotate to help struggling allies"),
-        ("dollarsign.circle.fill", "Farm minions between fights for gold"),
-        ("shield.fill",            "Stay behind your tank in teamfights"),
-        ("map.fill",               "Communicate with your team via pings"),
-        ("star.fill",              "Prioritize objectives over kills"),
-    ]
+    private func timedFallbackTip() -> (String, String, AlertPriority) {
+        switch elapsedSeconds {
+        case 0..<5:   return ("Start broadcast to get live coaching", "dot.radiowaves.left.and.right", .low)
+        case 5..<30:  return ("Haya AI is scanning the screen...", "viewfinder", .low)
+        default:
+            // Generic tips — rotate every 20s
+            let tips: [(String, String)] = [
+                ("Check minimap every few seconds", "map.fill"),
+                ("Ward jungle entrances to avoid ganks", "eye.fill"),
+                ("Farm between fights for gold advantage", "dollarsign.circle.fill"),
+                ("Focus objectives over kills", "star.fill"),
+                ("Stay behind your tank in teamfights", "shield.fill"),
+                ("Use pings to communicate with team", "bubble.left.fill"),
+            ]
+            let idx = (elapsedSeconds / 20) % tips.count
+            return (tips[idx].0, tips[idx].1, .low)
+        }
+    }
+
+    private func formattedElapsed() -> String {
+        String(format: "%d:%02d", elapsedSeconds / 60, elapsedSeconds % 60)
+    }
 
     // MARK: - Audio Session
 
     private func activateAudioSession() {
-        let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(.ambient, mode: .default, options: [.mixWithOthers])
-        try? session.setActive(true)
+        let s = AVAudioSession.sharedInstance()
+        try? s.setCategory(.ambient, mode: .default, options: [.mixWithOthers])
+        try? s.setActive(true)
     }
 
     private func deactivateAudioSession() {
@@ -228,41 +234,18 @@ final class PiPCoachManager: NSObject, ObservableObject {
 extension PiPCoachManager: AVPictureInPictureControllerDelegate {
 
     nonisolated func pictureInPictureControllerDidStartPictureInPicture(
-        _ pictureInPictureController: AVPictureInPictureController
-    ) {
-        Task { @MainActor in self.isActive = true }
-    }
+        _ c: AVPictureInPictureController
+    ) { Task { @MainActor in self.isActive = true; self.push() } }
 
     nonisolated func pictureInPictureControllerDidStopPictureInPicture(
-        _ pictureInPictureController: AVPictureInPictureController
-    ) {
-        Task { @MainActor in self.isActive = false }
-    }
+        _ c: AVPictureInPictureController
+    ) { Task { @MainActor in self.isActive = false } }
 
     nonisolated func pictureInPictureController(
-        _ pictureInPictureController: AVPictureInPictureController,
+        _ c: AVPictureInPictureController,
         failedToStartPictureInPictureWithError error: Error
-    ) {
-        Task { @MainActor in
-            self.isActive = false
-            print("[PiP] Failed to start: \(error.localizedDescription)")
-        }
-    }
-}
-
-// MARK: - LiveGameState convenience extension
-private extension LiveGameState {
-    /// Fallback one-line advice text for the PiP idle state.
-    var currentAdviceText: String {
-        currentAdvice.isEmpty ? phaseIdleText : currentAdvice
-    }
-
-    private var phaseIdleText: String {
-        switch sessionPhase {
-        case .earlyGame: return "Farm efficiently — contest Turtle at 4 min"
-        case .midGame:   return "Group up — Turtle and objectives matter now"
-        case .lateGame:  return "Push with Lord — one wipe ends the game"
-        default:         return "Haya AI is coaching you"
-        }
-    }
+    ) { Task { @MainActor in
+        self.isActive = false
+        print("[PiP] Failed: \(error.localizedDescription)")
+    } }
 }
