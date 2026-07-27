@@ -11,6 +11,10 @@ name: Build IPA
 #
 # For an UNSIGNED ipa (works with TrollStore on supported iOS versions):
 #   Just push — the unsigned build runs without any secrets.
+#
+# Action versions pinned to Node.js 24-native releases:
+#   checkout@v4, upload-artifact@v4, download-artifact@v4, action-gh-release@v2
+#   → all upgraded to v6 / v7 / v8 / v3 respectively (Node 20 dropped Sep 2026)
 
 on:
   push:
@@ -29,12 +33,11 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Show available Xcode versions + select latest
         run: |
           ls /Applications/ | grep -i xcode || true
-          # Use the latest available Xcode (has iOS SDK pre-installed)
           LATEST_XCODE=$(ls /Applications/ | grep -E "^Xcode_?[0-9]" | sort -V | tail -1)
           echo "Using: $LATEST_XCODE"
           sudo xcode-select -s "/Applications/$LATEST_XCODE/Contents/Developer"
@@ -42,12 +45,8 @@ jobs:
           xcodebuild -showsdks 2>&1 | grep -i "ios" || true
 
       - name: Build + archive (ad-hoc signed)
-        # Uses '-' (local ad-hoc) signing so all SPM packages (Firebase etc.)
-        # compile properly. The resulting IPA can be re-signed by Sideloadly /
-        # AltStore with the user's own Apple ID.
         run: |
           set -o pipefail
-          # Pick the installed iphoneos SDK version dynamically
           SDK=$(xcodebuild -showsdks 2>/dev/null | grep -oE "iphoneos[0-9.]+" | sort -V | tail -1)
           echo "Using SDK: $SDK"
 
@@ -89,7 +88,7 @@ jobs:
           echo "IPA size: $(du -sh HayaAI-unsigned.ipa | cut -f1)"
 
       - name: Upload unsigned IPA
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: HayaAI-unsigned-${{ github.sha }}
           path: ${{ runner.temp }}/HayaAI-unsigned.ipa
@@ -99,7 +98,6 @@ jobs:
   build-signed:
     name: Build signed IPA (Sideloadly / AltStore ready)
     runs-on: macos-15
-    # Skip this job if secrets are not set
     if: ${{ vars.ENABLE_SIGNED_BUILD == 'true' }}
     defaults:
       run:
@@ -107,7 +105,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Select Xcode 16
         run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
@@ -122,12 +120,9 @@ jobs:
           security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
           security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
-
           echo "$CERTIFICATE_BASE64" | base64 --decode -o "$RUNNER_TEMP/cert.p12"
           security import "$RUNNER_TEMP/cert.p12" \
-            -P "$CERTIFICATE_PASSWORD" \
-            -A -t cert -f pkcs12 \
-            -k "$KEYCHAIN_PATH"
+            -P "$CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
           security list-keychain -d user -s "$KEYCHAIN_PATH"
 
       - name: Install provisioning profile
@@ -143,10 +138,8 @@ jobs:
 
       - name: Resolve SPM packages
         run: |
-          xcodebuild \
-            -resolvePackageDependencies \
-            -project HayaAI.xcodeproj \
-            -scheme HayaAI \
+          xcodebuild -resolvePackageDependencies \
+            -project HayaAI.xcodeproj -scheme HayaAI \
             -clonedSourcePackagesDirPath ../.spm-cache
 
       - name: Build and archive (signed)
@@ -154,15 +147,11 @@ jobs:
           TEAM_ID: ${{ secrets.TEAM_ID }}
         run: |
           xcodebuild archive \
-            -project HayaAI.xcodeproj \
-            -scheme HayaAI \
-            -configuration Release \
-            -destination "generic/platform=iOS" \
+            -project HayaAI.xcodeproj -scheme HayaAI \
+            -configuration Release -destination "generic/platform=iOS" \
             -archivePath "$RUNNER_TEMP/HayaAI-signed.xcarchive" \
             -clonedSourcePackagesDirPath ../.spm-cache \
-            DEVELOPMENT_TEAM="$TEAM_ID" \
-            CODE_SIGN_STYLE=Manual \
-            | xcpretty
+            DEVELOPMENT_TEAM="$TEAM_ID" CODE_SIGN_STYLE=Manual | xcpretty
 
       - name: Export IPA
         env:
@@ -171,27 +160,20 @@ jobs:
           cat > "$RUNNER_TEMP/ExportOptions.plist" << EOF
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>method</key>
-            <string>ad-hoc</string>
-            <key>teamID</key>
-            <string>${TEAM_ID}</string>
-            <key>compileBitcode</key>
-            <false/>
-            <key>stripSwiftSymbols</key>
-            <true/>
-          </dict>
-          </plist>
+          <plist version="1.0"><dict>
+            <key>method</key><string>ad-hoc</string>
+            <key>teamID</key><string>${TEAM_ID}</string>
+            <key>compileBitcode</key><false/>
+            <key>stripSwiftSymbols</key><true/>
+          </dict></plist>
           EOF
-
           xcodebuild -exportArchive \
             -archivePath "$RUNNER_TEMP/HayaAI-signed.xcarchive" \
             -exportPath "$RUNNER_TEMP/export" \
             -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist"
 
       - name: Upload signed IPA
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: HayaAI-signed-${{ github.sha }}
           path: ${{ runner.temp }}/export/HayaAI.ipa
@@ -208,12 +190,12 @@ jobs:
 
     steps:
       - name: Download IPA
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: HayaAI-unsigned-${{ github.sha }}
 
       - name: Publish release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: HayaAI-unsigned.ipa
           name: Haya AI ${{ github.ref_name }}
