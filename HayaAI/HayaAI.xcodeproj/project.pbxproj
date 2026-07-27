@@ -41,6 +41,7 @@
 		AA000040 /* OCREngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010040; };
 		AA000050 /* VisionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010050; };
 		AA000051 /* HeroPortraitDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010051; };
+		AA000054 /* HeroPortraitMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010054; };
 		AA000052 /* FrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010052; };
 		AA000053 /* InGameFrameAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010053; };
 		AA000060 /* DraftStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010060; };
@@ -124,6 +125,7 @@
 		AA010040 /* OCREngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCREngine.swift; sourceTree = "<group>"; };
 		AA010050 /* VisionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/VisionEngine.swift"; sourceTree = "<group>"; };
 		AA010051 /* HeroPortraitDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detectors/HeroPortraitDetector.swift"; sourceTree = "<group>"; };
+		AA010054 /* HeroPortraitMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Detectors/HeroPortraitMatcher.swift"; sourceTree = "<group>"; };
 		AA010052 /* FrameProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Processors/FrameProcessor.swift"; sourceTree = "<group>"; };
 		AA010053 /* InGameFrameAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Processors/InGameFrameAnalyzer.swift"; sourceTree = "<group>"; };
 		AA010060 /* DraftStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftStateManager.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 			children = (
 				AA010050 /* VisionEngine.swift */,
 				AA010051 /* HeroPortraitDetector.swift */,
+				AA010054 /* HeroPortraitMatcher.swift */,
 				AA010052 /* FrameProcessor.swift */,
 				AA010053 /* InGameFrameAnalyzer.swift */,
 			);
@@ -644,6 +647,7 @@
 				AA000040,
 				AA000050,
 				AA000051,
+				AA000054,
 				AA000052,
 				AA000053,
 				AA000060,

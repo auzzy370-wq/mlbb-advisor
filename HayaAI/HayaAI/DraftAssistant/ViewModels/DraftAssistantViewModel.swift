@@ -37,11 +37,17 @@ final class DraftAssistantViewModel: ObservableObject {
     /// Injected from MainTabView so OCR results flow into the coaching engine.
     weak var gameSessionManager: GameSessionManager?
 
-    /// Live OCR engine fed hero names from the database.
-    /// Nil only during the brief async init window; assigned before any frame arrives.
+    /// Live OCR engine used for in-game text only (clock, kills, phase banners).
+    /// MLBB draft uses portrait images — OCR cannot detect hero names during draft.
     private var ocrEngine: OCREngine?
-    /// Throttle: skip OCR if the previous request finished fewer than 1.2 s ago.
+    /// Throttle: skip OCR if the previous request finished fewer than 0.65 s ago.
     private var lastOCRTime: Date = .distantPast
+
+    /// Vision-based hero portrait matcher.
+    /// Uses VNFeaturePrint to compare draft-slot crops against cached hero portraits.
+    private let portraitMatcher = HeroPortraitMatcher()
+    /// Throttle: portrait matching runs every 2 s (more expensive than OCR).
+    private var lastPortraitMatchTime: Date = .distantPast
 
     // MARK: - Subscriptions
     private var cancellables: Set<AnyCancellable> = []
@@ -71,18 +77,22 @@ final class DraftAssistantViewModel: ObservableObject {
         // broadcast the instant the user starts it from any app — no button tap required.
         broadcastFrameReader.start()
 
-        // Initialise the OCR engine with every hero name in the database so
-        // Vision can match hero text found on screen during draft / in-game.
+        // Initialise the OCR engine for in-game text (clock, kill score, phase banner).
+        // Portrait matching (for draft hero detection) uses HeroPortraitMatcher below.
         Task {
             let names = await draftStateManager.heroDatabase.allHeroNames()
             let cfg = OCREngine.Configuration(
-                recognitionLevel: .fast,   // fast = ~200 ms/frame vs ~1 s for accurate
+                recognitionLevel: .fast,
                 recognitionLanguages: ["en-US"],
                 usesLanguageCorrection: false,
                 minimumTextHeight: 0.018,
-                customWords: names          // prime Vision with all hero names
+                customWords: names
             )
             ocrEngine = OCREngine(configuration: cfg, heroNames: names)
+
+            // Prepare VNFeaturePrint cache for portrait-based hero detection.
+            // Downloads 130 tiny thumbnails in the background on first launch; instant on repeat.
+            await portraitMatcher.prepare(heroNames: names)
         }
     }
 
@@ -134,16 +144,20 @@ final class DraftAssistantViewModel: ObservableObject {
     // MARK: - Private Setup
 
     private func setupBroadcastPipeline() {
-        // Single onFrame handler — routes each broadcast frame to:
-        //  1. OCR/draft pipeline (hero names, phase, bans/picks)
-        //  2. Coaching pipeline (game clock, kill score → GameSessionManager)
         broadcastFrameReader.onFrame = { [weak self] cgImage, timestamp in
             guard let self else { return }
             Task {
-                let analysis = await self.inGameAnalysis(from: cgImage, timestamp: Int(timestamp))
-                // Draft board update
-                await self.draftStateManager.update(with: analysis)
-                // Live coaching update — push clock + kills to coaching engine
+                // Run OCR for in-game text (clock/kills) and portrait matching in parallel.
+                async let ocrTask = self.inGameAnalysis(from: cgImage, timestamp: Int(timestamp))
+                async let portraitTask = self.runPortraitMatchingIfNeeded(frame: cgImage)
+
+                let (analysis, portraitHeroes) = await (ocrTask, portraitTask)
+
+                // Merge portrait-detected heroes into the analysis result, then update draft state.
+                let merged = self.mergePortraitHeroes(portraitHeroes, into: analysis, timestamp: timestamp)
+                await self.draftStateManager.update(with: merged)
+
+                // Forward live data to coaching engine.
                 await self.gameSessionManager?.updateLiveData(
                     clockSeconds: analysis.detectedGameClock,
                     killScore: analysis.detectedKillScore
@@ -152,13 +166,74 @@ final class DraftAssistantViewModel: ObservableObject {
         }
     }
 
-    /// Runs Vision OCR on a broadcast frame and returns a fully-populated
-    /// `FrameAnalysisResult` that `DraftStateManager` can reconcile into
-    /// the live `DraftState`.
+    /// Runs VNFeaturePrint portrait matching at most every 2 s.
+    /// Returns (friendly [0-4], enemy [0-4]) name arrays; nil = empty slot.
+    private func runPortraitMatchingIfNeeded(frame: CGImage) async -> (friendly: [String?], enemy: [String?])? {
+        let now = Date()
+        guard now.timeIntervalSince(lastPortraitMatchTime) >= 2.0 else { return nil }
+        lastPortraitMatchTime = now
+        return await portraitMatcher.matchDraftSlots(in: frame)
+    }
+
+    /// Folds portrait-detected hero names into a `FrameAnalysisResult` as `DetectedHero` entries
+    /// so `DraftStateManager` can reconcile them the same way it handles OCR-detected heroes.
+    private func mergePortraitHeroes(
+        _ portrait: (friendly: [String?], enemy: [String?])?,
+        into result: FrameAnalysisResult,
+        timestamp: TimeInterval
+    ) -> FrameAnalysisResult {
+        guard let p = portrait else { return result }
+
+        var extra: [DetectedHero] = []
+        for (slot, name) in p.friendly.enumerated() {
+            if let n = name {
+                extra.append(DetectedHero(
+                    name: n,
+                    boundingBox: .zero,
+                    confidence: 0.70,
+                    team: .friendly,
+                    slotIndex: slot,
+                    detectionMethod: .featurePrint
+                ))
+            }
+        }
+        for (slot, name) in p.enemy.enumerated() {
+            if let n = name {
+                extra.append(DetectedHero(
+                    name: n,
+                    boundingBox: .zero,
+                    confidence: 0.70,
+                    team: .enemy,
+                    slotIndex: slot,
+                    detectionMethod: .featurePrint
+                ))
+            }
+        }
+        if extra.isEmpty { return result }
+
+        return FrameAnalysisResult(
+            detectedHeroes: result.detectedHeroes + extra,
+            detectedTexts: result.detectedTexts,
+            detectedPhase: result.detectedPhase,
+            detectedTimer: result.detectedTimer,
+            detectedGameClock: result.detectedGameClock,
+            detectedKillScore: result.detectedKillScore,
+            detectedTurn: result.detectedTurn,
+            detectedPatch: result.detectedPatch,
+            processingTimeMs: result.processingTimeMs,
+            frameTimestamp: CMTimeValue(timestamp),
+            overallConfidence: max(result.overallConfidence, 0.70)
+        )
+    }
+
+    /// Runs Vision OCR on a broadcast frame to extract **in-game text only**
+    /// (game clock, kill score, phase banner, timer countdown).
     ///
-    /// OCR is throttled to once every 1.2 s so it doesn't starve the UI thread.
-    /// We run full-image text recognition and use bounding-box positions to
-    /// assign heroes to friendly/enemy sides and approximate slot indices.
+    /// IMPORTANT: MLBB's draft screen shows hero PORTRAIT IMAGES — not text names.
+    /// OCR cannot detect heroes from portraits. Draft picks must be entered manually
+    /// via the HeroPickerSheet (tap any slot on the draft board).
+    ///
+    /// OCR is throttled to 1 run per 0.65 s to balance accuracy vs CPU load.
     private func inGameAnalysis(from image: CGImage, timestamp: Int) async -> FrameAnalysisResult {
         let emptyResult = FrameAnalysisResult(
             detectedHeroes: [], detectedTexts: [],
@@ -172,70 +247,45 @@ final class DraftAssistantViewModel: ObservableObject {
 
         guard let ocr = ocrEngine else { return emptyResult }
 
-        // Throttle: run OCR at most ~1.5fps (0.65s) to balance accuracy vs CPU.
-        // Fast enough to catch picks that happen in ~5s windows during draft.
         let now = Date()
         guard now.timeIntervalSince(lastOCRTime) >= 0.65 else { return emptyResult }
         lastOCRTime = now
-
         let startTime = now
 
-        // Full-screen text recognition — Vision coordinate origin is bottom-left.
+        // Run Vision OCR — we only care about numbers and short text here.
         let allTexts = (try? await ocr.recognizeText(in: image, roi: nil)) ?? []
         guard !allTexts.isEmpty else { return emptyResult }
 
-        var detectedHeroes: [DetectedHero] = []
         var detectedPhase: DraftPhase? = nil
         var detectedTimer: Int? = nil
         var detectedGameClock: Int? = nil
         var detectedKillScore: KillScore? = nil
         var bestConfidence = 0.0
 
-        let clockRegex  = try? NSRegularExpression(pattern: #"(\d{1,2}):(\d{2})"#)
-        let killsRegex  = try? NSRegularExpression(pattern: #"(\d{1,2})\s*[:/\-]\s*(\d{1,2})"#)
+        let clockRegex = try? NSRegularExpression(pattern: #"(\d{1,2}):(\d{2})"#)
+        let killsRegex = try? NSRegularExpression(pattern: #"(\d{1,2})\s*[:/\-]\s*(\d{1,2})"#)
 
         for text in allTexts where text.confidence > 0.30 {
             bestConfidence = max(bestConfidence, text.confidence)
             let raw = text.text.trimmingCharacters(in: .whitespaces)
-            let box = text.boundingBox   // normalized, origin bottom-left
 
             switch text.category {
-            case .heroName:
-                let team: DraftTurn = box.midX < 0.5 ? .friendly : .enemy
-                let relY = (box.midY - 0.15) / 0.70
-                let slot = min(4, max(0, Int((1.0 - relY) * 5)))
-                detectedHeroes.append(DetectedHero(
-                    name: raw,
-                    boundingBox: box,
-                    confidence: text.confidence,
-                    team: team,
-                    slotIndex: slot,
-                    detectionMethod: .ocr
-                ))
-
             case .gameClock:
-                // Parse MM:SS → total seconds
                 let r = NSRange(raw.startIndex..., in: raw)
                 if let m = clockRegex?.firstMatch(in: raw, range: r),
                    let mR = Range(m.range(at: 1), in: raw),
                    let sR = Range(m.range(at: 2), in: raw),
                    let mins = Int(raw[mR]), let secs = Int(raw[sR]) {
                     let total = mins * 60 + secs
-                    // Only accept plausible in-game times (0-60 min)
-                    if total >= 0 && total <= 3600 {
-                        detectedGameClock = total
-                    }
+                    if total >= 0 && total <= 3600 { detectedGameClock = total }
                 }
 
             case .killScore:
-                // Parse "N : M" → KillScore. Top of screen = both teams.
-                // Friendly kills on left (box.midX < 0.5), enemy on right.
                 let r = NSRange(raw.startIndex..., in: raw)
                 if let m = killsRegex?.firstMatch(in: raw, range: r),
                    let aR = Range(m.range(at: 1), in: raw),
                    let bR = Range(m.range(at: 2), in: raw),
                    let a = Int(raw[aR]), let b = Int(raw[bR]) {
-                    // MLBB HUD shows friendly : enemy
                     detectedKillScore = KillScore(friendly: a, enemy: b)
                 }
 
@@ -247,6 +297,8 @@ final class DraftAssistantViewModel: ObservableObject {
             case .timer:
                 if let v = Int(raw), v >= 1, v <= 99 { detectedTimer = v }
 
+            // heroName: SKIPPED — MLBB draft uses portrait images, not text.
+            // Use the HeroPickerSheet (tap a slot) to add draft picks manually.
             default:
                 break
             }
@@ -254,14 +306,13 @@ final class DraftAssistantViewModel: ObservableObject {
 
         let elapsedMs = Date().timeIntervalSince(startTime) * 1_000
         return FrameAnalysisResult(
-            detectedHeroes: detectedHeroes,
+            detectedHeroes: [],          // always empty — no OCR hero detection
             detectedTexts: allTexts,
             detectedPhase: detectedPhase,
             detectedTimer: detectedTimer,
             detectedGameClock: detectedGameClock,
             detectedKillScore: detectedKillScore,
-            detectedTurn: nil,
-            detectedPatch: nil,
+            detectedTurn: nil, detectedPatch: nil,
             processingTimeMs: elapsedMs,
             frameTimestamp: CMTimeValue(timestamp),
             overallConfidence: bestConfidence

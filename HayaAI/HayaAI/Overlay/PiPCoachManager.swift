@@ -3,13 +3,28 @@ import AVFoundation
 import UIKit
 import Combine
 
+// MARK: - PiP Display Mode
+enum PiPDisplayMode: CaseIterable {
+    case coaching       // coaching tips / game state
+    case nextBuy        // next item to build this phase
+    case counterBuild   // counter item vs enemy comp
+}
+
+// MARK: - Build Hint
+struct PiPBuildHint {
+    let itemName: String
+    let reason: String          // e.g. "vs Estes heal"
+    let icon: String            // SF symbol
+    let isCounter: Bool         // false = core item, true = counter pick
+}
+
 // MARK: - PiP Coach Manager
 /// Manages the floating Picture-in-Picture coaching window.
 ///
-/// Display priority:
-///   1. Real alert from coaching engine (priority ≥ medium) — shown immediately
-///   2. Real game state (clock/score detected by OCR) — shown between alerts
-///   3. Timed fallback tip — only shown if no real screen data in 10+ seconds
+/// Display priority order (cycles every 8 s):
+///   1. Coaching tip  — game state / objective alerts
+///   2. Next buy      — next core item for current phase
+///   3. Counter build — situational counter item vs enemy picks
 @MainActor
 final class PiPCoachManager: NSObject, ObservableObject {
 
@@ -19,7 +34,7 @@ final class PiPCoachManager: NSObject, ObservableObject {
     private var pipController: AVPictureInPictureController?
     private let contentVC = CoachPiPViewController()
 
-    // ── Real data from OCR ──────────────────────────────────────
+    // ── Real OCR data ────────────────────────────────────────────
     private var lastRealDataAt: Date = .distantPast
     private var latestGameTime: String?
     private var latestFriendlyKills: Int?
@@ -28,7 +43,17 @@ final class PiPCoachManager: NSObject, ObservableObject {
     private var latestPhase: String = "Waiting"
     private var isCapturing: Bool = false
 
-    // ── Clock ticker ────────────────────────────────────────────
+    // ── Build context (set from draft) ───────────────────────────
+    private var playerHeroData: Hero?           // from HeroDatabaseService
+    private var enemyHeroes: [Hero] = []        // resolved enemy picks
+    private weak var heroDatabase: HeroDatabaseService?
+
+    // ── Mode cycling ─────────────────────────────────────────────
+    private var displayModeIndex: Int = 0
+    private var modeCycleCounter: Int = 0       // ticks before cycling
+    private let ticksPerMode: Int = 8           // ~8 s per mode
+
+    // ── Clock + alerts ───────────────────────────────────────────
     private var clockTask: Task<Void, Never>?
     private var elapsedSeconds: Int = 0
     private var lastAlertAt: Date = .distantPast
@@ -60,9 +85,7 @@ final class PiPCoachManager: NSObject, ObservableObject {
     }
 
     /// Called every time the coaching engine produces a new game state.
-    /// Real data from OCR always takes priority over timed tips.
     func update(alert: CoachAlert?, gameState: LiveGameState) {
-        // Sync real clock from OCR
         if gameState.gameTimeSeconds > 0 {
             let mins = gameState.gameTimeSeconds / 60
             let secs = gameState.gameTimeSeconds % 60
@@ -72,18 +95,14 @@ final class PiPCoachManager: NSObject, ObservableObject {
             }
             lastRealDataAt = Date()
         }
-
-        // Sync kills
         if gameState.killScore.friendly > 0 || gameState.killScore.enemy > 0 {
             latestFriendlyKills = gameState.killScore.friendly
             latestEnemyKills = gameState.killScore.enemy
             lastRealDataAt = Date()
         }
-
         latestPhase = gameState.sessionPhase.rawValue
         isCapturing = gameState.sessionPhase != .idle
 
-        // Real coaching alert overrides everything
         if let alert = alert, alert.priority >= .medium {
             currentAlert = (alert.message, alert.type.icon, alert.priority)
             lastAlertAt = Date()
@@ -91,7 +110,25 @@ final class PiPCoachManager: NSObject, ObservableObject {
         }
     }
 
-    /// Called when a hero is locked from draft OCR so PiP shows your hero.
+    /// Called when the player locks a hero in draft — resolves hero + enemies from database.
+    func setDraftContext(heroName: String, enemyHeroNames: [String], database: HeroDatabaseService) {
+        heroDatabase = database
+        latestHero = heroName
+
+        // Resolve Hero structs (for item lookups)
+        Task {
+            if !heroName.isEmpty {
+                playerHeroData = await database.hero(byNameFuzzy: heroName)
+            }
+            var resolved: [Hero] = []
+            for name in enemyHeroNames where !name.isEmpty {
+                if let h = await database.hero(byNameFuzzy: name) { resolved.append(h) }
+            }
+            enemyHeroes = resolved
+            push()
+        }
+    }
+
     func setHero(_ heroName: String) {
         latestHero = heroName
         push()
@@ -120,11 +157,36 @@ final class PiPCoachManager: NSObject, ObservableObject {
 
     private func tick() {
         elapsedSeconds += 1
-        // Clear stale alerts (> 8s old)
-        if let _ = currentAlert, Date().timeIntervalSince(lastAlertAt) > 8 {
+
+        // Clear stale alerts after 8 s
+        if currentAlert != nil, Date().timeIntervalSince(lastAlertAt) > 8 {
             currentAlert = nil
         }
+
+        // Cycle display mode every ticksPerMode seconds
+        modeCycleCounter += 1
+        if modeCycleCounter >= ticksPerMode {
+            modeCycleCounter = 0
+            advanceMode()
+        }
+
         push()
+    }
+
+    private func advanceMode() {
+        let modes = availableModes()
+        guard !modes.isEmpty else { return }
+        let currentMode = modes[displayModeIndex % modes.count]
+        // Skip nextBuy / counterBuild if no hero data yet
+        if currentMode == .nextBuy && playerHeroData == nil { return }
+        displayModeIndex = (displayModeIndex + 1) % modes.count
+    }
+
+    private func availableModes() -> [PiPDisplayMode] {
+        var modes: [PiPDisplayMode] = [.coaching]
+        if playerHeroData != nil { modes.append(.nextBuy) }
+        if playerHeroData != nil && !enemyHeroes.isEmpty { modes.append(.counterBuild) }
+        return modes
     }
 
     // MARK: - Display
@@ -133,6 +195,19 @@ final class PiPCoachManager: NSObject, ObservableObject {
         guard isActive else { return }
 
         let hasRealData = Date().timeIntervalSince(lastRealDataAt) < 10
+        let modes = availableModes()
+        let mode = modes.isEmpty ? .coaching : modes[displayModeIndex % modes.count]
+
+        // High-priority coaching alert always overrides mode cycling
+        let effectiveMode: PiPDisplayMode = (currentAlert != nil) ? .coaching : mode
+
+        let buildHint: PiPBuildHint? = {
+            switch effectiveMode {
+            case .nextBuy:      return nextBuyHint()
+            case .counterBuild: return counterBuildHint()
+            case .coaching:     return nil
+            }
+        }()
 
         let (message, icon, priority) = resolveMessage(hasRealData: hasRealData)
 
@@ -146,23 +221,119 @@ final class PiPCoachManager: NSObject, ObservableObject {
             message: message,
             icon: icon,
             priority: priority,
-            isCapturing: isCapturing
+            isCapturing: isCapturing,
+            buildHint: buildHint,
+            displayMode: effectiveMode
         )
         contentVC.update(state: state)
     }
 
+    // MARK: - Build Logic
+
+    /// Next core item for the player's hero based on the current game phase.
+    private func nextBuyHint() -> PiPBuildHint? {
+        guard let hero = playerHeroData else { return nil }
+        let items = hero.preferredItems
+        guard !items.isEmpty else { return nil }
+
+        // Slot index based on phase / elapsed time
+        let slotIndex: Int
+        switch elapsedSeconds {
+        case 0..<240:   slotIndex = 0          // <4 min  → boots
+        case 240..<480: slotIndex = 1          // 4-8 min → 1st core
+        case 480..<720: slotIndex = 2          // 8-12 min
+        case 720..<960: slotIndex = 3          // 12-16 min
+        default:        slotIndex = min(items.count - 1, 4)   // 16+ min
+        }
+
+        let item = items[min(slotIndex, items.count - 1)]
+        return PiPBuildHint(
+            itemName: item.name,
+            reason: "Slot \(slotIndex + 1) — \(hero.name) core",
+            icon: "cart.fill",
+            isCounter: false
+        )
+    }
+
+    /// Best counter item for the current enemy composition.
+    private func counterBuildHint() -> PiPBuildHint? {
+        guard let hero = playerHeroData else { return nil }
+
+        // Check for high-priority situational needs
+        let enemyRoles = Set(enemyHeroes.flatMap { $0.roles })
+        let enemyNames = Set(enemyHeroes.map { $0.name })
+
+        // Anti-heal: any healer in enemy team
+        let healers: Set<String> = ["Estes", "Rafaela", "Floryn", "Angela", "Uranus", "Ruby",
+                                    "Carmilla", "Alice", "Esmeralda", "Kalea", "Minotaur"]
+        if !healers.isDisjoint(with: enemyNames) {
+            let antiHealItem = hero.primaryRole == .mage || hero.secondaryRole == .mage
+                ? "Necklace of Durance"
+                : "Sea Halberd"
+            return PiPBuildHint(
+                itemName: antiHealItem,
+                reason: "Anti-heal vs \(enemyHeroes.filter { healers.contains($0.name) }.map { $0.name }.first ?? "healer")",
+                icon: "cross.circle.fill",
+                isCounter: true
+            )
+        }
+
+        // Magic pen: mostly mages or magic damage enemies
+        let magicEnemyCount = enemyHeroes.filter { $0.damageType == .magic }.count
+        if magicEnemyCount >= 2 {
+            let magicDefItem: String
+            switch hero.primaryRole {
+            case .tank, .fighter:   magicDefItem = "Athena's Shield"
+            case .marksman:         magicDefItem = "Athena's Shield"
+            default:                magicDefItem = "Athena's Shield"
+            }
+            return PiPBuildHint(
+                itemName: magicDefItem,
+                reason: "vs \(magicEnemyCount) magic heroes",
+                icon: "shield.fill",
+                isCounter: true
+            )
+        }
+
+        // Armor pen: enemy has multiple tanks/fighters
+        let tankCount = enemyHeroes.filter { $0.primaryRole == .tank || $0.primaryRole == .fighter }.count
+        if tankCount >= 2 && (hero.damageType == .physical) {
+            return PiPBuildHint(
+                itemName: "Malefic Roar",
+                reason: "vs \(tankCount) tanky enemies",
+                icon: "bolt.fill",
+                isCounter: true
+            )
+        }
+
+        // Fallback to hero's own counter item list
+        if let counterItem = hero.counterItems.first {
+            return PiPBuildHint(
+                itemName: counterItem.name,
+                reason: "Situational pick",
+                icon: "arrow.uturn.backward.circle.fill",
+                isCounter: true
+            )
+        }
+
+        // Show situational item from hero's list
+        if let situational = hero.situationalItems.first {
+            return PiPBuildHint(
+                itemName: situational.name,
+                reason: "vs current comp",
+                icon: "wrench.fill",
+                isCounter: false
+            )
+        }
+
+        return nil
+    }
+
+    // MARK: - Message resolution
+
     private func resolveMessage(hasRealData: Bool) -> (String, String, AlertPriority) {
-        // 1. Active real alert
-        if let alert = currentAlert {
-            return (alert.message, alert.icon, alert.priority)
-        }
-
-        // 2. Real data flowing — generate context-aware tip from actual game state
-        if hasRealData {
-            return realDataTip()
-        }
-
-        // 3. No real data — show fallback timed tip but label it as generic
+        if let alert = currentAlert { return (alert.message, alert.icon, alert.priority) }
+        if hasRealData { return realDataTip() }
         return timedFallbackTip()
     }
 
@@ -171,12 +342,10 @@ final class PiPCoachManager: NSObject, ObservableObject {
         let f = latestFriendlyKills ?? 0
         let e = latestEnemyKills ?? 0
 
-        // Kill-based tips
+        if e - f >= 5 { return ("Big deficit — group up, avoid solo fights", "exclamationmark.triangle.fill", .high) }
         if f - e >= 3 { return ("You're ahead — push towers and take objectives", "bolt.fill", .medium) }
         if e - f >= 3 { return ("You're behind — play safe and farm to scale", "shield.fill", .medium) }
-        if e - f >= 5 { return ("Big deficit — group up, avoid solo fights", "exclamationmark.triangle.fill", .high) }
 
-        // Time-based tips using REAL detected clock
         switch t {
         case 210..<250: return ("Turtle spawning soon — push and rotate", "tortoise.fill", .high)
         case 250..<300: return ("Turtle is UP — contest it now!", "exclamationmark.triangle.fill", .critical)
@@ -184,7 +353,6 @@ final class PiPCoachManager: NSObject, ObservableObject {
         case 430..<500: return ("Lord is active — win teamfight to secure!", "crown.fill", .critical)
         case 600..<660: return ("Group mid — rotate for objectives", "person.3.fill", .medium)
         default:
-            // Phase-based generic real advice
             switch latestPhase {
             case "Early Game": return ("Track minimap — monitor enemy jungler", "map.fill", .low)
             case "Mid Game":   return ("Group for objectives — don't split", "figure.walk", .low)
@@ -196,10 +364,9 @@ final class PiPCoachManager: NSObject, ObservableObject {
 
     private func timedFallbackTip() -> (String, String, AlertPriority) {
         switch elapsedSeconds {
-        case 0..<5:   return ("Start broadcast to get live coaching", "dot.radiowaves.left.and.right", .low)
-        case 5..<30:  return ("Haya AI is scanning the screen...", "viewfinder", .low)
+        case 0..<5:  return ("Start broadcast to get live coaching", "dot.radiowaves.left.and.right", .low)
+        case 5..<30: return ("Haya AI is scanning the screen...", "viewfinder", .low)
         default:
-            // Generic tips — rotate every 20s
             let tips: [(String, String)] = [
                 ("Check minimap every few seconds", "map.fill"),
                 ("Ward jungle entrances to avoid ganks", "eye.fill"),

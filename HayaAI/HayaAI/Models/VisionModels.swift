@@ -39,6 +39,7 @@ enum DetectionMethod: String, Sendable {
     case ocr = "OCR"
     case imageClassification = "ImageClassification"
     case templateMatching = "TemplateMatching"
+    case featurePrint = "FeaturePrint"   // VNGenerateImageFeaturePrintRequest portrait matching
     case combined = "Combined"
 }
 

@@ -168,33 +168,52 @@ struct DraftBoardView: View {
     @Binding var pickerTarget: DraftSlotTarget?
 
     var body: some View {
-        HStack(alignment: .top, spacing: 8) {
-            // Friendly side
-            VStack(spacing: 6) {
-                teamBans(bans: draftState.friendlyBans, team: .friendly)
-                teamPicks(picks: draftState.friendlyPicks, team: .friendly)
+        VStack(spacing: 8) {
+            // ── Instruction banner ───────────────────────────────────
+            // MLBB shows hero portraits (images), not text. OCR cannot read them.
+            // Players must tap each slot to enter picks manually.
+            HStack(spacing: 8) {
+                Image(systemName: "hand.tap.fill")
+                    .font(.caption)
+                    .foregroundStyle(Color.hayaGold)
+                Text("MLBB shows portraits, not text — tap each slot to add heroes")
+                    .font(.system(size: 11))
+                    .foregroundStyle(.secondary)
+                    .lineLimit(2)
             }
-            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 7)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.hayaGold.opacity(0.08))
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.hayaGold.opacity(0.25), lineWidth: 1)
+            )
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .padding(.horizontal, 12)
 
-            // Center – phase indicator
-            VStack(spacing: 4) {
-                PhaseIndicatorBadge(phase: draftState.phase)
-                TimerDisplay(seconds: draftState.timer, isActive: draftState.isMyTurn)
-                Text("Tap slot\nto pick")
-                    .font(.system(size: 8))
-                    .multilineTextAlignment(.center)
-                    .foregroundStyle(.tertiary)
-            }
-            .frame(width: 70)
+            // ── Main board ───────────────────────────────────────────
+            HStack(alignment: .top, spacing: 8) {
+                VStack(spacing: 6) {
+                    teamBans(bans: draftState.friendlyBans, team: .friendly)
+                    teamPicks(picks: draftState.friendlyPicks, team: .friendly)
+                }
+                .frame(maxWidth: .infinity)
 
-            // Enemy side
-            VStack(spacing: 6) {
-                teamBans(bans: draftState.enemyBans, team: .enemy)
-                teamPicks(picks: draftState.enemyPicks, team: .enemy)
+                VStack(spacing: 4) {
+                    PhaseIndicatorBadge(phase: draftState.phase)
+                    TimerDisplay(seconds: draftState.timer, isActive: draftState.isMyTurn)
+                }
+                .frame(width: 60)
+
+                VStack(spacing: 6) {
+                    teamBans(bans: draftState.enemyBans, team: .enemy)
+                    teamPicks(picks: draftState.enemyPicks, team: .enemy)
+                }
+                .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 12)
         }
-        .padding(.horizontal, 12)
     }
 
     private func teamBans(bans: [DraftSlot], team: DraftTurn) -> some View {
@@ -220,33 +239,6 @@ struct DraftBoardView: View {
     }
 }
 
-// MARK: - Ban Slot
-struct BanSlotView: View {
-    let slot: DraftSlot
-
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 6)
-                .fill(slot.heroName != nil ? Color.red.opacity(0.3) : Color.white.opacity(0.05))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 6)
-                        .stroke(Color.red.opacity(0.4), lineWidth: 1)
-                )
-                .frame(width: 32, height: 32)
-
-            if let name = slot.heroName {
-                Text(String(name.prefix(2)))
-                    .font(.system(size: 9, weight: .bold))
-                    .foregroundStyle(.white)
-            } else {
-                Image(systemName: "xmark")
-                    .font(.system(size: 8))
-                    .foregroundStyle(.secondary)
-            }
-        }
-    }
-}
-
 // MARK: - Pick Slot
 struct PickSlotView: View {
     let slot: DraftSlot
@@ -257,57 +249,101 @@ struct PickSlotView: View {
             if !isAlly { Spacer() }
 
             ZStack {
-                RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: 10)
                     .fill(heroBackground)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(heroBorder, lineWidth: 1.5)
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(heroBorder, lineWidth: slot.heroName == nil ? 1 : 1.5)
                     )
-                    .frame(width: 40, height: 40)
+                    .frame(width: 44, height: 44)
 
                 heroContent
             }
 
-            if let name = slot.heroName {
-                Text(name)
-                    .font(.caption2)
-                    .fontWeight(.medium)
-                    .foregroundStyle(.primary)
-                    .lineLimit(1)
-            } else {
-                Text("Empty")
-                    .font(.caption2)
-                    .foregroundStyle(.tertiary)
+            VStack(alignment: isAlly ? .leading : .trailing, spacing: 1) {
+                if let name = slot.heroName {
+                    Text(name)
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.primary)
+                        .lineLimit(1)
+                    Text(isAlly ? "Ally" : "Enemy")
+                        .font(.system(size: 9))
+                        .foregroundStyle(.secondary)
+                } else {
+                    Text("Tap to add")
+                        .font(.caption)
+                        .fontWeight(.medium)
+                        .foregroundStyle(slotAccent.opacity(0.8))
+                    Text(isAlly ? "Ally pick" : "Enemy pick")
+                        .font(.system(size: 9))
+                        .foregroundStyle(.tertiary)
+                }
             }
 
             if isAlly { Spacer() }
         }
     }
 
+    private var slotAccent: Color { isAlly ? Color.hayaBlue : .red }
+
     private var heroBackground: Color {
-        if slot.heroName != nil {
-            return isAlly ? Color.hayaBlue.opacity(0.2) : Color.red.opacity(0.2)
+        guard slot.heroName != nil else {
+            // Empty slot: subtle pulsing invite
+            return slotAccent.opacity(0.07)
         }
-        return Color.white.opacity(0.05)
+        return isAlly ? Color.hayaBlue.opacity(0.2) : Color.red.opacity(0.2)
     }
 
     private var heroBorder: Color {
-        if slot.heroName != nil {
-            return isAlly ? Color.hayaBlue.opacity(0.5) : Color.red.opacity(0.5)
+        guard slot.heroName != nil else {
+            return slotAccent.opacity(0.25)
         }
-        return Color.white.opacity(0.1)
+        return isAlly ? Color.hayaBlue.opacity(0.6) : Color.red.opacity(0.6)
     }
 
     @ViewBuilder
     private var heroContent: some View {
         if let name = slot.heroName {
-            Text(String(name.prefix(2)))
-                .font(.system(size: 12, weight: .bold))
+            Text(String(name.prefix(2)).uppercased())
+                .font(.system(size: 14, weight: .black))
                 .foregroundStyle(isAlly ? Color.hayaBlue : .red)
         } else {
-            Image(systemName: "person")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            Image(systemName: "plus")
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundStyle(slotAccent.opacity(0.6))
+        }
+    }
+}
+
+// MARK: - Ban Slot (updated with + icon for empty)
+struct BanSlotView: View {
+    let slot: DraftSlot
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 6)
+                .fill(slot.heroName != nil ? Color.red.opacity(0.25) : Color.white.opacity(0.05))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 6)
+                        .stroke(slot.heroName != nil ? Color.red.opacity(0.5) : Color.white.opacity(0.12), lineWidth: 1)
+                )
+                .frame(width: 34, height: 34)
+
+            if let name = slot.heroName {
+                VStack(spacing: 1) {
+                    Text(String(name.prefix(2)).uppercased())
+                        .font(.system(size: 10, weight: .black))
+                        .foregroundStyle(.white)
+                    Image(systemName: "xmark")
+                        .font(.system(size: 6, weight: .bold))
+                        .foregroundStyle(.red)
+                }
+            } else {
+                Image(systemName: "plus")
+                    .font(.system(size: 10, weight: .medium))
+                    .foregroundStyle(.secondary.opacity(0.6))
+            }
         }
     }
 }

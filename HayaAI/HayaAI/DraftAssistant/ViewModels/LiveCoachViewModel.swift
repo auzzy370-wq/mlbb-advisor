@@ -140,18 +140,25 @@ final class LiveCoachViewModel: ObservableObject {
                 self.lordTimer = state.objectives.lord
 
                 let topAlert = self.topAlert
-                // Push overlay updates off main thread to avoid blocking UI
                 Task {
                     await self.refreshInGameRecommendations(gameState: state)
                     await self.liveActivityManager.update(gameState: state, topAlert: topAlert)
                     await self.notificationService.deliver(state.activeAlerts)
-                    // PiP update — pass real game state so it shows actual data
+
+                    // PiP update — pass real game state
                     self.pipManager.update(alert: topAlert, gameState: state)
-                    // Sync locked hero name into PiP
-                    let heroName = self.gameSessionManager.draftStateManager
-                        .currentDraftState.friendlyPicks
+
+                    // Sync draft context into PiP so build/counter tabs are accurate
+                    let draftState = self.gameSessionManager.draftStateManager.currentDraftState
+                    let heroName = draftState.friendlyPicks
                         .first(where: { $0.status == .locked })?.heroName ?? ""
-                    if !heroName.isEmpty { self.pipManager.setHero(heroName) }
+                    let enemyNames = draftState.enemyPicks
+                        .compactMap { $0.status == .locked ? $0.heroName : nil }
+                        .filter { !$0.isEmpty }
+                    let db = self.gameSessionManager.draftStateManager.heroDatabase
+                    self.pipManager.setDraftContext(heroName: heroName,
+                                                    enemyHeroNames: enemyNames,
+                                                    database: db)
                 }
             }
             .store(in: &cancellables)
