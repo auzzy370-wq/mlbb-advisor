@@ -148,36 +148,77 @@ actor OCREngine: OCREngineProtocol {
 }
 
 // MARK: - Hero Name Matcher
-/// Fast fuzzy-match of OCR output against the known hero name list.
+/// Matches OCR output against the known hero name list with fuzzy tolerance
+/// so that common Vision errors (transposed chars, missing apostrophes, extra
+/// spaces, slight mis-reads) still resolve to the correct hero name.
 final class HeroNameMatcher: @unchecked Sendable {
-    private var heroNames: Set<String> = []
-    private var lowerNames: [String: String] = [:]
+    private var lowerNames: [String: String] = [:]   // normalised → original
+    private var normalised: [String: String] = [:]   // fully-stripped → original
 
-    init(heroNames: [String]) {
-        update(names: heroNames)
-    }
+    init(heroNames: [String]) { update(names: heroNames) }
 
     func update(names: [String]) {
-        heroNames = Set(names)
-        lowerNames = Dictionary(uniqueKeysWithValues: names.map { ($0.lowercased(), $0) })
+        lowerNames   = Dictionary(uniqueKeysWithValues: names.map { ($0.lowercased(), $0) })
+        normalised   = Dictionary(uniqueKeysWithValues: names.map { (strip($0), $0) })
     }
 
+    // MARK: Exact + fuzzy public API
+
     func isHeroName(_ text: String) -> Bool {
-        lowerNames[text.lowercased()] != nil
+        bestMatch(for: [text]) != nil
     }
 
     func bestMatch(for candidates: [String]) -> String? {
-        for candidate in candidates {
-            let lower = candidate.lowercased()
-            if let match = lowerNames[lower] { return match }
-        }
-        // Fuzzy: try substring match
-        for candidate in candidates {
-            let lower = candidate.lowercased()
-            for (key, original) in lowerNames where key.contains(lower) || lower.contains(key) {
-                return original
-            }
+        for raw in candidates {
+            // 1. Exact lowercase
+            if let m = lowerNames[raw.lowercased()] { return m }
+            // 2. Stripped (remove non-alphanum, spaces → "") exact
+            let s = strip(raw)
+            if let m = normalised[s] { return m }
+            // 3. Levenshtein distance ≤ 2 on stripped strings
+            if let m = closestMatch(stripped: s) { return m }
         }
         return nil
+    }
+
+    // MARK: Private
+
+    /// Remove all non-letter, non-digit characters and lowercase.
+    private func strip(_ s: String) -> String {
+        s.lowercased()
+         .unicodeScalars
+         .filter { CharacterSet.letters.union(.decimalDigits).contains($0) }
+         .map { String($0) }
+         .joined()
+    }
+
+    private func closestMatch(stripped: String) -> String? {
+        guard stripped.count >= 3 else { return nil }
+        let maxDist = stripped.count <= 5 ? 1 : 2
+        var best: (dist: Int, name: String)? = nil
+        for (key, original) in normalised {
+            guard abs(key.count - stripped.count) <= maxDist else { continue }
+            let d = levenshtein(stripped, key)
+            if d <= maxDist {
+                if best == nil || d < best!.dist { best = (d, original) }
+            }
+        }
+        return best?.name
+    }
+
+    /// Standard iterative Levenshtein distance.
+    private func levenshtein(_ a: String, _ b: String) -> Int {
+        let a = Array(a), b = Array(b)
+        let m = a.count, n = b.count
+        var dp = Array(repeating: Array(repeating: 0, count: n + 1), count: m + 1)
+        for i in 0...m { dp[i][0] = i }
+        for j in 0...n { dp[0][j] = j }
+        for i in 1...m {
+            for j in 1...n {
+                dp[i][j] = a[i-1] == b[j-1] ? dp[i-1][j-1]
+                    : 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])
+            }
+        }
+        return dp[m][n]
     }
 }

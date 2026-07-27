@@ -40,7 +40,8 @@ final class DraftStateManager: ObservableObject, DraftEngineProtocol {
     // MARK: - DraftEngineProtocol
 
     func update(with analysisResult: FrameAnalysisResult) async {
-        guard await changeDetector.hasSignificantChange(analysisResult) else { return }
+        // Skip completely empty frames (no text detected at all)
+        guard !analysisResult.isEmpty else { return }
 
         // Buffer for smoothing
         analysisBuffer.append(analysisResult)
@@ -192,19 +193,35 @@ actor DraftStateReconciler {
         let friendlyHeroes = result.detectedHeroes.filter { $0.team == .friendly }
         let enemyHeroes = result.detectedHeroes.filter { $0.team == .enemy }
 
-        for hero in friendlyHeroes where hero.slotIndex < 5 {
-            if state.friendlyPicks[hero.slotIndex].heroName == nil ||
-               hero.confidence > 0.7 {
+        // Apply detected heroes — accept at confidence ≥ 0.40, or overwrite
+        // a previously set slot only when the new detection has higher confidence.
+        for hero in friendlyHeroes where hero.slotIndex < 5 && hero.confidence >= 0.40 {
+            let existing = state.friendlyPicks[hero.slotIndex]
+            if existing.heroName == nil || hero.confidence >= 0.55 {
                 state.friendlyPicks[hero.slotIndex].heroName = hero.name
                 state.friendlyPicks[hero.slotIndex].status = .locked
             }
         }
 
-        for hero in enemyHeroes where hero.slotIndex < 5 {
-            if state.enemyPicks[hero.slotIndex].heroName == nil ||
-               hero.confidence > 0.7 {
+        for hero in enemyHeroes where hero.slotIndex < 5 && hero.confidence >= 0.40 {
+            let existing = state.enemyPicks[hero.slotIndex]
+            if existing.heroName == nil || hero.confidence >= 0.55 {
                 state.enemyPicks[hero.slotIndex].heroName = hero.name
                 state.enemyPicks[hero.slotIndex].status = .locked
+            }
+        }
+
+        // Also treat high-confidence detections without a clear team/slot assignment
+        // as likely hero names — use the first empty slot on the appropriate side.
+        for hero in result.detectedHeroes where hero.confidence >= 0.60 {
+            let side: DraftTurn = hero.boundingBox.midX < 0.5 ? .friendly : .enemy
+            var arr = side == .friendly ? state.friendlyPicks : state.enemyPicks
+            if !arr.contains(where: { $0.heroName == hero.name }),
+               let emptyIdx = arr.firstIndex(where: { $0.heroName == nil }) {
+                arr[emptyIdx].heroName = hero.name
+                arr[emptyIdx].status = .locked
+                if side == .friendly { state.friendlyPicks = arr }
+                else { state.enemyPicks = arr }
             }
         }
 

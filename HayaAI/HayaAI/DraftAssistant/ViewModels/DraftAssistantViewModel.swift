@@ -172,9 +172,10 @@ final class DraftAssistantViewModel: ObservableObject {
 
         guard let ocr = ocrEngine else { return emptyResult }
 
-        // Throttle: skip this frame if OCR ran too recently
+        // Throttle: run OCR at most ~1.5fps (0.65s) to balance accuracy vs CPU.
+        // Fast enough to catch picks that happen in ~5s windows during draft.
         let now = Date()
-        guard now.timeIntervalSince(lastOCRTime) >= 1.2 else { return emptyResult }
+        guard now.timeIntervalSince(lastOCRTime) >= 0.65 else { return emptyResult }
         lastOCRTime = now
 
         let startTime = now
@@ -193,7 +194,7 @@ final class DraftAssistantViewModel: ObservableObject {
         let clockRegex  = try? NSRegularExpression(pattern: #"(\d{1,2}):(\d{2})"#)
         let killsRegex  = try? NSRegularExpression(pattern: #"(\d{1,2})\s*[:/\-]\s*(\d{1,2})"#)
 
-        for text in allTexts where text.confidence > 0.40 {
+        for text in allTexts where text.confidence > 0.30 {
             bestConfidence = max(bestConfidence, text.confidence)
             let raw = text.text.trimmingCharacters(in: .whitespaces)
             let box = text.boundingBox   // normalized, origin bottom-left
