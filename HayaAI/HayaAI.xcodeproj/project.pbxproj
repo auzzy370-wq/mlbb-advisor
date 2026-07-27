@@ -60,6 +60,7 @@
 		AA000172 /* LiveCoachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010172; };
 		AA000173 /* LiveCoachViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010173; };
 		AA000174 /* GameModeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010174; };
+		AA000175 /* HeroPickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010175; };
 		AA000180 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010180; };
 		AA000190 /* AnalyticsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010190; };
 		AA000200 /* Color+Haya.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010200; };
@@ -113,6 +114,8 @@
 		AA010032 /* BroadcastPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastPickerView.swift; sourceTree = "<group>"; };
 		CC010001 /* SampleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleHandler.swift; sourceTree = "<group>"; };
 		CC010002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FREFBCASTENT /* HayaAIBroadcast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HayaAIBroadcast.entitlements; sourceTree = "<group>"; };
+		FREFAPPENT /* HayaAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HayaAI.entitlements; sourceTree = "<group>"; };
 		CC020000 /* HayaAIBroadcast.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HayaAIBroadcast.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA010040 /* OCREngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCREngine.swift; sourceTree = "<group>"; };
 		AA010050 /* VisionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core/VisionEngine.swift"; sourceTree = "<group>"; };
@@ -135,6 +138,7 @@
 		AA010161 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/DashboardViewModel.swift"; sourceTree = "<group>"; };
 		AA010170 /* DraftAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/DraftAssistantView.swift"; sourceTree = "<group>"; };
 		AA010171 /* DraftAssistantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/DraftAssistantViewModel.swift"; sourceTree = "<group>"; };
+		AA010175 /* HeroPickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/HeroPickerSheet.swift"; sourceTree = "<group>"; };
 		AA010172 /* LiveCoachView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/LiveCoachView.swift"; sourceTree = "<group>"; };
 		AA010173 /* LiveCoachViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/LiveCoachViewModel.swift"; sourceTree = "<group>"; };
 		AA010174 /* GameModeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/GameModeContainerView.swift"; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 			children = (
 				CC010001 /* SampleHandler.swift */,
 				CC010002 /* Info.plist */,
+				FREFBCASTENT /* HayaAIBroadcast.entitlements */,
 			);
 			name = HayaAIBroadcast;
 			path = HayaAIBroadcast;
@@ -246,6 +251,7 @@
 				GRPANALYTICS /* Analytics */,
 				GRPSHARED /* SharedComponents */,
 				GRPRESOURCES /* Resources */,
+				FREFAPPENT /* HayaAI.entitlements */,
 			);
 			path = HayaAI;
 			sourceTree = "<group>";
@@ -400,6 +406,7 @@
 				AA010172 /* LiveCoachView.swift */,
 				AA010173 /* LiveCoachViewModel.swift */,
 				AA010174 /* GameModeContainerView.swift */,
+				AA010175 /* HeroPickerSheet.swift */,
 			);
 			path = DraftAssistant;
 			sourceTree = "<group>";
@@ -649,6 +656,7 @@
 				AA000172,
 				AA000173,
 				AA000174,
+				AA000175,
 				AA000180,
 				AA000190,
 				AA000200,
@@ -960,8 +968,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "HayaAI/HayaAI.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -971,7 +980,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -986,8 +995,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "HayaAI/HayaAI.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -997,7 +1007,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -1046,6 +1056,7 @@
 		CFGDEBUGBROADCAST /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "HayaAIBroadcast/HayaAIBroadcast.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = "HayaAIBroadcast/Info.plist";
@@ -1062,11 +1073,12 @@
 		CFGRELEASEBROADCAST /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "HayaAIBroadcast/HayaAIBroadcast.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = "HayaAIBroadcast/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app.broadcast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1082,7 +1094,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = "HayaAIWidget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1098,7 +1110,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = "HayaAIWidget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hayaai.app.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

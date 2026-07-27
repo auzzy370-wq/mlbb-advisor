@@ -4,6 +4,9 @@ struct DraftAssistantView: View {
     @EnvironmentObject private var viewModel: DraftAssistantViewModel
     @EnvironmentObject private var draftStateManager: DraftStateManager
 
+    /// Which draft slot is currently awaiting a hero selection.
+    @State private var pickerTarget: DraftSlotTarget? = nil
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -21,6 +24,22 @@ struct DraftAssistantView: View {
         }
         .sheet(item: $viewModel.selectedRecommendation) { rec in
             RecommendationDetailSheet(recommendation: rec)
+        }
+        // Hero picker sheet — opened by tapping any draft slot
+        .sheet(item: $pickerTarget) { target in
+            HeroPickerSheet(
+                target: target,
+                heroDatabase: draftStateManager.heroDatabase
+            ) { heroName in
+                if target.kind == .ban {
+                    viewModel.banHero(heroName, team: target.team, slot: target.slot)
+                } else {
+                    viewModel.pickHero(heroName, team: target.team, slot: target.slot)
+                }
+            } onClear: {
+                viewModel.clearSlot(team: target.team, slot: target.slot,
+                                    isBan: target.kind == .ban)
+            }
         }
     }
 
@@ -78,7 +97,7 @@ struct DraftAssistantView: View {
 
     // MARK: - Draft Board
     private var draftBoardSection: some View {
-        DraftBoardView(draftState: viewModel.draftState)
+        DraftBoardView(draftState: viewModel.draftState, pickerTarget: $pickerTarget)
             .padding(.vertical, 8)
     }
 
@@ -146,6 +165,7 @@ struct DraftAssistantView: View {
 // MARK: - Draft Board
 struct DraftBoardView: View {
     let draftState: DraftState
+    @Binding var pickerTarget: DraftSlotTarget?
 
     var body: some View {
         HStack(alignment: .top, spacing: 8) {
@@ -160,6 +180,10 @@ struct DraftBoardView: View {
             VStack(spacing: 4) {
                 PhaseIndicatorBadge(phase: draftState.phase)
                 TimerDisplay(seconds: draftState.timer, isActive: draftState.isMyTurn)
+                Text("Tap slot\nto pick")
+                    .font(.system(size: 8))
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(.tertiary)
             }
             .frame(width: 70)
 
@@ -175,16 +199,22 @@ struct DraftBoardView: View {
 
     private func teamBans(bans: [DraftSlot], team: DraftTurn) -> some View {
         HStack(spacing: 4) {
-            ForEach(bans) { slot in
+            ForEach(Array(bans.enumerated()), id: \.element.id) { idx, slot in
                 BanSlotView(slot: slot)
+                    .onTapGesture {
+                        pickerTarget = DraftSlotTarget(team: team, slot: idx, kind: .ban)
+                    }
             }
         }
     }
 
     private func teamPicks(picks: [DraftSlot], team: DraftTurn) -> some View {
         VStack(spacing: 4) {
-            ForEach(picks) { slot in
+            ForEach(Array(picks.enumerated()), id: \.element.id) { idx, slot in
                 PickSlotView(slot: slot, isAlly: team == .friendly)
+                    .onTapGesture {
+                        pickerTarget = DraftSlotTarget(team: team, slot: idx, kind: .pick)
+                    }
             }
         }
     }

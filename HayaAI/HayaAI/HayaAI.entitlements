@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- App Group shared container used by BroadcastFrameReader to read
+         frames written by the HayaAIBroadcast extension.
+         ESign / Sideloadly will rewrite the group ID to match the resigned
+         bundle ID automatically (e.g. group.com.<yourname>.hayaai). -->
+    <key>com.apple.security.application-groups</key>
+    <array>
+        <string>group.com.hayaai.app</string>
+    </array>
+</dict>
+</plist>
