@@ -18,7 +18,7 @@ final class CoachPiPViewController: AVPictureInPictureVideoCallViewController {
     /// Update is called from LiveCoachViewModel whenever a new alert fires.
     func update(message: String, icon: String, priority: AlertPriority,
                 gameTime: String, hero: String, phase: String) {
-        let view = CoachPiPContentView(
+        let content = CoachPiPContentView(
             message: message,
             icon: icon,
             priority: priority,
@@ -27,18 +27,18 @@ final class CoachPiPViewController: AVPictureInPictureVideoCallViewController {
             phase: phase
         )
         if let hosting = hostingVC {
-            hosting.rootView = view
+            hosting.rootView = content
         } else {
-            let hvc = UIHostingController(rootView: view)
+            let hvc = UIHostingController(rootView: content)
             hvc.view.backgroundColor = .clear
             addChild(hvc)
             hvc.view.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview(hvc.view)
             NSLayoutConstraint.activate([
-                hvc.view.topAnchor.constraint(equalTo: view.topAnchor),
-                hvc.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                hvc.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                hvc.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                hvc.view.topAnchor.constraint(equalTo: self.view.topAnchor),
+                hvc.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+                hvc.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                hvc.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             ])
             hvc.didMove(toParent: self)
             hostingVC = hvc

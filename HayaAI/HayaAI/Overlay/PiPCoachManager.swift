@@ -43,7 +43,7 @@ final class PiPCoachManager: NSObject, ObservableObject {
 
         self.sourceView = sourceView
 
-        let source = AVPictureInPictureControllerContentSource(
+        let source = AVPictureInPictureController.ContentSource(
             activeVideoCallSourceView: sourceView,
             contentViewController: contentVC
         )
