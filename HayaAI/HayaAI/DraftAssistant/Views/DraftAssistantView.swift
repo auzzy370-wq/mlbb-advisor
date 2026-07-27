@@ -3,6 +3,7 @@ import SwiftUI
 struct DraftAssistantView: View {
     @EnvironmentObject private var viewModel: DraftAssistantViewModel
     @EnvironmentObject private var draftStateManager: DraftStateManager
+    @EnvironmentObject private var heroDatabaseService: HeroDatabaseService
 
     /// Which draft slot is currently awaiting a hero selection.
     @State private var pickerTarget: DraftSlotTarget? = nil
@@ -29,7 +30,7 @@ struct DraftAssistantView: View {
         .sheet(item: $pickerTarget) { target in
             HeroPickerSheet(
                 target: target,
-                heroDatabase: draftStateManager.heroDatabase
+                heroDatabase: heroDatabaseService
             ) { heroName in
                 if target.kind == .ban {
                     viewModel.banHero(heroName, team: target.team, slot: target.slot)

@@ -2848,7 +2848,7 @@
       "secondaryRole": "Marksman",
       "primaryLane": "EXP",
       "secondaryLane": "Roam",
-      "damageType": "Mixed",
+      "damageType": "Hybrid",
       "difficulty": 3,
       "earlyStrength": 7.5,
       "midStrength": 8.5,
@@ -5987,7 +5987,7 @@
       "secondaryRole": "Mage",
       "primaryLane": "EXP",
       "secondaryLane": null,
-      "damageType": "Mixed",
+      "damageType": "Hybrid",
       "difficulty": 4,
       "earlyStrength": 7.5,
       "midStrength": 8.5,
@@ -14670,29 +14670,91 @@
       "objectiveControl": 5.5,
       "waveClear": 7.0,
       "scaling": 5.5,
-      "strongAgainst": ["Alice","Uranus","Esmeralda"],
-      "weakAgainst": ["Cecilion","Lunox","Vale"],
-      "counterHeroes": ["Alice","Uranus"],
-      "counteredBy": ["Cecilion","Lunox"],
-      "preferredItems": [
-        {"id":"arcane_boots","name":"Arcane Boots","category":"Magic","description":null},
-        {"id":"glowing_wand","name":"Glowing Wand","category":"Magic","description":null},
-        {"id":"concentrated_energy","name":"Concentrated Energy","category":"Magic","description":null},
-        {"id":"holy_crystal","name":"Holy Crystal","category":"Magic","description":null},
-        {"id":"winter_truncheon","name":"Winter Truncheon","category":"Defense","description":null},
-        {"id":"immortality","name":"Immortality","category":"Defense","description":null}
+      "strongAgainst": [
+        "Alice",
+        "Uranus",
+        "Esmeralda"
       ],
-      "preferredEmblem": "Mage",
-      "preferredBattleSpell": "Flicker",
-      "combos": [{"id":"bane_c1","order":1,"skill":"S2 slow → S1 AA → Ult","note":"Basic harass combo"}],
+      "weakAgainst": [
+        "Cecilion",
+        "Lunox",
+        "Vale"
+      ],
+      "counterHeroes": [
+        "Alice",
+        "Uranus"
+      ],
+      "counteredBy": [
+        "Cecilion",
+        "Lunox"
+      ],
+      "preferredItems": [
+        {
+          "id": "arcane_boots",
+          "name": "Arcane Boots",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "glowing_wand",
+          "name": "Glowing Wand",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "concentrated_energy",
+          "name": "Concentrated Energy",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "holy_crystal",
+          "name": "Holy Crystal",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "winter_truncheon",
+          "name": "Winter Truncheon",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "immortality",
+          "name": "Immortality",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "combos": [
+        {
+          "id": "bane_c1",
+          "order": 1,
+          "skill": "S2 slow \u2192 S1 AA \u2192 Ult",
+          "note": "Basic harass combo"
+        }
+      ],
       "rotationGuide": "Bully enemies in lane with superior sustain. Use ult to clear waves and poke. Build hybrid magic-tank.",
-      "powerSpikes": [{"id":"bane_ps1","phase":"Early","description":"Level 4 with items","itemTriggered":"Glowing Wand","impact":"Strong lane bully with sustain"}],
+      "powerSpikes": [
+        {
+          "id": "bane_ps1",
+          "phase": "Early",
+          "description": "Level 4 with items",
+          "itemTriggered": "Glowing Wand",
+          "impact": "Strong lane bully with sustain"
+        }
+      ],
       "draftPriority": 5.5,
       "banPriority": 4.0,
       "metaScore": 5.5,
       "professionalPickRate": 0.05,
-      "professionalWinRate": 0.50,
-      "rankWinRate": 0.52
+      "professionalWinRate": 0.5,
+      "rankWinRate": 0.52,
+      "bestEmblem": "Mage",
+      "bestSpell": "Flicker",
+      "situationalItems": [],
+      "counterItems": [],
+      "talents": []
     },
     {
       "id": "hilda",
@@ -14715,29 +14777,93 @@
       "objectiveControl": 7.0,
       "waveClear": 6.5,
       "scaling": 5.0,
-      "strongAgainst": ["Nana","Eudora","Layla"],
-      "weakAgainst": ["Paquito","Chou","Yu Zhong"],
-      "counterHeroes": ["Nana","Eudora","Layla"],
-      "counteredBy": ["Paquito","Chou","Yu Zhong"],
-      "preferredItems": [
-        {"id":"warrior_boots","name":"Warrior Boots","category":"Defense","description":null},
-        {"id":"cursed_helmet","name":"Cursed Helmet","category":"Defense","description":null},
-        {"id":"dominance_ice","name":"Dominance Ice","category":"Defense","description":null},
-        {"id":"oracle","name":"Oracle","category":"Defense","description":null},
-        {"id":"antique_cuirass","name":"Antique Cuirass","category":"Defense","description":null},
-        {"id":"immortality","name":"Immortality","category":"Defense","description":null}
+      "strongAgainst": [
+        "Nana",
+        "Eudora",
+        "Layla"
       ],
-      "preferredEmblem": "Fighter",
-      "preferredBattleSpell": "Vengeance",
-      "combos": [{"id":"hilda_c1","order":1,"skill":"S1 charge → S2 → AA → Ult","note":"All-in combo"}],
+      "weakAgainst": [
+        "Paquito",
+        "Chou",
+        "Yu Zhong"
+      ],
+      "counterHeroes": [
+        "Nana",
+        "Eudora",
+        "Layla"
+      ],
+      "counteredBy": [
+        "Paquito",
+        "Chou",
+        "Yu Zhong"
+      ],
+      "preferredItems": [
+        {
+          "id": "warrior_boots",
+          "name": "Warrior Boots",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "cursed_helmet",
+          "name": "Cursed Helmet",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "dominance_ice",
+          "name": "Dominance Ice",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "oracle",
+          "name": "Oracle",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "antique_cuirass",
+          "name": "Antique Cuirass",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "immortality",
+          "name": "Immortality",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "combos": [
+        {
+          "id": "hilda_c1",
+          "order": 1,
+          "skill": "S1 charge \u2192 S2 \u2192 AA \u2192 Ult",
+          "note": "All-in combo"
+        }
+      ],
       "rotationGuide": "Use bushes to regenerate HP. Snowball early game with kill pressure. Transitions to tank role late game.",
-      "powerSpikes": [{"id":"hilda_ps1","phase":"Early","description":"Level 2 power spike","itemTriggered":"Cursed Helmet","impact":"Tanky sustain fighter dominates early lanes"}],
+      "powerSpikes": [
+        {
+          "id": "hilda_ps1",
+          "phase": "Early",
+          "description": "Level 2 power spike",
+          "itemTriggered": "Cursed Helmet",
+          "impact": "Tanky sustain fighter dominates early lanes"
+        }
+      ],
       "draftPriority": 6.5,
       "banPriority": 5.5,
       "metaScore": 6.5,
       "professionalPickRate": 0.12,
       "professionalWinRate": 0.51,
-      "rankWinRate": 0.53
+      "rankWinRate": 0.53,
+      "bestEmblem": "Fighter",
+      "bestSpell": "Vengeance",
+      "situationalItems": [],
+      "counterItems": [],
+      "talents": []
     },
     {
       "id": "luo_yi",
@@ -14760,29 +14886,93 @@
       "objectiveControl": 7.5,
       "waveClear": 8.0,
       "scaling": 9.0,
-      "strongAgainst": ["Tigreal","Atlas","Khufra"],
-      "weakAgainst": ["Lancelot","Hayabusa","Natalia"],
-      "counterHeroes": ["Tigreal","Atlas","Khufra"],
-      "counteredBy": ["Lancelot","Hayabusa","Natalia"],
-      "preferredItems": [
-        {"id":"arcane_boots","name":"Arcane Boots","category":"Magic","description":null},
-        {"id":"clock_of_destiny","name":"Clock of Destiny","category":"Magic","description":null},
-        {"id":"lightning_truncheon","name":"Lightning Truncheon","category":"Magic","description":null},
-        {"id":"holy_crystal","name":"Holy Crystal","category":"Magic","description":null},
-        {"id":"divine_glaive","name":"Divine Glaive","category":"Magic","description":null},
-        {"id":"winter_truncheon","name":"Winter Truncheon","category":"Defense","description":null}
+      "strongAgainst": [
+        "Tigreal",
+        "Atlas",
+        "Khufra"
       ],
-      "preferredEmblem": "Mage",
-      "preferredBattleSpell": "Flicker",
-      "combos": [{"id":"luoyi_c1","order":1,"skill":"S1 → S2 → S3 teleport ally","note":"Yin-Yang combo initiates teamfight"}],
+      "weakAgainst": [
+        "Lancelot",
+        "Hayabusa",
+        "Natalia"
+      ],
+      "counterHeroes": [
+        "Tigreal",
+        "Atlas",
+        "Khufra"
+      ],
+      "counteredBy": [
+        "Lancelot",
+        "Hayabusa",
+        "Natalia"
+      ],
+      "preferredItems": [
+        {
+          "id": "arcane_boots",
+          "name": "Arcane Boots",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "clock_of_destiny",
+          "name": "Clock of Destiny",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "lightning_truncheon",
+          "name": "Lightning Truncheon",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "holy_crystal",
+          "name": "Holy Crystal",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "divine_glaive",
+          "name": "Divine Glaive",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "winter_truncheon",
+          "name": "Winter Truncheon",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "combos": [
+        {
+          "id": "luoyi_c1",
+          "order": 1,
+          "skill": "S1 \u2192 S2 \u2192 S3 teleport ally",
+          "note": "Yin-Yang combo initiates teamfight"
+        }
+      ],
       "rotationGuide": "Luo Yi scales into late game. Place yin/yang marks to control fights. Ult teleports teammates for ambushes.",
-      "powerSpikes": [{"id":"luoyi_ps1","phase":"Mid","description":"Level 4 full combo","itemTriggered":"Clock of Destiny","impact":"Massive CC teamfight control"}],
+      "powerSpikes": [
+        {
+          "id": "luoyi_ps1",
+          "phase": "Mid",
+          "description": "Level 4 full combo",
+          "itemTriggered": "Clock of Destiny",
+          "impact": "Massive CC teamfight control"
+        }
+      ],
       "draftPriority": 8.0,
       "banPriority": 7.5,
       "metaScore": 8.0,
       "professionalPickRate": 0.35,
       "professionalWinRate": 0.53,
-      "rankWinRate": 0.51
+      "rankWinRate": 0.51,
+      "bestEmblem": "Mage",
+      "bestSpell": "Flicker",
+      "situationalItems": [],
+      "counterItems": [],
+      "talents": []
     },
     {
       "id": "valentina",
@@ -14805,29 +14995,93 @@
       "objectiveControl": 8.0,
       "waveClear": 7.5,
       "scaling": 10.0,
-      "strongAgainst": ["Fredrinn","Jawhead","Barats"],
-      "weakAgainst": ["Lancelot","Fanny","Hayabusa"],
-      "counterHeroes": ["Fredrinn","Jawhead","Barats"],
-      "counteredBy": ["Lancelot","Fanny","Hayabusa"],
-      "preferredItems": [
-        {"id":"arcane_boots","name":"Arcane Boots","category":"Magic","description":null},
-        {"id":"enchanted_talisman","name":"Enchanted Talisman","category":"Magic","description":null},
-        {"id":"concentrated_energy","name":"Concentrated Energy","category":"Magic","description":null},
-        {"id":"holy_crystal","name":"Holy Crystal","category":"Magic","description":null},
-        {"id":"divine_glaive","name":"Divine Glaive","category":"Magic","description":null},
-        {"id":"immortality","name":"Immortality","category":"Defense","description":null}
+      "strongAgainst": [
+        "Fredrinn",
+        "Jawhead",
+        "Barats"
       ],
-      "preferredEmblem": "Mage",
-      "preferredBattleSpell": "Flicker",
-      "combos": [{"id":"valentina_c1","order":1,"skill":"S2 dash → S1 poke → Ult (copy enemy ult)","note":"Copy high-value enemy ultimates"}],
+      "weakAgainst": [
+        "Lancelot",
+        "Fanny",
+        "Hayabusa"
+      ],
+      "counterHeroes": [
+        "Fredrinn",
+        "Jawhead",
+        "Barats"
+      ],
+      "counteredBy": [
+        "Lancelot",
+        "Fanny",
+        "Hayabusa"
+      ],
+      "preferredItems": [
+        {
+          "id": "arcane_boots",
+          "name": "Arcane Boots",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "enchanted_talisman",
+          "name": "Enchanted Talisman",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "concentrated_energy",
+          "name": "Concentrated Energy",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "holy_crystal",
+          "name": "Holy Crystal",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "divine_glaive",
+          "name": "Divine Glaive",
+          "category": "Magic",
+          "description": null
+        },
+        {
+          "id": "immortality",
+          "name": "Immortality",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "combos": [
+        {
+          "id": "valentina_c1",
+          "order": 1,
+          "skill": "S2 dash \u2192 S1 poke \u2192 Ult (copy enemy ult)",
+          "note": "Copy high-value enemy ultimates"
+        }
+      ],
       "rotationGuide": "Valentina copies enemy hero ults. Prioritize stealing powerful ultimates. Scales extremely hard into late game.",
-      "powerSpikes": [{"id":"valentina_ps1","phase":"Mid","description":"Level 4 ult available","itemTriggered":"Holy Crystal","impact":"Game-changing ult copy potential"}],
+      "powerSpikes": [
+        {
+          "id": "valentina_ps1",
+          "phase": "Mid",
+          "description": "Level 4 ult available",
+          "itemTriggered": "Holy Crystal",
+          "impact": "Game-changing ult copy potential"
+        }
+      ],
       "draftPriority": 8.5,
       "banPriority": 8.0,
       "metaScore": 8.5,
-      "professionalPickRate": 0.40,
+      "professionalPickRate": 0.4,
       "professionalWinRate": 0.54,
-      "rankWinRate": 0.52
+      "rankWinRate": 0.52,
+      "bestEmblem": "Mage",
+      "bestSpell": "Flicker",
+      "situationalItems": [],
+      "counterItems": [],
+      "talents": []
     },
     {
       "id": "gloo",
@@ -14850,29 +15104,93 @@
       "objectiveControl": 7.0,
       "waveClear": 6.0,
       "scaling": 6.5,
-      "strongAgainst": ["Harley","Lancelot","Fanny"],
-      "weakAgainst": ["Kaja","Franco","Atlas"],
-      "counterHeroes": ["Harley","Lancelot","Fanny"],
-      "counteredBy": ["Kaja","Franco","Atlas"],
-      "preferredItems": [
-        {"id":"tough_boots","name":"Tough Boots","category":"Defense","description":null},
-        {"id":"cursed_helmet","name":"Cursed Helmet","category":"Defense","description":null},
-        {"id":"antique_cuirass","name":"Antique Cuirass","category":"Defense","description":null},
-        {"id":"dominance_ice","name":"Dominance Ice","category":"Defense","description":null},
-        {"id":"oracle","name":"Oracle","category":"Defense","description":null},
-        {"id":"immortality","name":"Immortality","category":"Defense","description":null}
+      "strongAgainst": [
+        "Harley",
+        "Lancelot",
+        "Fanny"
       ],
-      "preferredEmblem": "Tank",
-      "preferredBattleSpell": "Vengeance",
-      "combos": [{"id":"gloo_c1","order":1,"skill":"S1 × 4 → S2 attach → Ult detach","note":"Stack goo to max then attach for CC"}],
+      "weakAgainst": [
+        "Kaja",
+        "Franco",
+        "Atlas"
+      ],
+      "counterHeroes": [
+        "Harley",
+        "Lancelot",
+        "Fanny"
+      ],
+      "counteredBy": [
+        "Kaja",
+        "Franco",
+        "Atlas"
+      ],
+      "preferredItems": [
+        {
+          "id": "tough_boots",
+          "name": "Tough Boots",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "cursed_helmet",
+          "name": "Cursed Helmet",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "antique_cuirass",
+          "name": "Antique Cuirass",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "dominance_ice",
+          "name": "Dominance Ice",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "oracle",
+          "name": "Oracle",
+          "category": "Defense",
+          "description": null
+        },
+        {
+          "id": "immortality",
+          "name": "Immortality",
+          "category": "Defense",
+          "description": null
+        }
+      ],
+      "combos": [
+        {
+          "id": "gloo_c1",
+          "order": 1,
+          "skill": "S1 \u00d7 4 \u2192 S2 attach \u2192 Ult detach",
+          "note": "Stack goo to max then attach for CC"
+        }
+      ],
       "rotationGuide": "Gloo attaches to enemies to absorb their CC. Use S1 stacks to slow. Ult detach resets stacks.",
-      "powerSpikes": [{"id":"gloo_ps1","phase":"Early","description":"Level 4 full kit","itemTriggered":"Cursed Helmet","impact":"Extremely sticky and hard to kill in lane"}],
+      "powerSpikes": [
+        {
+          "id": "gloo_ps1",
+          "phase": "Early",
+          "description": "Level 4 full kit",
+          "itemTriggered": "Cursed Helmet",
+          "impact": "Extremely sticky and hard to kill in lane"
+        }
+      ],
       "draftPriority": 7.0,
       "banPriority": 6.5,
       "metaScore": 7.0,
       "professionalPickRate": 0.22,
       "professionalWinRate": 0.52,
-      "rankWinRate": 0.51
+      "rankWinRate": 0.51,
+      "bestEmblem": "Tank",
+      "bestSpell": "Vengeance",
+      "situationalItems": [],
+      "counterItems": [],
+      "talents": []
     }
   ]
 }

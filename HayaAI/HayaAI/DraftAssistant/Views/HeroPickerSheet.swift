@@ -111,6 +111,13 @@ struct HeroPickerSheet: View {
             heroes = await heroDatabase.searchHeroes(query: "")
             applyFilter()
         }
+        // Re-load when the database finishes async loading (handles race condition on first open)
+        .onReceive(heroDatabase.$heroes) { dbHeroes in
+            if heroes.isEmpty && !dbHeroes.isEmpty {
+                heroes = dbHeroes.sorted { $0.metaScore > $1.metaScore }
+                applyFilter()
+            }
+        }
     }
 
     // MARK: - Helpers
