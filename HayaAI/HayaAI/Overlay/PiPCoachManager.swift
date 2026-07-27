@@ -56,6 +56,10 @@ final class PiPCoachManager: NSObject, ObservableObject {
     // ── Clock + alerts ───────────────────────────────────────────
     private var clockTask: Task<Void, Never>?
     private var elapsedSeconds: Int = 0
+    /// True only while the game is actually live (earlyGame / midGame / lateGame).
+    /// The clock does NOT tick during draft, loading, lobby, or idle.
+    private var isGameLive: Bool = false
+    private var lastSessionPhase: GameSessionPhase = .idle
     private var lastAlertAt: Date = .distantPast
     private var currentAlert: (message: String, icon: String, priority: AlertPriority)?
 
@@ -86,22 +90,48 @@ final class PiPCoachManager: NSObject, ObservableObject {
 
     /// Called every time the coaching engine produces a new game state.
     func update(alert: CoachAlert?, gameState: LiveGameState) {
-        if gameState.gameTimeSeconds > 0 {
-            let mins = gameState.gameTimeSeconds / 60
-            let secs = gameState.gameTimeSeconds % 60
-            latestGameTime = String(format: "%d:%02d", mins, secs)
-            if abs(gameState.gameTimeSeconds - elapsedSeconds) > 3 {
-                elapsedSeconds = gameState.gameTimeSeconds
+        let incomingPhase = gameState.sessionPhase
+        let wasLive = isGameLive
+        isGameLive = incomingPhase == .earlyGame || incomingPhase == .midGame || incomingPhase == .lateGame
+
+        // Detect the moment the game goes live — reset clock so it starts at 0:00,
+        // not whatever the draft/lobby timer accumulated.
+        if isGameLive && !wasLive {
+            elapsedSeconds = 0
+            latestGameTime = nil         // will be set below if OCR has real data
+            latestFriendlyKills = nil
+            latestEnemyKills = nil
+        }
+
+        // Detect game ending — clear live data so the clock hides again.
+        if !isGameLive && wasLive {
+            latestGameTime = nil
+            latestFriendlyKills = nil
+            latestEnemyKills = nil
+        }
+
+        // Only trust clock/kill data when the game is actually running.
+        if isGameLive {
+            if gameState.gameTimeSeconds > 0 {
+                let mins = gameState.gameTimeSeconds / 60
+                let secs = gameState.gameTimeSeconds % 60
+                latestGameTime = String(format: "%d:%02d", mins, secs)
+                // Sync internal counter if OCR differs by more than 3 s.
+                if abs(gameState.gameTimeSeconds - elapsedSeconds) > 3 {
+                    elapsedSeconds = gameState.gameTimeSeconds
+                }
+                lastRealDataAt = Date()
             }
-            lastRealDataAt = Date()
+            if gameState.killScore.friendly > 0 || gameState.killScore.enemy > 0 {
+                latestFriendlyKills = gameState.killScore.friendly
+                latestEnemyKills = gameState.killScore.enemy
+                lastRealDataAt = Date()
+            }
         }
-        if gameState.killScore.friendly > 0 || gameState.killScore.enemy > 0 {
-            latestFriendlyKills = gameState.killScore.friendly
-            latestEnemyKills = gameState.killScore.enemy
-            lastRealDataAt = Date()
-        }
-        latestPhase = gameState.sessionPhase.rawValue
-        isCapturing = gameState.sessionPhase != .idle
+
+        latestPhase = incomingPhase.rawValue
+        lastSessionPhase = incomingPhase
+        isCapturing = incomingPhase != .idle
 
         if let alert = alert, alert.priority >= .medium {
             currentAlert = (alert.message, alert.type.icon, alert.priority)
@@ -156,7 +186,11 @@ final class PiPCoachManager: NSObject, ObservableObject {
     }
 
     private func tick() {
-        elapsedSeconds += 1
+        // Only advance the game clock while a match is running.
+        // During draft, loading, lobby and idle the clock stays hidden (latestGameTime stays nil).
+        if isGameLive {
+            elapsedSeconds += 1
+        }
 
         // Clear stale alerts after 8 s
         if currentAlert != nil, Date().timeIntervalSince(lastAlertAt) > 8 {
@@ -211,13 +245,19 @@ final class PiPCoachManager: NSObject, ObservableObject {
 
         let (message, icon, priority) = resolveMessage(hasRealData: hasRealData)
 
+        // Only show a clock when the match is actually running.
+        // During draft/loading/lobby the clock stays nil → renders as "--:--".
+        let displayTime: String? = isGameLive
+            ? (latestGameTime ?? (elapsedSeconds > 0 ? formattedElapsed() : nil))
+            : nil
+
         let state = PiPDisplayState(
-            gameTime: latestGameTime ?? (elapsedSeconds > 0 ? formattedElapsed() : nil),
-            friendlyKills: latestFriendlyKills,
-            enemyKills: latestEnemyKills,
+            gameTime: displayTime,
+            friendlyKills: isGameLive ? latestFriendlyKills : nil,
+            enemyKills: isGameLive ? latestEnemyKills : nil,
             heroName: latestHero,
             phase: latestPhase,
-            isLiveData: hasRealData,
+            isLiveData: hasRealData && isGameLive,
             message: message,
             icon: icon,
             priority: priority,
@@ -333,8 +373,26 @@ final class PiPCoachManager: NSObject, ObservableObject {
 
     private func resolveMessage(hasRealData: Bool) -> (String, String, AlertPriority) {
         if let alert = currentAlert { return (alert.message, alert.icon, alert.priority) }
+
+        // In lobby / draft / loading, show a status message — never objective timers.
+        if !isGameLive { return preGameMessage() }
+
         if hasRealData { return realDataTip() }
         return timedFallbackTip()
+    }
+
+    /// Status messages shown before the match starts.
+    private func preGameMessage() -> (String, String, AlertPriority) {
+        switch lastSessionPhase {
+        case .idle:
+            return ("Start a broadcast to begin coaching", "dot.radiowaves.left.and.right", .low)
+        case .draft:
+            return ("Draft phase — tap slots in Haya AI to add picks", "person.3.fill", .low)
+        case .loading:
+            return ("Loading into game...", "hourglass", .low)
+        default:
+            return ("Waiting for game to start", "clock", .low)
+        }
     }
 
     private func realDataTip() -> (String, String, AlertPriority) {
@@ -362,22 +420,23 @@ final class PiPCoachManager: NSObject, ObservableObject {
         }
     }
 
+    /// Fallback tips shown when the game IS live but no OCR data has arrived yet.
     private func timedFallbackTip() -> (String, String, AlertPriority) {
-        switch elapsedSeconds {
-        case 0..<5:  return ("Start broadcast to get live coaching", "dot.radiowaves.left.and.right", .low)
-        case 5..<30: return ("Haya AI is scanning the screen...", "viewfinder", .low)
-        default:
-            let tips: [(String, String)] = [
-                ("Check minimap every few seconds", "map.fill"),
-                ("Ward jungle entrances to avoid ganks", "eye.fill"),
-                ("Farm between fights for gold advantage", "dollarsign.circle.fill"),
-                ("Focus objectives over kills", "star.fill"),
-                ("Stay behind your tank in teamfights", "shield.fill"),
-                ("Use pings to communicate with team", "bubble.left.fill"),
-            ]
-            let idx = (elapsedSeconds / 20) % tips.count
-            return (tips[idx].0, tips[idx].1, .low)
+        // First few seconds — just say we're reading.
+        if elapsedSeconds < 10 {
+            return ("Haya AI is reading your screen...", "viewfinder", .low)
         }
+
+        let tips: [(String, String)] = [
+            ("Check minimap every few seconds", "map.fill"),
+            ("Ward jungle entrances to avoid ganks", "eye.fill"),
+            ("Farm between fights for gold advantage", "dollarsign.circle.fill"),
+            ("Focus objectives over kills", "star.fill"),
+            ("Stay behind your tank in teamfights", "shield.fill"),
+            ("Use pings to communicate with team", "bubble.left.fill"),
+        ]
+        let idx = (elapsedSeconds / 20) % tips.count
+        return (tips[idx].0, tips[idx].1, .low)
     }
 
     private func formattedElapsed() -> String {

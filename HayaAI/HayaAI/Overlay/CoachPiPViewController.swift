@@ -108,9 +108,16 @@ struct CoachPiPContentView: View {
 
             Spacer()
 
-            Text(state.gameTime ?? "--:--")
-                .font(.system(size: 10, weight: .bold, design: .monospaced))
-                .foregroundStyle(state.gameTime != nil ? .white : Color.gray.opacity(0.5))
+            // Show the live game clock when in a match; show the phase label otherwise.
+            if let t = state.gameTime {
+                Text(t)
+                    .font(.system(size: 10, weight: .bold, design: .monospaced))
+                    .foregroundStyle(.white)
+            } else {
+                Text(preGameLabel)
+                    .font(.system(size: 9, weight: .medium))
+                    .foregroundStyle(Color.gray.opacity(0.55))
+            }
         }
         .padding(.horizontal, 10)
         .padding(.top, 8)
@@ -240,6 +247,16 @@ struct CoachPiPContentView: View {
     }
 
     // MARK: - Helpers
+
+    /// Compact phase label shown in the clock position before the match starts.
+    private var preGameLabel: String {
+        switch state.phase {
+        case "Draft":   return "DRAFT"
+        case "Loading": return "LOADING"
+        case "Idle":    return "READY"
+        default:        return state.phase.uppercased()
+        }
+    }
 
     private var borderColor: Color {
         guard state.isLiveData else { return .gray.opacity(0.4) }
