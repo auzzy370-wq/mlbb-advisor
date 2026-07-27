@@ -14,7 +14,7 @@ name: Build IPA
 
 on:
   push:
-    branches: ["main", "cursor/haya-ai-ios-app-ea6d"]
+    branches: ["main", "cursor/haya-ai-ios-app-ea6d", "cursor/pip-floating-overlay-ea6d"]
     tags: ["v*"]
   workflow_dispatch:
 
