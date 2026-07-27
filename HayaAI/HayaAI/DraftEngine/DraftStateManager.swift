@@ -159,6 +159,8 @@ final class DraftStateManager: ObservableObject, DraftEngineProtocol {
             detectedTexts: latest.detectedTexts,
             detectedPhase: majorityPhase ?? latest.detectedPhase,
             detectedTimer: medianTimer ?? latest.detectedTimer,
+            detectedGameClock: latest.detectedGameClock,
+            detectedKillScore: latest.detectedKillScore,
             detectedTurn: latest.detectedTurn,
             detectedPatch: latest.detectedPatch,
             processingTimeMs: latest.processingTimeMs,

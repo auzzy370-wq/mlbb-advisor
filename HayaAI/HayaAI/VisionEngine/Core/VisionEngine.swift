@@ -97,6 +97,8 @@ final class VisionEngine: VisionEngineProtocol {
             detectedTexts: texts,
             detectedPhase: detectedPhase,
             detectedTimer: detectedTimer,
+            detectedGameClock: nil,
+            detectedKillScore: nil,
             detectedTurn: detectedTurn,
             detectedPatch: detectedPatch,
             processingTimeMs: processingTime,

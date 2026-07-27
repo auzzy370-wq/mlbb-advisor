@@ -163,6 +163,7 @@ final class DraftAssistantViewModel: ObservableObject {
         let emptyResult = FrameAnalysisResult(
             detectedHeroes: [], detectedTexts: [],
             detectedPhase: nil, detectedTimer: nil,
+            detectedGameClock: nil, detectedKillScore: nil,
             detectedTurn: nil, detectedPatch: nil,
             processingTimeMs: 0,
             frameTimestamp: CMTimeValue(timestamp),
