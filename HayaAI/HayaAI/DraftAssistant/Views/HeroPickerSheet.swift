@@ -144,6 +144,8 @@ struct HeroPickerSheet: View {
         case .mage:      return .purple
         case .marksman:  return .yellow
         case .support:   return .green
+        case .jungler:   return .teal
+        case .roamer:    return .cyan
         }
     }
 }
@@ -235,6 +237,8 @@ private struct HeroPickerCell: View {
         case .mage:      return .purple
         case .marksman:  return .yellow
         case .support:   return .green
+        case .jungler:   return .teal
+        case .roamer:    return .cyan
         }
     }
 }
