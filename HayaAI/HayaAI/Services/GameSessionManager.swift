@@ -206,6 +206,50 @@ final class GameSessionManager: ObservableObject {
             .map { $0 }
     }
 
+    // MARK: - Live data feed from OCR pipeline
+    /// Called by DraftAssistantViewModel after each OCR pass with the extracted
+    /// game clock and kill score. This is the primary way real game data enters
+    /// the coaching engine from broadcast frames.
+    func updateLiveData(clockSeconds: Int?, killScore: KillScore?) async {
+        var didChange = false
+
+        if let clock = clockSeconds, clock > 0 {
+            if liveGameState.gameTimeSeconds != clock {
+                liveGameState.gameTimeSeconds = clock
+                let phase = GameSessionClassifier().detectFromClock(seconds: clock)
+                if phase != liveGameState.sessionPhase {
+                    liveGameState.sessionPhase = phase
+                    sessionPhase = phase
+                }
+                didChange = true
+            }
+            // Ensure session is marked active and in-game
+            if !isActive {
+                isActive = true
+                await objectiveTimerService.startTurtleTimer(respawnSeconds: max(1, 240 - clock))
+                await objectiveTimerService.startLordTimer(firstSpawnSeconds: max(1, 900 - clock))
+            }
+            if sessionPhase == .draft || sessionPhase == .loading || sessionPhase == .idle {
+                await transitionToGame(at: clock, forced: true)
+            }
+        }
+
+        if let ks = killScore {
+            liveGameState.killScore = ks
+            didChange = true
+        }
+
+        // Run a coaching pass whenever data changes
+        if didChange {
+            let alerts = await liveCoachEngine.evaluate(state: liveGameState)
+            let deduped = await alertEngine.filter(alerts, existingAlerts: liveGameState.activeAlerts)
+            liveGameState.activeAlerts = (liveGameState.activeAlerts.filter { $0.isActive } + deduped)
+                .sorted { $0.priority > $1.priority }
+                .prefix(5)
+                .map { $0 }
+        }
+    }
+
     // MARK: - Manual Controls (for when auto-detection is imperfect)
     func manuallySetPhase(_ phase: GameSessionPhase) {
         sessionPhase = phase

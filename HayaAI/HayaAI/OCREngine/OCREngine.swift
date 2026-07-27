@@ -29,7 +29,9 @@ actor OCREngine: OCREngineProtocol {
         "select": .pickPhase1,
         "hero selection": .pickPhase1
     ]
-    private let timerPattern = try! NSRegularExpression(pattern: #"^\d{1,2}$"#)
+    private let timerPattern    = try! NSRegularExpression(pattern: #"^\d{1,2}$"#)
+    private let clockPattern    = try! NSRegularExpression(pattern: #"^\d{1,2}:\d{2}$"#)
+    private let killPattern     = try! NSRegularExpression(pattern: #"^\d{1,2}\s*[:/\-]\s*\d{1,2}$"#)
 
     init(configuration: Configuration = Configuration(), heroNames: [String]) {
         self.configuration = configuration
@@ -110,9 +112,19 @@ actor OCREngine: OCREngineProtocol {
 
     private func classify(text: String) -> TextCategory {
         let lower = text.lowercased().trimmingCharacters(in: .whitespaces)
+        let range = NSRange(lower.startIndex..., in: lower)
 
-        if timerPattern.firstMatch(in: lower, range: NSRange(lower.startIndex..., in: lower)) != nil {
+        // MM:SS game clock — must check before timerPattern (which is also \d+)
+        if clockPattern.firstMatch(in: lower, range: range) != nil {
+            return .gameClock
+        }
+        // Draft countdown (single number 1-99)
+        if timerPattern.firstMatch(in: lower, range: range) != nil {
             return .timer
+        }
+        // Kill score "N : M" at top of HUD — check before heroName to avoid false match
+        if killPattern.firstMatch(in: lower, range: range) != nil {
+            return .killScore
         }
         for keyword in phaseKeywords.keys where lower.contains(keyword) {
             return .phase

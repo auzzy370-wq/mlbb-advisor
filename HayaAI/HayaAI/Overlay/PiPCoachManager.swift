@@ -75,9 +75,9 @@ final class PiPCoachManager: NSObject, ObservableObject {
 
     /// Updates the floating window with the latest game state from the coach engine.
     func update(alert: CoachAlert?, gameState: LiveGameState) {
-        // Sync real game time when OCR detects it
-        if gameState.gameTimeSeconds > 0 {
-            lastRealGameTime = gameState.gameTimeSeconds
+        // Sync internal clock to real OCR-detected game time whenever available
+        // so the displayed timer matches the actual MLBB clock.
+        if gameState.gameTimeSeconds > 0 && abs(gameState.gameTimeSeconds - elapsedSeconds) > 3 {
             elapsedSeconds = gameState.gameTimeSeconds
         }
 

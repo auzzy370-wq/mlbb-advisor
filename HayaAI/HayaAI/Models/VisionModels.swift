@@ -23,13 +23,15 @@ struct DetectedText: Sendable {
 }
 
 enum TextCategory: String, Sendable {
-    case heroName = "HeroName"
-    case timer = "Timer"
-    case phase = "Phase"
-    case role = "Role"
-    case lane = "Lane"
+    case heroName    = "HeroName"
+    case timer       = "Timer"      // draft countdown  (1-99)
+    case gameClock   = "GameClock"  // in-game MM:SS
+    case killScore   = "KillScore"  // e.g. "4 : 2"
+    case phase       = "Phase"
+    case role        = "Role"
+    case lane        = "Lane"
     case patchVersion = "PatchVersion"
-    case unknown = "Unknown"
+    case unknown     = "Unknown"
 }
 
 // MARK: - Detection Method
@@ -47,6 +49,10 @@ struct FrameAnalysisResult: Sendable {
     let detectedTexts: [DetectedText]
     let detectedPhase: DraftPhase?
     let detectedTimer: Int?
+    /// In-game clock in seconds, parsed from MM:SS text (e.g. "08:32" → 512)
+    let detectedGameClock: Int?
+    /// Kill score parsed from "N : M" text at top of HUD
+    let detectedKillScore: KillScore?
     let detectedTurn: DraftTurn?
     let detectedPatch: String?
     let processingTimeMs: Double

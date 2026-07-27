@@ -34,6 +34,9 @@ final class DraftAssistantViewModel: ObservableObject {
     /// (including Mobile Legends) even while MLBB is in the foreground.
     let broadcastFrameReader = BroadcastFrameReader()
 
+    /// Injected from MainTabView so OCR results flow into the coaching engine.
+    weak var gameSessionManager: GameSessionManager?
+
     /// Live OCR engine fed hero names from the database.
     /// Nil only during the brief async init window; assigned before any frame arrives.
     private var ocrEngine: OCREngine?
@@ -131,16 +134,20 @@ final class DraftAssistantViewModel: ObservableObject {
     // MARK: - Private Setup
 
     private func setupBroadcastPipeline() {
-        // When the broadcast extension delivers a new frame, feed it into Vision.
+        // Single onFrame handler — routes each broadcast frame to:
+        //  1. OCR/draft pipeline (hero names, phase, bans/picks)
+        //  2. Coaching pipeline (game clock, kill score → GameSessionManager)
         broadcastFrameReader.onFrame = { [weak self] cgImage, timestamp in
             guard let self else { return }
             Task {
-                // Wrap CGImage in a dummy CVPixelBuffer substitute for now.
-                // The VisionEngine's processFrame stub returns nil for the pixel buffer;
-                // production would use CIContext to create a pixel buffer from cgImage.
-                // For now, directly run OCR on the CGImage via the InGameFrameAnalyzer.
                 let analysis = await self.inGameAnalysis(from: cgImage, timestamp: Int(timestamp))
+                // Draft board update
                 await self.draftStateManager.update(with: analysis)
+                // Live coaching update — push clock + kills to coaching engine
+                await self.gameSessionManager?.updateLiveData(
+                    clockSeconds: analysis.detectedGameClock,
+                    killScore: analysis.detectedKillScore
+                )
             }
         }
     }
@@ -178,25 +185,25 @@ final class DraftAssistantViewModel: ObservableObject {
         var detectedHeroes: [DetectedHero] = []
         var detectedPhase: DraftPhase? = nil
         var detectedTimer: Int? = nil
+        var detectedGameClock: Int? = nil
+        var detectedKillScore: KillScore? = nil
         var bestConfidence = 0.0
 
-        for text in allTexts where text.confidence > 0.45 {
+        let clockRegex  = try? NSRegularExpression(pattern: #"(\d{1,2}):(\d{2})"#)
+        let killsRegex  = try? NSRegularExpression(pattern: #"(\d{1,2})\s*[:/\-]\s*(\d{1,2})"#)
+
+        for text in allTexts where text.confidence > 0.40 {
             bestConfidence = max(bestConfidence, text.confidence)
+            let raw = text.text.trimmingCharacters(in: .whitespaces)
             let box = text.boundingBox   // normalized, origin bottom-left
 
             switch text.category {
             case .heroName:
-                // Horizontal split: left half = friendly, right half = enemy.
-                // This matches the MLBB draft layout in landscape orientation.
                 let team: DraftTurn = box.midX < 0.5 ? .friendly : .enemy
-
-                // Vertical slot estimation inside the pick column (approx y=0.15…0.85).
-                // Vision y=1.0 is the TOP of the image; heroes are ordered top→bottom.
-                let relY = (box.midY - 0.15) / 0.70   // 0=bottom of pick area, 1=top
+                let relY = (box.midY - 0.15) / 0.70
                 let slot = min(4, max(0, Int((1.0 - relY) * 5)))
-
                 detectedHeroes.append(DetectedHero(
-                    name: text.text,
+                    name: raw,
                     boundingBox: box,
                     confidence: text.confidence,
                     team: team,
@@ -204,13 +211,39 @@ final class DraftAssistantViewModel: ObservableObject {
                     detectionMethod: .ocr
                 ))
 
+            case .gameClock:
+                // Parse MM:SS → total seconds
+                let r = NSRange(raw.startIndex..., in: raw)
+                if let m = clockRegex?.firstMatch(in: raw, range: r),
+                   let mR = Range(m.range(at: 1), in: raw),
+                   let sR = Range(m.range(at: 2), in: raw),
+                   let mins = Int(raw[mR]), let secs = Int(raw[sR]) {
+                    let total = mins * 60 + secs
+                    // Only accept plausible in-game times (0-60 min)
+                    if total >= 0 && total <= 3600 {
+                        detectedGameClock = total
+                    }
+                }
+
+            case .killScore:
+                // Parse "N : M" → KillScore. Top of screen = both teams.
+                // Friendly kills on left (box.midX < 0.5), enemy on right.
+                let r = NSRange(raw.startIndex..., in: raw)
+                if let m = killsRegex?.firstMatch(in: raw, range: r),
+                   let aR = Range(m.range(at: 1), in: raw),
+                   let bR = Range(m.range(at: 2), in: raw),
+                   let a = Int(raw[aR]), let b = Int(raw[bR]) {
+                    // MLBB HUD shows friendly : enemy
+                    detectedKillScore = KillScore(friendly: a, enemy: b)
+                }
+
             case .phase:
-                let lower = text.text.lowercased()
-                if lower.contains("ban")        { detectedPhase = .banPhase1 }
-                else if lower.contains("pick")  { detectedPhase = .pickPhase1 }
+                let lower = raw.lowercased()
+                if lower.contains("ban")       { detectedPhase = .banPhase1 }
+                else if lower.contains("pick") { detectedPhase = .pickPhase1 }
 
             case .timer:
-                if let v = Int(text.text), v >= 1, v <= 99 { detectedTimer = v }
+                if let v = Int(raw), v >= 1, v <= 99 { detectedTimer = v }
 
             default:
                 break
@@ -223,6 +256,8 @@ final class DraftAssistantViewModel: ObservableObject {
             detectedTexts: allTexts,
             detectedPhase: detectedPhase,
             detectedTimer: detectedTimer,
+            detectedGameClock: detectedGameClock,
+            detectedKillScore: detectedKillScore,
             detectedTurn: nil,
             detectedPatch: nil,
             processingTimeMs: elapsedMs,
