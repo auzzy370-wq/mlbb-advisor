@@ -35,6 +35,7 @@ struct GameModeContainerView: View {
                 DraftAssistantView()
                     .environmentObject(draftViewModel)
                     .environmentObject(draftStateManager)
+                    .environmentObject(liveCoachViewModel)
                     .transition(.asymmetric(
                         insertion: .move(edge: .leading).combined(with: .opacity),
                         removal: .move(edge: .trailing).combined(with: .opacity)

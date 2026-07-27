@@ -57,6 +57,7 @@ struct MainTabView: View {
             )
             .environmentObject(draftViewModel)
             .environmentObject(draftStateManager)
+            .environmentObject(liveCoachViewModel)
             .tabItem { Label(AppTab.draftAssistant.title, systemImage: AppTab.draftAssistant.systemImage) }
             .tag(AppTab.draftAssistant)
 

@@ -10,6 +10,8 @@
 		WD020001 /* CoachLiveActivityAttributes.swift in Sources (App) */ = {isa = PBXBuildFile; fileRef = WD010001; };
 		WD020002 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = WD010002; };
 		WD020003 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = WD010003; };
+		WD020010 /* CoachPiPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = WD010010; };
+		WD020011 /* PiPCoachManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = WD010011; };
 		WD020004 /* CoachLiveActivityAttributes.swift in Sources (Widget) */ = {isa = PBXBuildFile; fileRef = WD010001; };
 		WD020005 /* HayaAIWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = WD010004; };
 		WD020006 /* CoachLiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = WD010005; };
@@ -90,6 +92,8 @@
 		WD010001 /* CoachLiveActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachLiveActivityAttributes.swift; sourceTree = "<group>"; };
 		WD010002 /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
 		WD010003 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		WD010010 /* CoachPiPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachPiPViewController.swift; sourceTree = "<group>"; };
+		WD010011 /* PiPCoachManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPCoachManager.swift; sourceTree = "<group>"; };
 		WD010004 /* HayaAIWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HayaAIWidgetBundle.swift; sourceTree = "<group>"; };
 		WD010005 /* CoachLiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachLiveActivityView.swift; sourceTree = "<group>"; };
 		WD010006 /* HayaAIWidget/Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -192,6 +196,8 @@
 				WD010001 /* CoachLiveActivityAttributes.swift */,
 				WD010002 /* LiveActivityManager.swift */,
 				WD010003 /* NotificationService.swift */,
+				WD010010 /* CoachPiPViewController.swift */,
+				WD010011 /* PiPCoachManager.swift */,
 			);
 			path = Overlay;
 			sourceTree = "<group>";
@@ -615,6 +621,8 @@
 				WD020001 /* CoachLiveActivityAttributes.swift */,
 				WD020002 /* LiveActivityManager.swift */,
 				WD020003 /* NotificationService.swift */,
+				WD020010 /* CoachPiPViewController.swift */,
+				WD020011 /* PiPCoachManager.swift */,
 				AA000001,
 				AA000002,
 				AA000003,

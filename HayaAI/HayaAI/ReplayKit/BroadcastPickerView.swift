@@ -1,5 +1,6 @@
 import SwiftUI
 import ReplayKit
+import UIKit
 
 /// Wraps RPSystemBroadcastPickerView — when tapped this shows the native iOS
 /// "Start Broadcast" sheet that lets the user pick "Haya AI" as the broadcast
@@ -21,6 +22,59 @@ struct BroadcastPickerButton: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: RPSystemBroadcastPickerView, context: Context) {}
+}
+
+// MARK: - PiP Launch Button
+/// A button that starts the floating Picture-in-Picture coaching window.
+/// The user taps this once, then switches to MLBB — the coaching panel
+/// will float on top of the game.
+struct PiPLaunchButton: UIViewRepresentable {
+    @EnvironmentObject private var liveCoachVM: LiveCoachViewModel
+
+    func makeUIView(context: Context) -> UIView {
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        container.backgroundColor = .clear
+
+        let button = UIButton(type: .system)
+        button.frame = container.bounds
+        button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        button.setImage(UIImage(systemName: "pip.enter"), for: .normal)
+        button.tintColor = UIColor.systemYellow
+        button.addTarget(context.coordinator, action: #selector(Coordinator.tapped(_:)), for: .touchUpInside)
+        container.addSubview(button)
+        context.coordinator.button = button
+        context.coordinator.container = container
+        return container
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {
+        let active = liveCoachVM.pipManager.isActive
+        context.coordinator.button?.tintColor = active ? .systemGreen : .systemYellow
+        context.coordinator.button?.setImage(
+            UIImage(systemName: active ? "pip.exit" : "pip.enter"), for: .normal
+        )
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(vm: liveCoachVM)
+    }
+
+    @MainActor
+    class Coordinator: NSObject {
+        let vm: LiveCoachViewModel
+        weak var button: UIButton?
+        weak var container: UIView?
+
+        init(vm: LiveCoachViewModel) { self.vm = vm }
+
+        @objc func tapped(_ sender: UIButton) {
+            if vm.pipManager.isActive {
+                vm.pipManager.stop()
+            } else if let view = container {
+                vm.pipManager.start(from: view)
+            }
+        }
+    }
 }
 
 /// Full-width broadcast control card shown on the Draft Assistant screen when

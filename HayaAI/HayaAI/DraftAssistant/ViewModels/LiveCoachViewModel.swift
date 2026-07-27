@@ -48,6 +48,7 @@ final class LiveCoachViewModel: ObservableObject {
     private let inGameRecommendationService: InGameRecommendationService
     let liveActivityManager = LiveActivityManager()
     private let notificationService = NotificationService()
+    let pipManager = PiPCoachManager()
 
     // MARK: - Subscriptions
     private var cancellables: Set<AnyCancellable> = []
@@ -146,6 +147,8 @@ final class LiveCoachViewModel: ObservableObject {
                     await self.liveActivityManager.update(gameState: state, topAlert: topAlert)
                     // Fire local notification banners for new high-priority alerts
                     await self.notificationService.deliver(state.activeAlerts)
+                    // Update floating PiP window if active
+                    self.pipManager.update(alert: topAlert, gameState: state)
                 }
             }
             .store(in: &cancellables)

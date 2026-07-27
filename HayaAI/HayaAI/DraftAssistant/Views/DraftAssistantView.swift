@@ -47,13 +47,11 @@ struct DraftAssistantView: View {
     private var captureControlBar: some View {
         let isLive = viewModel.broadcastFrameReader.broadcastStatus == "running"
         return VStack(spacing: 0) {
-            HStack(spacing: 12) {
+            HStack(spacing: 10) {
                 // Pulsing live indicator
                 ZStack {
                     if isLive {
-                        Circle()
-                            .fill(Color.green.opacity(0.3))
-                            .frame(width: 16, height: 16)
+                        Circle().fill(Color.green.opacity(0.3)).frame(width: 16, height: 16)
                     }
                     Circle()
                         .fill(isLive ? Color.green : Color.secondary.opacity(0.35))
@@ -62,35 +60,36 @@ struct DraftAssistantView: View {
 
                 VStack(alignment: .leading, spacing: 1) {
                     Text(isLive ? "Coaching Active" : "Ready to Coach")
-                        .font(.caption)
-                        .fontWeight(.semibold)
+                        .font(.caption).fontWeight(.semibold)
                         .foregroundStyle(isLive ? .green : .primary)
                     Text(isLive
-                         ? "Dynamic Island showing live tips"
-                         : "Start broadcast — overlay activates automatically")
+                         ? "Floating panel + Dynamic Island active"
+                         : "Tap ▶ to float panel over MLBB, then broadcast")
                         .font(.system(size: 10))
                         .foregroundStyle(.secondary)
                 }
 
                 Spacer()
 
-                // Native iOS broadcast picker
+                // ── Float-over-game PiP button ───────────────────
+                PiPLaunchButton()
+                    .frame(width: 44, height: 44)
+
+                // ── Broadcast picker ─────────────────────────────
                 BroadcastPickerButton()
                     .frame(width: 44, height: 44)
             }
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 14)
             .padding(.vertical, 10)
             .background(isLive
-                        ? Color.green.opacity(0.08).background(.ultraThinMaterial)
-                        : Color.clear.background(.ultraThinMaterial))
+                ? Color.green.opacity(0.08).background(.ultraThinMaterial)
+                : Color.clear.background(.ultraThinMaterial))
             .animation(.easeInOut(duration: 0.3), value: isLive)
 
             if case .error(let msg) = viewModel.captureStatus {
                 Text("⚠️ \(msg)")
-                    .font(.caption2)
-                    .foregroundStyle(.orange)
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 6)
+                    .font(.caption2).foregroundStyle(.orange)
+                    .padding(.horizontal, 16).padding(.bottom, 6)
             }
         }
     }
